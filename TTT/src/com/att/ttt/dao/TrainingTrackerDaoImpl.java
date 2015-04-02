@@ -1,18 +1,18 @@
 package com.att.ttt.dao;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
-import com.att.ttt.entity.Users;
+
 
 public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 
@@ -26,6 +26,8 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		this.sessionFactory = sessionFactory;
 	}
 
+
+
 	@Override
 	@Transactional
 	public ArrayList<Employee> getUserPresenceList(String emailId) {
@@ -34,6 +36,16 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		Query qry=currentSession.createQuery(query);
 		List<Employee> userPresentList =   qry.list();
 		return (ArrayList<Employee>) userPresentList;
+	}
+	
+	@Override
+	@Transactional
+	public ArrayList<String> getUserRoles (String emailId) {
+		Session currentSession=this.getSessionFactory().getCurrentSession();
+		String query = "select user_role from Users u where u.user_mailid = '"+emailId+"'";
+		Query qry = currentSession.createQuery(query);
+		List<String> userRolesList = qry.list();
+		return (ArrayList<String>) userRolesList;
 	}
 	
 	@Override

@@ -23,6 +23,8 @@
 			<mapping class="com.att.ttt.entity.Employee" />
 			<mapping class="com.att.ttt.entity.Trainings"/>
 			<mapping class="com.att.ttt.entity.Emp_Trng"/>
+			<mapping class="com.att.ttt.entity.Users"/>
+			
 			
 	</session-factory>
 

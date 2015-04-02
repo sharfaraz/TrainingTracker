@@ -23,13 +23,12 @@ public class Trainings {
 		    sequenceName="training_id_seq",
 		    allocationSize=1
 		)*/
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue
 	private Integer training_id;
 	private String training_name;
 	
 	private String numOfdays;
 	private String level_id;
-	private String level_sub_id;
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
@@ -61,12 +60,7 @@ public class Trainings {
 	public void setLevel_id(String level_id) {
 		this.level_id = level_id;
 	}
-	public String getLevel_sub_id() {
-		return level_sub_id;
-	}
-	public void setLevel_sub_id(String level_sub_id) {
-		this.level_sub_id = level_sub_id;
-	}
+
 	public Date getStartDate() {
 		return startDate;
 	}

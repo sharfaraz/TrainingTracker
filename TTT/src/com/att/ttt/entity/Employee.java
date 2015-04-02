@@ -24,9 +24,8 @@ public class Employee {
 		    sequenceName="employee_id_seq",
 		    allocationSize=1
 		)*/
-	@GeneratedValue(strategy=GenerationType.AUTO)
+
 	@Id
-	private Long employee_id;
 	private String empId;
 	private String attuid;
 	private String tower;
@@ -127,12 +126,7 @@ public class Employee {
 	public void setSrdelMgrId(String srdelMgrId) {
 		this.srdelMgrId = srdelMgrId;
 	}
-	public Long getEmployee_id() {
-		return employee_id;
-	}
-	public void setEmployee_id(Long employee_id) {
-		this.employee_id = employee_id;
-	}
+
 	
 	
 	

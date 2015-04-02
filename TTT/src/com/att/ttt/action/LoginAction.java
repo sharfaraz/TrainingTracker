@@ -31,6 +31,16 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private Employee emp;
 
 	ArrayList<Employee> userPresenceList = new ArrayList<Employee>();
+	
+	ArrayList<String> userRolesList = new ArrayList<String>();
+
+	public ArrayList<String> getUserRolesList() {
+		return userRolesList;
+	}
+
+	public void setUserRolesList(ArrayList<String> userRolesList) {
+		this.userRolesList = userRolesList;
+	}
 
 	public SessionMap<String, Object> getSessionMap() {
 		return sessionMap;
@@ -119,16 +129,27 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 			userPresenceList = trainingTracker.getUserPresenceList(emailId);
 			System.out.println(userPresenceList);
+			
+			userRolesList = trainingTracker.getUserRoles(emailId);
+			System.out.println(userRolesList);
 
 			if (userPresenceList.size() != 0) {
 				System.out.println("existingUser");
 				res = "existingUser";
+				
+				userRolesList = trainingTracker.getUserRoles(emailId);
+				System.out.println(userRolesList);
+				if (userRolesList.size() != 0) {
+					System.out.println("Either a super user or DM");
+					res = "admin";
+				}
+				
+			
 				sessionMap.put("empId", userPresenceList.get(0)
-						.getEmployee_id().toString());
+						.getEmpId().toString());
 			} else {
 				System.out.println("nonExistingUser");
-//				res = "nonExistingUser";
-				res = "employeesList";
+				res = "nonExistingUser";
 			}
 		} else {
 			System.err.println("We're not in!");

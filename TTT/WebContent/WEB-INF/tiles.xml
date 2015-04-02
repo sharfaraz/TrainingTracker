@@ -41,16 +41,11 @@
   	 <put-attribute name="title"  value="Training and Tracking Tool"/>
       <put-attribute name="body"   value="/jsp/myArchiveTrainingsList.jsp"/>   
   </definition>
+
   
-  
-  <definition name="employeesList" extends="baseLayoutOne">
+  <definition name="adminOperations" extends="baseLayoutOne">
   	 <put-attribute name="title"  value="Training and Tracking Tool"/>
-      <put-attribute name="body"   value="/jsp/uploadEmployees.jsp"/>   
-  </definition>
-  
-  <definition name="TrainingList" extends="baseLayoutOne">
-  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
-      <put-attribute name="body"   value="/jsp/uploadTrainingList.jsp"/>   
+      <put-attribute name="body"   value="/jsp/adminOperations.jsp"/>   
   </definition>
   
   <definition name="uploadSuccess" extends="baseLayoutOne">

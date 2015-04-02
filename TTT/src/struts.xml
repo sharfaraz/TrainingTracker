@@ -47,14 +47,10 @@
         	<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="existingUser" type="tiles">welcomeExistingUser</result>
 			<result name="nonExistingUser" type="tiles">welcomeNonExistingUser</result>
-			<result name="employeesList" type="tiles">employeesList</result>
+			<result name="admin" type="tiles">adminOperations</result>
 			<result name="failure">/jsp/Login.jsp</result>
 		</action>
 		
-		<action name="myTrainingsList" class="com.att.ttt.action.UserTraingsAction" method="myTrainingsList">
-			<result name="success" type="tiles">myTrainingsList</result>
-			<result name="failure">welcomeExistingUser</result>
-		</action>
 		
 		<action name="myArchiveTrainingsList" class="com.att.ttt.action.UserTraingsAction" method="myArchiveTrainingsList">
 			<result name="success" type="tiles">myArchiveTrainingsList</result>
