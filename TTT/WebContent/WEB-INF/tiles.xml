@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+  <definition name="baseLayoutOne" template="/tiles/baseLayoutOne.jsp">
+      <put-attribute name="title"  value="Template"/>
+      <put-attribute name="header" value="/tiles/header.jsp"/>
+      <put-attribute name="body"   value="/tiles/body.jsp"/>
+      <put-attribute name="footer"   value="/tiles/footer.jsp"/>
+  </definition>
+  
+  <definition name="baseLayoutTwo" template="/tiles/baseLayoutTwo.jsp">
+      <put-attribute name="title"  value="Template"/>
+      <put-attribute name="header" value="/tiles/header.jsp"/>
+      <put-attribute name="menu"   value="/tiles/menu.jsp"/>
+      <put-attribute name="body"   value="/tiles/body.jsp"/>
+      <put-attribute name="footer"   value="/tiles/footer.jsp"/>
+  </definition>
+  
+  <definition name="welcomeNonExistingUser" extends="baseLayoutOne">
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/welcomeNonExistingUser.jsp"/>      
+  </definition>
+  
+  <definition name="welcomeExistingUser" extends="baseLayoutTwo">
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/welcomeExistingUser.jsp"/>      
+  </definition>
+  
+  <definition name="myTrainingsList" extends="baseLayoutTwo">
+  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/myTrainingsList.jsp"/>   
+  </definition>
+  
+  
+  <definition name="myArchiveTrainingsList" extends="baseLayoutTwo">
+  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/myArchiveTrainingsList.jsp"/>   
+  </definition>
+  
+  
+  <definition name="employeesList" extends="baseLayoutOne">
+  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/uploadEmployees.jsp"/>   
+  </definition>
+  
+  <definition name="TrainingList" extends="baseLayoutOne">
+  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/uploadTrainingList.jsp"/>   
+  </definition>
+  
+  <definition name="uploadSuccess" extends="baseLayoutOne">
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/uploadSuccess.jsp"/>      
+  </definition>
+  
+  
+</tiles-definitions>

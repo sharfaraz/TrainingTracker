@@ -1,0 +1,130 @@
+/* for hiding the page banner */
+.pagebanner 
+{
+       /*  #collection-1234567890abcde #banner-area-wrapper { display: block; } */
+     	margin: 20px auto 0px 55px;
+     	float: left;
+}
+/* for customizing page links */
+.pagelinks 
+{
+        
+        margin: 20px;
+        margin-right: 55px;
+        float: right;
+}
+
+
+/* for shifting all the Export options*/
+.exportlinks 
+{
+        margin: 20px 0px 0px 95px;
+}
+/* For changing the spaces between export link */
+.export 
+{
+		text-align: center;
+        margin: 0px 10px 0px 10px ;
+}
+/* For Table css */
+table.disp {
+        border: 0px;
+       
+}
+/* For odd and even row decoration */
+.disp tr.odd 
+{
+        background-color: #fff
+}
+.disp tr.tableRowEven, .disp tr.even 
+{
+        background-color: #CCCCCC
+}
+/* Css for table elements */
+.disp th, .disp td 
+{
+        padding: 10px 20px 10px 20px;
+        text-align: left;
+        vertical-align: top;
+}
+.disp thead tr 
+{
+        background-color: #999999;
+}
+/* For changing the background colour while sorting */
+.disp th.sorted 
+{
+        background-color: #CCCCCC;
+}
+.disp th.sorted a, .disp th.sortable a 
+{
+        background-position: right;
+        
+        width: 100%;
+}
+.disp th a:hover 
+{
+        text-decoration: underline;
+        color: black;
+}
+.disp th a, .disp th a:visited 
+{
+        color: rgb(216, 215, 215);
+}
+.pagelinks, .exportlinks, .pagebanner  {
+	padding: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+	
+	box-shadow: inset 0px 1px 0px rgba(255,255,255, .8), 0px 1px 3px rgba(0,0,0, .1);
+	font-size: 1.1em;
+	font-weight: bold;
+	text-decoration: none;
+	color: #484885;
+	text-shadow: 0px 1px 0px rgba(255,255,255, 1);
+    
+}
+
+.pagelinks a, .pagelinks strong, .exportlinks a, .exportlinks strong { 
+	display: inline-block;
+    padding: 0px 9px;
+    margin-right: 4px;
+    border-radius: 3px;
+    border: solid 1px #c0c0c0;
+    background: #e9e9e9;
+    box-shadow: inset 0px 1px 0px rgba(255,255,255, .8), 0px 1px 3px rgba(0,0,0, .1);
+    font-size: .875em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #717171;
+    text-shadow: 0px 1px 0px rgba(255,255,255, 1);
+  }
+.pagelinks a:hover, .exportlinks a:hover{ 
+ 	background: #fefefe;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FEFEFE), to(#f0f0f0));
+    background: -moz-linear-gradient(0% 0% 270deg,#FEFEFE, #f0f0f0);
+  }
+  
+.pagelinks strong, .exportlinks strong{
+  	border: none;
+    background: #616161;
+    box-shadow: inset 0px 0px 8px rgba(0,0,0, .5), 0px 1px 0px rgba(255,255,255, .8);
+    color: #f0f0f0;
+    text-shadow: 0px 0px 3px rgba(0,0,0, .5);
+  }
+  
+ #oppTable {
+ 	 border-collapse:collapse;
+ } 
+ 
+ #oppTable td{
+ 	text-align: center;
+ }
+ 
+  #oppTable th{
+ 	text-align: center;
+ }
+ 
+ 
+
+ 

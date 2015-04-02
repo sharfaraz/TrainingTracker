@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+        -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+ 
+           		<context:annotation-config/>
+           		
+           		<context:component-scan base-package="com.att" />
+   		
+   		<context:property-placeholder location="classpath:db.properties" />
+   		
+   		
+   	       
+    <tx:annotation-driven/>
+    
+            <bean id="sessionFactory"  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+					<property name="configLocation">
+            			<value>classpath:hibernate.cfg.xml</value>
+        		</property>
+        
+		<property name="hibernateProperties">
+			<props>
+			   <prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+			
+			</props>
+			</property>
+	</bean>
+
+  <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+	destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
+	p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}"
+	p:initialSize="10" p:minIdle="10" p:maxIdle="90" p:maxActive="90"
+	p:maxWait="6000" p:jmxEnabled="true"
+	p:jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
+	p:removeAbandoned="true" p:removeAbandonedTimeout="60" p:logAbandoned="true"
+	p:testOnBorrow="true" p:testOnReturn="false" p:testWhileIdle="false"
+	p:useEquals="false" p:fairQueue="false"
+	p:timeBetweenEvictionRunsMillis="30000" p:minEvictableIdleTimeMillis="30000"
+	p:validationInterval="1800000" />  
+
+<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+</bean>
+
+<bean id="TrainingTrackerDaoImpl" class="com.att.ttt.dao.TrainingTrackerDaoImpl" scope="prototype" />  
+<bean id="EmployeeDao" class="com.att.ttt.dao.EmployeeDaoImpl" scope="prototype" />
+<bean id="EmployeeManager" class="com.att.ttt.manager.EmployeeManagerImpl" scope="prototype" />
+<bean id="TrainingsDao" class="com.att.ttt.dao.TrainingsDaoImpl" scope="prototype" />
+<bean id="TrainingsManager" class="com.att.ttt.manager.TrainingsManagerImpl" scope="prototype" />
+
+
+       
+</beans>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.multipart.maxSize" value="5000000" />
+
+	<package name="default" extends="struts-default">
+	
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		
+		<!-- Login filter starts -->
+		<interceptors>
+			<interceptor name="authentication" class="com.att.ttt.utility.AuthenticationInterceptor"></interceptor>
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="authentication"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="authStack"></default-interceptor-ref>
+		
+		 <global-results>
+			<result name="login" type="redirect">/initLogin.action</result>
+		</global-results> 
+		
+		
+		<!-- Login filter ends -->
+		<!-- logout action starts-->
+		<action name="logoutAction" class="com.att.ttt.action.LoginAction" method="logout">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/jsp/Login.jsp</result>
+		</action>
+		<!-- logout action ends-->
+		
+         <action name="initLogin" class="com.att.ttt.action.InitLoginAction" >
+         	<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/jsp/Login.jsp</result>
+		</action>
+        
+        <action name="ValidateLogin" class="com.att.ttt.action.LoginAction" >
+        	<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="existingUser" type="tiles">welcomeExistingUser</result>
+			<result name="nonExistingUser" type="tiles">welcomeNonExistingUser</result>
+			<result name="employeesList" type="tiles">employeesList</result>
+			<result name="failure">/jsp/Login.jsp</result>
+		</action>
+		
+		<action name="myTrainingsList" class="com.att.ttt.action.UserTraingsAction" method="myTrainingsList">
+			<result name="success" type="tiles">myTrainingsList</result>
+			<result name="failure">welcomeExistingUser</result>
+		</action>
+		
+		<action name="myArchiveTrainingsList" class="com.att.ttt.action.UserTraingsAction" method="myArchiveTrainingsList">
+			<result name="success" type="tiles">myArchiveTrainingsList</result>
+			<result name="failure">welcomeExistingUser</result>
+		</action>
+		
+		<action name="uploadTrainingListAction" class="com.att.ttt.action.UserTraingsAction" method="uploadTrainingList">
+			<result name="success" type="tiles">uploadTrainingList</result>
+			<result name="failure">welcomeExistingUser</result>
+		</action>
+		
+		<action name="employeeUpload" class="com.att.ttt.action.EmployeeAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="tiles">uploadSuccess</result>
+			<result name="failure">uploadFailure</result>
+		</action>
+		
+		<action name="TrainingsUpload" class="com.att.ttt.action.TrainingsUpload">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="tiles">uploadSuccess</result>
+			<result name="failure">uploadFailure</result>
+		</action>
+		
+	</package>
+
+</struts>
