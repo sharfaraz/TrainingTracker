@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +22,7 @@ public class Trainings {
 		    sequenceName="training_id_seq",
 		    allocationSize=1
 		)*/
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Integer training_id;
 	private String training_name;
 	

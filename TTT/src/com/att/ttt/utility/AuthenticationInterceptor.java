@@ -2,7 +2,6 @@ package com.att.ttt.utility;
 
 import java.util.Map;
 
-import org.apache.struts2.dispatcher.SessionMap;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -11,6 +10,11 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 public class AuthenticationInterceptor implements Interceptor {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -35,7 +39,7 @@ public class AuthenticationInterceptor implements Interceptor {
 		if(user == null || user.equals("")){
 			return Action.LOGIN;
 		}else{
-			Action action = (Action) actionInvocation.getAction();			
+			//Action action = (Action) actionInvocation.getAction();			
 			return actionInvocation.invoke();
 		}
 	}

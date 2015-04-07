@@ -11,6 +11,11 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class TrainingsUpload extends ActionSupport {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private  TrainingsManager manager;
 	
 	private File uploadFile;

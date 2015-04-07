@@ -5,7 +5,6 @@ import java.util.Collection;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.att.ttt.entity.Employee;
@@ -13,8 +12,6 @@ import com.att.ttt.entity.Employee;
 public class EmployeeDaoImpl implements EmployeeDao {
 
 	private SessionFactory sessionFactory;
-	private HibernateTemplate hibernateTemplate;
-	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
