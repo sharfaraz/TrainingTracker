@@ -60,8 +60,8 @@ public class TrainingsManagerImpl implements TrainingsManager {
             	 row = sheet1.getRow(i);
             	 
             	 training.setDelMgr(String.valueOf(row.getCell(0)));
-            	 training.setTraining_name(String.valueOf(row.getCell(1)));
-            	 training.setLevel_id(String.valueOf(row.getCell(5)));
+            	 training.setTrainingName(String.valueOf(row.getCell(1)));
+            	 training.setLevelId(String.valueOf(row.getCell(5)));
             	 training.setNumOfdays(String.valueOf(row.getCell(4)));
             	 training.setEndDate(row.getCell(3).getDateCellValue());
             	 training.setStartDate(row.getCell(2).getDateCellValue());

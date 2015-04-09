@@ -51,6 +51,11 @@
 			<result name="failure">/jsp/Login.jsp</result>
 		</action>
 		
+		<action name="SaveTrainingAction" class="com.att.ttt.action.SaveTrainingAction" >
+        	<interceptor-ref name="defaultStack"></interceptor-ref>
+        	<result name="success" type="tiles">uploadSuccess</result>
+			<result name="failure" type="tiles">uploadFailure</result>
+		</action>
 		
 		<action name="myArchiveTrainingsList" class="com.att.ttt.action.UserTraingsAction" method="myArchiveTrainingsList">
 			<result name="success" type="tiles">myArchiveTrainingsList</result>
@@ -71,7 +76,7 @@
 		<action name="TrainingsUpload" class="com.att.ttt.action.TrainingsUpload">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">uploadSuccess</result>
-			<result name="failure">uploadFailure</result>
+			<result name="failure" type="tiles">uploadFailure</result>
 		</action>
 		
 	</package>
