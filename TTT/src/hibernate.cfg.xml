@@ -24,6 +24,11 @@
 			<mapping class="com.att.ttt.entity.Trainings"/>
 			<mapping class="com.att.ttt.entity.Emp_Trng"/>
 			<mapping class="com.att.ttt.entity.Users"/>
+			<mapping class="com.att.ttt.entity.Account"/>
+			<mapping class="com.att.ttt.entity.Application"/>
+			<mapping class="com.att.ttt.entity.Cluster"/>
+			<mapping class="com.att.ttt.entity.Levels"/>
+			<mapping class="com.att.ttt.entity.Tower"/>
 			
 			
 	</session-factory>
