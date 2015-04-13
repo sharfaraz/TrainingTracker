@@ -13,27 +13,27 @@ public class Tower {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String twr_id;
-	private String acc_id;
-	private String twr_name;
+	private String towerId;
+	private String accountId;
+	private String towerName;
 	
-	public String getTwr_id() {
-		return twr_id;
+	public String getTowerId() {
+		return towerId;
 	}
-	public void setTwr_id(String twr_id) {
-		this.twr_id = twr_id;
+	public void setTowerId(String towerId) {
+		this.towerId = towerId;
 	}
-	public String getAcc_id() {
-		return acc_id;
+	public String getAccountId() {
+		return accountId;
 	}
-	public void setAcc_id(String acc_id) {
-		this.acc_id = acc_id;
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
-	public String getTwr_name() {
-		return twr_name;
+	public String getTowerName() {
+		return towerName;
 	}
-	public void setTwr_name(String twr_name) {
-		this.twr_name = twr_name;
+	public void setTowerName(String towerName) {
+		this.towerName = towerName;
 	}
 	
 	

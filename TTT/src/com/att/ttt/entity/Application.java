@@ -12,28 +12,28 @@ public class Application {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String app_id;
-	private String cluster_id;
-	private String app_name;
+	private String applnId;
+	private String clusterId;
+	private String applnName;
 	
 	
-	public String getApp_id() {
-		return app_id;
+	public String getApplnId() {
+		return applnId;
 	}
-	public void setApp_id(String app_id) {
-		this.app_id = app_id;
+	public void setApp_id(String applnId) {
+		this.applnId = applnId;
 	}
-	public String getCluster_id() {
-		return cluster_id;
+	public String getClusterId() {
+		return clusterId;
 	}
-	public void setCluster_id(String cluster_id) {
-		this.cluster_id = cluster_id;
+	public void setClusterId(String clusterId) {
+		this.clusterId = clusterId;
 	}
-	public String getApp_name() {
-		return app_name;
+	public String getApplnName() {
+		return applnName;
 	}
-	public void setApp_name(String app_name) {
-		this.app_name = app_name;
+	public void setApplnName(String applnName) {
+		this.applnName = applnName;
 	}
 	
 	

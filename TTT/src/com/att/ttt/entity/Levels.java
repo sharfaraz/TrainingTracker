@@ -12,21 +12,21 @@ public class Levels {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String level_id;
-	private String level_name;
+	private String levelId;
+	private String levelName;
 	
 	
-	public String getLevel_id() {
-		return level_id;
+	public String getLevelId() {
+		return levelId;
 	}
-	public void setLevel_id(String level_id) {
-		this.level_id = level_id;
+	public void setLevelId(String levelId) {
+		this.levelId = levelId;
 	}
-	public String getLevel_name() {
-		return level_name;
+	public String getLevelName() {
+		return levelName;
 	}
-	public void setLevel_name(String level_name) {
-		this.level_name = level_name;
+	public void setLevel_name(String levelName) {
+		this.levelName = levelName;
 	}
 	
 	

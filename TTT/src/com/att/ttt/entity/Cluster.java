@@ -12,27 +12,27 @@ public class Cluster {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String cluster_id;
-	private String  twr_id;
-	private String cluster_name;
+	private String clusterId;
+	private String towerId;
+	private String clusterName;
 	
-	public String getCluster_id() {
-		return cluster_id;
+	public String getClusterId() {
+		return clusterId;
 	}
-	public void setCluster_id(String cluster_id) {
-		this.cluster_id = cluster_id;
+	public void setClusterId(String clusterId) {
+		this.clusterId = clusterId;
 	}
-	public String getTwr_id() {
-		return twr_id;
+	public String getTowerId() {
+		return towerId;
 	}
-	public void setTwr_id(String twr_id) {
-		this.twr_id = twr_id;
+	public void setTowerId(String towerId) {
+		this.towerId = towerId;
 	}
-	public String getCluster_name() {
-		return cluster_name;
+	public String getClusterName() {
+		return clusterName;
 	}
-	public void setCluster_name(String cluster_name) {
-		this.cluster_name = cluster_name;
+	public void setClusterName(String clusterName) {
+		this.clusterName = clusterName;
 	}
 	
 	

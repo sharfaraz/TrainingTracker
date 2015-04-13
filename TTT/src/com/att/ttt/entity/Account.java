@@ -13,18 +13,18 @@ public class Account {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String acc_id;
-	private String acc_name;
-	public String getAcc_id() {
-		return acc_id;
+	private String accountId;
+	private String accountName;
+	public String getAccountId() {
+		return accountId;
 	}
-	public void setAcc_id(String acc_id) {
-		this.acc_id = acc_id;
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
-	public String getAcc_name() {
-		return acc_name;
+	public String getAccountName() {
+		return accountName;
 	}
-	public void setAcc_name(String acc_name) {
-		this.acc_name = acc_name;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	} 
 }
