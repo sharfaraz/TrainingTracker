@@ -69,11 +69,12 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 </bean>
 
-<bean id="TrainingTrackerDaoImpl" class="com.att.ttt.dao.TrainingTrackerDaoImpl" scope="prototype" />  
-<bean id="EmployeeDao" class="com.att.ttt.dao.EmployeeDaoImpl" scope="prototype" />
-<bean id="EmployeeManager" class="com.att.ttt.manager.EmployeeManagerImpl" scope="prototype" />
-<bean id="TrainingsDao" class="com.att.ttt.dao.TrainingsDaoImpl" scope="prototype" />
-<bean id="TrainingsManager" class="com.att.ttt.manager.TrainingsManagerImpl" scope="prototype" />
+<bean id="TrainingTrackerDaoImpl" class="com.att.ttt.dao.impl.TrainingTrackerDaoImpl" scope="prototype" />  
+<bean id="EmployeeDao" class="com.att.ttt.dao.impl.EmployeeDaoImpl" scope="prototype" />
+<bean id="TrainingsDao" class="com.att.ttt.dao.impl.TrainingsDaoImpl" scope="prototype" />
+
+<bean id="EmployeeManager" class="com.att.ttt.manager.impl.EmployeeManagerImpl" scope="prototype" />
+<bean id="TrainingsManager" class="com.att.ttt.manager.impl.TrainingsManagerImpl" scope="prototype" />
 
 
        
