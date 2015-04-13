@@ -42,7 +42,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	@Transactional
 	public ArrayList<String> getUserRoles (String emailId) {
 		Session currentSession=this.getSessionFactory().getCurrentSession();
-		String query = "select user_role from Users u where u.user_mailid = '"+emailId+"'";
+		String query = "select userRole from Users u where u.email = '"+emailId+"'";
 		Query qry = currentSession.createQuery(query);
 		List<String> userRolesList = qry.list();
 		return (ArrayList<String>) userRolesList;
