@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 public class Emp_Trng {
 
 	@Id
-	private String et_id;
+	private String etId;
 	private String empId;
 	private String trainingId;
 	@Temporal(TemporalType.DATE)
@@ -25,11 +25,11 @@ public class Emp_Trng {
 	private String status;
 	
 	
-	public String getEt_id() {
-		return et_id;
+	public String getEtId() {
+		return etId;
 	}
-	public void setEt_id(String et_id) {
-		this.et_id = et_id;
+	public void setEtId(String etId) {
+		this.etId = etId;
 	}
 	public String getEmpId() {
 		return empId;

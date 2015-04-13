@@ -11,42 +11,42 @@ import javax.persistence.Table;
 public class Users {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer user_id;
-	private String user_lastname;
-	private String user_firstname;
-	private String user_mailid;
-	private String user_role;
+	private Integer userId;
+	private String lastName;
+	private String firstName;
+	private String email;
+	private String userRole;
 	
 	
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
-	public String getUser_lastname() {
-		return user_lastname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setUser_lastname(String user_lastname) {
-		this.user_lastname = user_lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public String getUser_firstname() {
-		return user_firstname;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setUser_firstname(String user_firstname) {
-		this.user_firstname = user_firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getUser_mailid() {
-		return user_mailid;
+	public String getEmail() {
+		return email;
 	}
-	public void setUser_mailid(String user_mailid) {
-		this.user_mailid = user_mailid;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getUser_role() {
-		return user_role;
+	public String getUserRole() {
+		return userRole;
 	}
-	public void setUser_role(String user_role) {
-		this.user_role = user_role;
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
 	}
 	
 	
