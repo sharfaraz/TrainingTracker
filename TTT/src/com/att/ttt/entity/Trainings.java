@@ -26,8 +26,11 @@ public class Trainings {
 	private Integer trainingId;
 	private String trainingName;
 	
-	private String numOfdays;
+	private String numOfDays;
 	private String levelId;
+	private String levelName;
+	
+
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
@@ -47,17 +50,23 @@ public class Trainings {
 	public void setTrainingName(String trainingName) {
 		this.trainingName = trainingName;
 	}
-	public String getNumOfdays() {
-		return numOfdays;
+	public String getNumOfDays() {
+		return numOfDays;
 	}
-	public void setNumOfdays(String numOfdays) {
-		this.numOfdays = numOfdays;
+	public void setNumOfDays(String numOfDays) {
+		this.numOfDays = numOfDays;
 	}
 	public String getLevelId() {
 		return levelId;
 	}
 	public void setLevelId(String levelId) {
 		this.levelId = levelId;
+	}
+	public String getLevelName() {
+		return levelName;
+	}
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
 	}
 
 	public Date getStartDate() {

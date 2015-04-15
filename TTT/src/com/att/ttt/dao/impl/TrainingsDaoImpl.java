@@ -40,6 +40,7 @@ public class TrainingsDaoImpl implements TrainingsDao {
 	@Transactional
 	public void updateTraining (Trainings training) {
 		// TODO Auto-generated method stub
+		System.out.println("training name from dao: " + training.getTrainingName());
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		currentSession.saveOrUpdate(training);
 //		sessionFactory.openSession().saveOrUpdate(employee);

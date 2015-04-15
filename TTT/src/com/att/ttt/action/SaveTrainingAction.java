@@ -1,16 +1,26 @@
 package com.att.ttt.action;
 
+import java.io.File;
 import java.util.Date;
-
-
-import com.att.ttt.dao.TrainingsDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.att.ttt.entity.Trainings;
+import com.att.ttt.manager.TrainingsManager;
+
 
 public class SaveTrainingAction {
 	private Integer trainingId;
 	private String trainingName;	
-	private String numOfdays;
+	private String numOfDays;
 	private String levelId;
+	private String levelName;
+	public String getLevelName() {
+		return levelName;
+	}
+
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
+	}
+
 	private Date startDate;
 	private Date endDate;
 	private String delMgr;
@@ -31,12 +41,12 @@ public class SaveTrainingAction {
 		this.trainingName = trainingName;
 	}
 
-	public String getNumOfdays() {
-		return numOfdays;
+	public String getNumOfDays() {
+		return numOfDays;
 	}
 
-	public void setNumOfdays(String numOfdays) {
-		this.numOfdays = numOfdays;
+	public void setNumOfDays(String numOfDays) {
+		this.numOfDays = numOfDays;
 	}
 
 	public String getLevelId() {
@@ -79,28 +89,44 @@ public class SaveTrainingAction {
 		this.training = training;
 	}
 
-	public TrainingsDao getDao() {
-		return dao;
-	}
-
-	public void setDao(TrainingsDao dao) {
-		this.dao = dao;
-	}
-
 	private Trainings training;
-	private TrainingsDao dao;
+	private TrainingsManager manager;
 	
+	public TrainingsManager getManager() {
+		return manager;
+	}
+	
+	@Autowired
+	public void setManager(TrainingsManager manager) {
+		this.manager = manager;
+	}
+
 	public String execute() {
-		training.setTrainingName(trainingName);
-		training.setDelMgr(delMgr);
-		/*training.setEndDate(endDate);
-		training.setLevelId(levelId);
-		training.setNumOfdays(numOfdays);
-		training.setStartDate(startDate);
 		
-		dao.saveTraining(training);*/
-		System.out.println("training name: " + training.getTrainingName() + " del mgr: " + training.getDelMgr());
+		try {
+			training = new Trainings();
+			training.setTrainingName(trainingName);
+			training.setDelMgr(delMgr);
+			training.setEndDate(endDate);
+			training.setLevelId(levelId);
+			training.setNumOfDays(numOfDays);
+			training.setStartDate(startDate);
+			training.setLevelName(levelName);
+			System.out.println("training name: " + training.getTrainingName() + " del mgr: " + training.getDelMgr());
+			manager.createTraining(training);
+			System.out.println("training name: " + training.getTrainingName() + " del mgr: " + training.getDelMgr());
+			
+		}
+		
+		
+		catch (Exception e) {
+			e.printStackTrace();	
+		}
 		return "success";
+	}
+	
+	public String display() {
+		return "none";
 	}
 
 }
