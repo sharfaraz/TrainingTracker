@@ -18,5 +18,7 @@ public interface TrainingTrackerDao {
 	
 	ArrayList<String> getUserRoles (String emailId);
 	
+	String getLevelId (String level, String levelItem);
+	
 
 }

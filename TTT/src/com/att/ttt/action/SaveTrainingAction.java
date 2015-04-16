@@ -13,6 +13,43 @@ public class SaveTrainingAction {
 	private String numOfDays;
 	private String levelId;
 	private String levelName;
+	private String accounts;
+	private String towers;
+	private String clusters;
+	private String applications;
+	
+	public String getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(String accounts) {
+		this.accounts = accounts;
+	}
+
+	public String getTowers() {
+		return towers;
+	}
+
+	public void setTowers(String towers) {
+		this.towers = towers;
+	}
+
+	public String getClusters() {
+		return clusters;
+	}
+
+	public void setClusters(String clusters) {
+		this.clusters = clusters;
+	}
+
+	public String getApplications() {
+		return applications;
+	}
+
+	public void setApplications(String applications) {
+		this.applications = applications;
+	}
+
 	public String getLevelName() {
 		return levelName;
 	}
@@ -111,8 +148,21 @@ public class SaveTrainingAction {
 			training.setLevelId(levelId);
 			training.setNumOfDays(numOfDays);
 			training.setStartDate(startDate);
-			training.setLevelName(levelName);
+			if (!getApplications().isEmpty()) {
+				training.setLevelName("application");
+			}
+			else if (!getClusters().isEmpty()) {
+				training.setLevelName("cluster");
+			}
+			else if (!getTowers().isEmpty()) {
+				training.setLevelName("tower");
+			}
+			else if (!getAccounts().isEmpty()) {
+				training.setLevelName("account");
+			}
+
 			System.out.println("training name: " + training.getTrainingName() + " del mgr: " + training.getDelMgr());
+			System.out.println("accounts: " + getAccounts() + " Tower: " + getTowers() );
 			manager.createTraining(training);
 			System.out.println("training name: " + training.getTrainingName() + " del mgr: " + training.getDelMgr());
 			

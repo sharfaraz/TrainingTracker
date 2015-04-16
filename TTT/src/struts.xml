@@ -57,11 +57,6 @@
 			<result name="failure" type="tiles">uploadFailure</result>
 		</action>
 		
-		<action name="createTraining" class="com.att.ttt.action.SaveTrainingAction" method="display" >
-			<interceptor-ref name="defaultStack"></interceptor-ref>
-        	<result name="none">/jsp/createTraining.jsp</result>
-		</action>
-		
 		<action name="myArchiveTrainingsList" class="com.att.ttt.action.UserTraingsAction" method="myArchiveTrainingsList">
 			<result name="success" type="tiles">myArchiveTrainingsList</result>
 			<result name="failure">welcomeExistingUser</result>
