@@ -24,24 +24,30 @@
 	<s:property value="#sessionMap.email"/>
 	-->
 
-	<ul style="margin-top: -170px; width: 100%;">
+	<!-- <ul style="margin-top: -170px; width: 100%;">
 	
 		<li style="width: 100%;"><a>Administrator</a>
 			<ul>
 				
-			<!-- 	<li style="width: 100%;"><a>Account Details</a></li>
+				<li style="width: 100%;"><a>Account Details</a></li>
 				<li style="width: 100%;"><a>Tower Details</a></li>
 				<li style="width: 100%;"><a>Cluster Details</a></li>
-				<li style="width: 100%;"><a>Application Details</a></li> -->
+				<li style="width: 100%;"><a>Application Details</a></li> 
 				<li style="width: 100%;"><a href="../jsp/uploadTrainingList.jsp">Training Details</a></li>
-			<!-- 	<li style="width: 100%;"><a>User Details</a></li>
+			 	<li style="width: 100%;"><a>User Details</a></li>
 				<li style="width: 100%;"><a>User Training Details</a></li>
-				<li style="width: 100%;"><a>Reports</a></li> -->
+				<li style="width: 100%;"><a>Reports</a></li> 
 			</ul>
 		</li>
 	 
 		<li style="width: 100%;"><a href="myTrainingsList">Trainings</a></li>
 		<li style="width: 100%;"><a href="myArchiveTrainingsList">Archive</a></li>
-	</ul>
+	</ul>-->
+	<ul style="margin-top: -170px; width: 100%;">
+	<li style="width: 100%;"><a href="myTrainingsList">In Progress Training</a></li>
+	<li style="width: 100%;"><a href="myArchiveTrainingsList">Completed Trainings</a></li>
+	<li style="width: 100%;"><a href="">Find Learning</a></li>
+	<li style="width: 100%;"><a href="">Add Trainings</a></li>
+</ul>
  </body>
 </html>

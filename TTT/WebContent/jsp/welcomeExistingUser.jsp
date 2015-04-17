@@ -8,7 +8,23 @@
     
 </head>
 <body>
-	 
-	<marquee><h3>Note : This Site is Best viewed in Mozilla Firefox</h3></marquee>
+<div>
+	<table  width="100%" border="1" style="margin-top: -100px;">
+		<tr>
+			<th>Completed Training</th>
+			<th>Inprogress Training</th>
+			
+		</tr>
+		<tr>
+			<td>
+				<jsp:include page="myArchiveTrainingsList.jsp"></jsp:include>
+			</td>
+			
+			<td>
+				<jsp:include page="myTrainingsList.jsp"></jsp:include>
+			</td>
+		</tr>
+	</table>
+</div>
 </body>
 </html>
