@@ -1,7 +1,6 @@
 package com.att.ttt.dao;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import com.att.ttt.entity.Emp_Trng;
@@ -17,8 +16,6 @@ public interface TrainingTrackerDao {
 	List<Employee> getDeliveryManagersList();
 	
 	ArrayList<String> getUserRoles (String emailId);
-	
-	String getLevelId (String level, String levelItem);
 	
 
 }

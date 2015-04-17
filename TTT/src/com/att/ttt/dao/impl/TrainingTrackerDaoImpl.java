@@ -66,13 +66,5 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		return deliveryManagersList;
 	}
 	
-	@Override
-	public String getLevelId(String level, String levelItem) {
-		Session currentSession = this.getSessionFactory().getCurrentSession();
-		String query = "from "+level+" where applnname = '"+levelItem+"'";
-		Query qry = currentSession.createQuery(query);
-		String id = qry.getQueryString();
-		return id;	
-	}
 	
 }

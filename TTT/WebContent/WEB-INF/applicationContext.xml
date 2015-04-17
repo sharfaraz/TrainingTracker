@@ -72,9 +72,18 @@
 <bean id="TrainingTrackerDaoImpl" class="com.att.ttt.dao.impl.TrainingTrackerDaoImpl" scope="prototype" />  
 <bean id="EmployeeDao" class="com.att.ttt.dao.impl.EmployeeDaoImpl" scope="prototype" />
 <bean id="TrainingsDao" class="com.att.ttt.dao.impl.TrainingsDaoImpl" scope="prototype" />
+<bean id="ApplicationDao" class="com.att.ttt.dao.impl.ApplicationDaoImpl" scope="prototype" />
+<bean id="AccountDao" class="com.att.ttt.dao.impl.AccountDaoImpl" scope="prototype" />
+<bean id="TowerDao" class="com.att.ttt.dao.impl.TowerDaoImpl" scope="prototype" />
+<bean id="ClusterDao" class="com.att.ttt.dao.impl.ClusterDaoImpl" scope="prototype" />
 
 <bean id="EmployeeManager" class="com.att.ttt.manager.impl.EmployeeManagerImpl" scope="prototype" />
 <bean id="TrainingsManager" class="com.att.ttt.manager.impl.TrainingsManagerImpl" scope="prototype" />
+<bean id="ApplicationManager" class="com.att.ttt.manager.impl.ApplicationManagerImpl" scope="prototype" />
+<bean id="AccountManager" class="com.att.ttt.manager.impl.AccountManagerImpl" scope="prototype" />
+<bean id="TowerManager" class="com.att.ttt.manager.impl.TowerManagerImpl" scope="prototype" />
+<bean id="ClusterManager" class="com.att.ttt.manager.impl.ClusterManagerImpl" scope="prototype" />
+
 
 
        

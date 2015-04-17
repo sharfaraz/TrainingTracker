@@ -1,9 +1,12 @@
 package com.att.ttt.action;
 
-import java.io.File;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.att.ttt.entity.Trainings;
+import com.att.ttt.manager.AccountManager;
+import com.att.ttt.manager.ApplicationManager;
+import com.att.ttt.manager.ClusterManager;
+import com.att.ttt.manager.TowerManager;
 import com.att.ttt.manager.TrainingsManager;
 
 
@@ -17,7 +20,55 @@ public class SaveTrainingAction {
 	private String towers;
 	private String clusters;
 	private String applications;
+	private Date startDate;
+	private Date endDate;
+	private String delMgr;
 	
+	private Trainings training;
+	
+	private ApplicationManager applicationManager;
+	private TrainingsManager manager;
+	private TowerManager towerManager;
+	private ClusterManager clusterManager;
+	private AccountManager accountManager;
+	
+	
+	public TowerManager getTowerManager() {
+		return towerManager;
+	}
+
+	@Autowired
+	public void setTowerManager(TowerManager towerManager) {
+		this.towerManager = towerManager;
+	}
+
+	public ClusterManager getClusterManager() {
+		return clusterManager;
+	}
+
+	@Autowired
+	public void setClusterManager(ClusterManager clusterManager) {
+		this.clusterManager = clusterManager;
+	}
+
+	public AccountManager getAccountManager() {
+		return accountManager;
+	}
+
+	@Autowired
+	public void setAccountManager(AccountManager accountManager) {
+		this.accountManager = accountManager;
+	}
+
+	public ApplicationManager getApplicationManager() {
+		return applicationManager;
+	}
+
+	@Autowired
+	public void setApplicationManager(ApplicationManager applicationManager) {
+		this.applicationManager = applicationManager;
+	}
+
 	public String getAccounts() {
 		return accounts;
 	}
@@ -58,9 +109,7 @@ public class SaveTrainingAction {
 		this.levelName = levelName;
 	}
 
-	private Date startDate;
-	private Date endDate;
-	private String delMgr;
+
 	
 	public Integer getTrainingId() {
 		return trainingId;
@@ -125,9 +174,6 @@ public class SaveTrainingAction {
 	public void setTraining(Trainings training) {
 		this.training = training;
 	}
-
-	private Trainings training;
-	private TrainingsManager manager;
 	
 	public TrainingsManager getManager() {
 		return manager;
@@ -148,17 +194,25 @@ public class SaveTrainingAction {
 			training.setLevelId(levelId);
 			training.setNumOfDays(numOfDays);
 			training.setStartDate(startDate);
+			
 			if (!getApplications().isEmpty()) {
 				training.setLevelName("application");
+				System.out.println("application: " +getApplications()+ "\n");
+				String id = applicationManager.fetchApplication(getApplications()).getApplnId();
+				System.out.println("id: " +id+ "\n");
+				training.setLevelId(applicationManager.fetchApplication(getApplications()).getApplnId());
 			}
 			else if (!getClusters().isEmpty()) {
 				training.setLevelName("cluster");
+				training.setLevelId(clusterManager.fetchCluster(getClusters()).getClusterId());
 			}
 			else if (!getTowers().isEmpty()) {
 				training.setLevelName("tower");
+				training.setLevelId(towerManager.fetchTower(getTowers()).getTowerId());
 			}
 			else if (!getAccounts().isEmpty()) {
 				training.setLevelName("account");
+				training.setLevelId(accountManager.fetchAccount(getAccounts()).getAccountId());
 			}
 
 			System.out.println("training name: " + training.getTrainingName() + " del mgr: " + training.getDelMgr());

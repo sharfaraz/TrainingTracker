@@ -9,16 +9,16 @@
 </head>
 <script type="text/javascript">
 var accounts = [ ], towers = [ ], clusters = [ ], applications = [ ];
-accounts["att"] = ["A", "B", "C", "D"];
+accounts["ATT"] = ["A", "B", "C", "D"];
 accounts["vodafone"] = ["Italy", "spain"];
 accounts["airtel"] = ["Italy", "spain"];
-towers["A"] = ["RDC WEB", "RDC MF", "ATT ACUS"];
+towers["A"] = ["RDC-web", "RDC MF", "ATT-ACUS"];
 towers["B"] = ["xyz", "adkj", "kjik"];
 towers["C"] = ["rdc", "mf", "aus"];
 towers["D"] = ["a", "r", "s"];
-clusters["RDC WEB"] = ["IB", "IBS", "JDE"];
+clusters["RDC-web"] = ["IB", "IBS", "JDE"];
 clusters["RDC MF"] = ["GBP", "LMM"];
-clusters["ATT ACUS"] = ["Billing Consolidator"]
+clusters["ATT-ACUS"] = ["Billing Consolidator"]
 
 function switchAccount(selAccount) {
 	var nextSel = selAccount.form.towers;
@@ -76,12 +76,12 @@ Duration:<input type="text" name="numOfDays" /><br>
 <h3> Select applicable level</h3>
 Account: <select name="accounts" onchange="switchAccount(this);">
 <option value="">--Choose account--</option>
-<option value="att">ATT</option>
+<option value="ATT">ATT</option>
 <option value="vodafone">VODAFONE</option>
 <option value="airtel">AIRTEL</option>
 </select>
 Tower: <select name="towers" onchange="switchTower(this);">
-<option>--Choose tower--</option>
+<option value="">--Choose tower--</option>
 </select>
 Cluster: <select name="clusters"  onchange="switchCluster(this);">
 <option value = "">--Choose cluster--</option>
