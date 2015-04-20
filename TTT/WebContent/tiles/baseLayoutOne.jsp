@@ -18,7 +18,7 @@
 			<td colspan="2" style="padding: 1px 1px 1px 1px"></td>
 		</tr>
 		<tr>
-			<td width="1050" height="370" style="padding: 5px 5px 5px 5px;">
+			<td width="1050" height="370" style="padding: 5px 5px 5px 5px;margin-left: 200px">
 				<tiles:insertAttribute name="body" />
 			</td>
 		</tr>

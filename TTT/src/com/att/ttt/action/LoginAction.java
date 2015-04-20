@@ -29,17 +29,15 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private String errorMsg = "";
 	private SessionMap<String, Object> sessionMap;
 	private Employee emp;
+	private String userRole;
 
-	ArrayList<Employee> userPresenceList = new ArrayList<Employee>();
 	
-	ArrayList<String> userRolesList = new ArrayList<String>();
-
-	public ArrayList<String> getUserRolesList() {
-		return userRolesList;
+	public String getUserRole() {
+		return userRole;
 	}
 
-	public void setUserRolesList(ArrayList<String> userRolesList) {
-		this.userRolesList = userRolesList;
+	public void setUserRolesList(String userRole) {
+		this.userRole = userRole;
 	}
 
 	public SessionMap<String, Object> getSessionMap() {
@@ -56,14 +54,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	public void setEmp(Employee emp) {
 		this.emp = emp;
-	}
-
-	public ArrayList<Employee> getUserPresenceList() {
-		return userPresenceList;
-	}
-
-	public void setUserPresenceList(ArrayList<Employee> userPresenceList) {
-		this.userPresenceList = userPresenceList;
 	}
 
 	public String getEmail() {
@@ -123,35 +113,31 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			ServletContext ctx = ServletActionContext.getServletContext();
 			WebApplicationContext context = WebApplicationContextUtils
 					.getWebApplicationContext(ctx);
-			sessionMap.put("email", emailId);
 			TrainingTrackerDao trainingTracker = (TrainingTrackerDao) context
 					.getBean("TrainingTrackerDaoImpl");
 
-			userPresenceList = trainingTracker.getUserPresenceList(emailId);
-			System.out.println(userPresenceList);
+			/*userPresenceList = trainingTracker.getUserPresenceList(emailId);
+			System.out.println(userPresenceList);*/
 			
-			userRolesList = trainingTracker.getUserRoles(emailId);
-			System.out.println(userRolesList);
+			userRole = trainingTracker.getUserRoles(emailId);
+			System.out.println(userRole);
 
-			if (userPresenceList.size() != 0) {
-				System.out.println("existingUser");
-				res = "existingUser";
-				
-				userRolesList = trainingTracker.getUserRoles(emailId);
-				System.out.println(userRolesList);
-				if (userRolesList.size() != 0) {
-					System.out.println("Either a super user or DM");
-					res = "admin";
+
+				if (userRole.equals("S")) {
+					sessionMap.put("isSU", userRole );
+					sessionMap.put("email", emailId);
+					res="success";
 				}
-				
-			
-				sessionMap.put("empId", userPresenceList.get(0)
-						.getEmpId().toString());
-			} else {
-				System.out.println("nonExistingUser");
-				res = "nonExistingUser";
+				else if(userRole.equals("D")){
+					sessionMap.put("isDM", userRole );
+					sessionMap.put("email", emailId);
+					res="success";
+				}
+				else{
+					res="success";
+				}
 			}
-		} else {
+		else {
 			System.err.println("We're not in!");
 			errorMsg = "Login failed. Please try again";
 			addFieldError("username", "Login failed. Try again!!");

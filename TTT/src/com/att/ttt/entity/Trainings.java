@@ -25,19 +25,16 @@ public class Trainings {
 	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Integer trainingId;
 	private String trainingName;
-	
-	private String numOfDays;
+	private String trainingType;
+	private String categoryType;
 	private String levelId;
 	private String levelName;
-	
-
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
-	private String delMgr;
 	
-
+	
 	public Integer getTrainingId() {
 		return trainingId;
 	}
@@ -50,12 +47,7 @@ public class Trainings {
 	public void setTrainingName(String trainingName) {
 		this.trainingName = trainingName;
 	}
-	public String getNumOfDays() {
-		return numOfDays;
-	}
-	public void setNumOfDays(String numOfDays) {
-		this.numOfDays = numOfDays;
-	}
+	
 	public String getLevelId() {
 		return levelId;
 	}
@@ -81,10 +73,17 @@ public class Trainings {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public String getDelMgr() {
-		return delMgr;
+	public String getTrainingType() {
+		return trainingType;
 	}
-	public void setDelMgr(String delMgr) {
-		this.delMgr = delMgr;
+	public void setTrainingType(String trainingType) {
+		this.trainingType = trainingType;
 	}
+	public String getCategoryType() {
+		return categoryType;
+	}
+	public void setCategoryType(String categoryType) {
+		this.categoryType = categoryType;
+	}
+
 }

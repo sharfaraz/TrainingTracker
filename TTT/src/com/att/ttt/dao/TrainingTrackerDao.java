@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
+import com.att.ttt.entity.Trainings;
 
 
 public interface TrainingTrackerDao {
@@ -15,7 +16,13 @@ public interface TrainingTrackerDao {
 
 	List<Employee> getDeliveryManagersList();
 	
-	ArrayList<String> getUserRoles (String emailId);
+	String getUserRoles (String emailId);
+	
+	public List<String> getAccountvalues(); 
+	public List<String> getTowervalues(); 
+	public List<String> getClustervalues(); 
+	public List<String> getApplicationvalues(); 
+	public void addTraining(Trainings training);
 	
 
 }

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.att.ttt.dao.TrainingTrackerDao;
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
+import com.att.ttt.entity.Trainings;
 
 
 public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
@@ -40,12 +41,12 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	
 	@Override
 	@Transactional
-	public ArrayList<String> getUserRoles (String emailId) {
+	public String getUserRoles (String emailId) {
 		Session currentSession=this.getSessionFactory().getCurrentSession();
-		String query = "select userRole from Users u where u.email = '"+emailId+"'";
+		String query = "select userRole from UserRoles u where u.email = '"+emailId+"'";
 		Query qry = currentSession.createQuery(query);
 		List<String> userRolesList = qry.list();
-		return (ArrayList<String>) userRolesList;
+		return userRolesList.get(0);
 	}
 	
 	@Override
@@ -58,6 +59,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		return myTrainingsList;
 	}
 	@Override
+	@Transactional
 	public List<Employee> getDeliveryManagersList() {
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		String query = "select delmgr, delmgrid from employee group by 1, 2";
@@ -65,6 +67,52 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		List<Employee> deliveryManagersList = qry.list();
 		return deliveryManagersList;
 	}
+	@Override
+	@Transactional
+	public List<String> getAccountvalues() {
+		List<String> accountList = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("Select distinct a.accountName from Account a");
+		accountList = qry.list();
+		return accountList;
+	}
+	@Override
+	@Transactional
+	public List<String> getTowervalues() {
+		List<String> towerList = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("Select distinct t.towerName from Tower t");
+		towerList = qry.list();
+		return towerList;
+	}
+	@Override
+	@Transactional
+	public List<String> getClustervalues() {
+		List<String> clusterList = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("Select distinct c.clusterName from Cluster c");
+		clusterList = qry.list();
+		return clusterList;
+	}
+	@Override
+	@Transactional
+	public List<String> getApplicationvalues() {
+		List<String> appList = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("Select distinct ap.applnname from Application ap");
+		appList = qry.list();
+		return appList;
+	}
 	
-	
+	@Override
+	@Transactional
+	public void addTraining(Trainings training) {
+		// TODO Auto-generated method stub
+		Session currentSession=this.getSessionFactory().getCurrentSession();
+		currentSession.save(training);
+	}
 }

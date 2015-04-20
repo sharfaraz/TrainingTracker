@@ -46,4 +46,6 @@ public class TrainingsDaoImpl implements TrainingsDao {
 //		sessionFactory.openSession().saveOrUpdate(employee);
 	}
 	
+	
+	
 }

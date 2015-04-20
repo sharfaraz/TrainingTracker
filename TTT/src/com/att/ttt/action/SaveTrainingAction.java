@@ -189,10 +189,8 @@ public class SaveTrainingAction {
 		try {
 			training = new Trainings();
 			training.setTrainingName(trainingName);
-			training.setDelMgr(delMgr);
 			training.setEndDate(endDate);
 			training.setLevelId(levelId);
-			training.setNumOfDays(numOfDays);
 			training.setStartDate(startDate);
 			
 			if (!getApplications().isEmpty()) {
@@ -215,10 +213,7 @@ public class SaveTrainingAction {
 				training.setLevelId(accountManager.fetchAccount(getAccounts()).getAccountId());
 			}
 
-			System.out.println("training name: " + training.getTrainingName() + " del mgr: " + training.getDelMgr());
-			System.out.println("accounts: " + getAccounts() + " Tower: " + getTowers() );
-			manager.createTraining(training);
-			System.out.println("training name: " + training.getTrainingName() + " del mgr: " + training.getDelMgr());
+			
 			
 		}
 		

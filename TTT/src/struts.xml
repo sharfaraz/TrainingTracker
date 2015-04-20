@@ -45,10 +45,24 @@
         
         <action name="ValidateLogin" class="com.att.ttt.action.LoginAction" >
         	<interceptor-ref name="defaultStack"></interceptor-ref>
-			<result name="existingUser" type="tiles">welcomeExistingUser</result>
-			<result name="nonExistingUser" type="tiles">welcomeNonExistingUser</result>
-			<result name="admin" type="tiles">adminOperations</result>
+			<result name="success" type="tiles">welcome</result>
 			<result name="failure">/jsp/Login.jsp</result>
+		</action>
+		
+		<action name="*Link" method="{1}" class="com.att.ttt.action.LinkAction">
+			<result name="welcome" type="tiles">welcome</result>
+		</action>
+		
+		<action name="createNewTraining" class="com.att.ttt.action.CreateTrainingAction">
+			<result name="populate" type="tiles">CreateTraining</result>
+		</action>
+		<action name="populateCriteria" method="populateAssignedValue"
+			class="com.att.ttt.action.CreateTrainingAction">
+			<result name="success">/jsp/AssignList.jsp</result>
+		</action>
+		<action name="commitTraining" method="createTraining"
+			class="com.att.ttt.action.CreateTrainingAction">
+			<result name="success" type="tiles">welcome</result>
 		</action>
 		
 		<action name="SaveTrainingAction" class="com.att.ttt.action.SaveTrainingAction" >
@@ -66,6 +80,10 @@
 			<result name="success" type="tiles">uploadTrainingList</result>
 			<result name="failure">welcomeExistingUser</result>
 		</action>
+		
+		<action name="UploadFileAction" class="com.att.ttt.action.PopulateUploadFileAction">
+		<result name="success" type="tiles">uploadEmployees</result>
+       </action>
 		
 		<action name="employeeUpload" class="com.att.ttt.action.EmployeeAction">
 			<interceptor-ref name="defaultStack"></interceptor-ref>

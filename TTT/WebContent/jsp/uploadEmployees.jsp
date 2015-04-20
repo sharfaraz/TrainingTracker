@@ -7,15 +7,16 @@
 <title>Training Tracker - Employee Upload</title>
 </head>
 <body>
+<h3 align="center">Upload Employees</h3>
 
 <form method="POST" action="employeeUpload" enctype="multipart/form-data">
-	<h3>Upload Employees</h3>
+	
 	
 	<br>
-	<input type="file" name="uploadFile"/>
+	<input style="margin-left: 42%" type="file" name="uploadFile" class="changeFont"/>
 	<br /><br />
-	<input type="submit" value="Upload"/>
-	<input type="reset" value="Reset"/> 
+	<input style="margin-left: 42%"  type="submit" value="Upload" class="buttonStyle"/>
+	<input type="reset" value="Reset" class="buttonStyle"/> 
 </form>
 
 </body>
