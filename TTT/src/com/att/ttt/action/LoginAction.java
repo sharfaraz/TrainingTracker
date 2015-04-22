@@ -1,6 +1,6 @@
 package com.att.ttt.action;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -11,12 +11,12 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import swat.ReturnCode;
+import swat.cwa;
+
 import com.att.ttt.dao.TrainingTrackerDao;
 import com.att.ttt.entity.Employee;
 import com.opensymphony.xwork2.ActionSupport;
-
-import swat.ReturnCode;
-import swat.cwa;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 
@@ -114,15 +114,21 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			WebApplicationContext context = WebApplicationContextUtils
 					.getWebApplicationContext(ctx);
 			TrainingTrackerDao trainingTracker = (TrainingTrackerDao) context
-					.getBean("TrainingTrackerDaoImpl");
+					.getBean("TrainingTrackerDao");
 
-			/*userPresenceList = trainingTracker.getUserPresenceList(emailId);
-			System.out.println(userPresenceList);*/
+			List<Employee> userPresenceList = trainingTracker.getUserPresenceList(emailId);
+			/*System.out.println(userPresenceList);*/
+			
+			if (userPresenceList.size() > 0) {
+				String empId = userPresenceList.get(0).getEmpId() ;
+				System.out.println("emp " + empId);
+				sessionMap.put("emp", empId );
+			}
 			
 			userRole = trainingTracker.getUserRoles(emailId);
 			System.out.println(userRole);
 
-
+			
 				if (userRole.equals("S")) {
 					sessionMap.put("isSU", userRole );
 					sessionMap.put("email", emailId);

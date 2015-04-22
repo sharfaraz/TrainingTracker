@@ -217,7 +217,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 		ServletContext ctx=ServletActionContext.getServletContext();
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ctx);
 		
-		TrainingTrackerDao trDao=(TrainingTrackerDao)context.getBean("TrainingTrackerDaoImpl");
+		TrainingTrackerDao trDao=(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
 
 		if(assignedType.equals(TTConstants.ACCOUNT))
 		{
@@ -248,7 +248,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 			
 			
 	  TrainingTrackerDao
-	  trainingOperation=(TrainingTrackerDao)context.getBean("TrainingsDao"); 
+	  trainingOperation=(TrainingTrackerDao)context.getBean("TrainingTrackerDao"); 
 	  Trainings training=(Trainings)context.getBean("Trainings");
 	
 	  training.setTrainingName(NewTrainingName);

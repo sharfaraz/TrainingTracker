@@ -68,7 +68,7 @@ public class UserTraingsAction extends ActionSupport implements SessionAware {
 				.getWebApplicationContext(ctx);
 		sessionMap.put("emp", empId);
 		TrainingTrackerDao trainingTracker = (TrainingTrackerDao) context
-				.getBean("TrainingTrackerDaoImpl");
+				.getBean("TrainingTrackerDao");
 		myTrainingsList = trainingTracker.myTrainingsList(empId);
 		System.out.println(myTrainingsList);
 		if (myTrainingsList.size() != 0) {

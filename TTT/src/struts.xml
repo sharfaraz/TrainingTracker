@@ -91,6 +91,11 @@
 			<result name="failure">uploadFailure</result>
 		</action>
 		
+		<action name="viewTrainings" class="com.att.ttt.action.TrainingTrackerAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="tiles">viewTrainings</result>
+		</action>
+		
 		<action name="TrainingsUpload" class="com.att.ttt.action.TrainingsUpload">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">uploadSuccess</result>
