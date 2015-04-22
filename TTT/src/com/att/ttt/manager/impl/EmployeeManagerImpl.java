@@ -54,12 +54,13 @@ public class EmployeeManagerImpl implements EmployeeManager {
             	 employee.setEmailId(String.valueOf(row.getCell(16).getRichStringCellValue()));
             	 employee.setDelMgr(String.valueOf(row.getCell(41).getRichStringCellValue()));
             	 employee.setDelMgrId(String.valueOf(row.getCell(42).getRichStringCellValue()));
-            	 employee.setSrdelMgr(String.valueOf(row.getCell(45).getRichStringCellValue()));
-            	 employee.setSrdelMgrId(String.valueOf(row.getCell(46).getRichStringCellValue()));
+            	 employee.setSrDelMgr(String.valueOf(row.getCell(45).getRichStringCellValue()));
+            	 employee.setSrDelMgrId(String.valueOf(row.getCell(46).getRichStringCellValue()));
             	 employee.setStartDate(row.getCell(21).getDateCellValue());
             	 employee.setEndDate(row.getCell(23).getDateCellValue());
             	 employee.setCity(String.valueOf(row.getCell(36).getRichStringCellValue()));
             	 employee.setTower(String.valueOf(row.getCell(2).getRichStringCellValue()));
+            	 employee.setAccount("ATT");
 //            	dao.saveEmployee(employee);
             	dao.updateEmployee(employee);
             }

@@ -20,7 +20,7 @@
   </definition>
   
    <definition name="uploadEmployees" extends="baseLayout">
-      <put-attribute name="title"  value="Opportunity Tracking and Governance Tool"/>
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
       <put-attribute name="body"   value="/jsp/uploadEmployees.jsp"/>      
   </definition>
   

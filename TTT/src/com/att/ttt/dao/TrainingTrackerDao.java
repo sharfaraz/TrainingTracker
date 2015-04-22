@@ -23,6 +23,8 @@ public interface TrainingTrackerDao {
 	public List<String> getClustervalues(); 
 	public List<String> getApplicationvalues(); 
 	public void addTraining(Trainings training);
+	public void assignTrainings(Emp_Trng empTrng);
+	public List<String> getEmployees (String levelName, String levelId);
 	
 
 }

@@ -73,6 +73,7 @@
 <bean id="EmployeeDao" class="com.att.ttt.dao.impl.EmployeeDaoImpl" scope="prototype" />
 <bean id="TrainingsDao" class="com.att.ttt.dao.impl.TrainingTrackerDaoImpl" scope="prototype" />
 <bean id="Trainings" class="com.att.ttt.entity.Trainings" scope="prototype" />
+<bean id="Emp_Trng" class="com.att.ttt.entity.Emp_Trng" scope="prototype" />
 <bean id="ApplicationDao" class="com.att.ttt.dao.impl.ApplicationDaoImpl" scope="prototype" />
 <bean id="AccountDao" class="com.att.ttt.dao.impl.AccountDaoImpl" scope="prototype" />
 <bean id="TowerDao" class="com.att.ttt.dao.impl.TowerDaoImpl" scope="prototype" />

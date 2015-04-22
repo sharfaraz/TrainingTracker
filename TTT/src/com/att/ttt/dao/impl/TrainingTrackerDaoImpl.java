@@ -2,7 +2,11 @@ package com.att.ttt.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,6 +17,7 @@ import com.att.ttt.dao.TrainingTrackerDao;
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
 import com.att.ttt.entity.Trainings;
+import com.opensymphony.xwork2.ActionContext;
 
 
 public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
@@ -103,7 +108,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		List<String> appList = new ArrayList<String>();
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		Query qry = currentSession
-				.createQuery("Select distinct ap.applnname from Application ap");
+				.createQuery("Select distinct ap.applnName from Application ap");
 		appList = qry.list();
 		return appList;
 	}
@@ -114,5 +119,47 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		// TODO Auto-generated method stub
 		Session currentSession=this.getSessionFactory().getCurrentSession();
 		currentSession.save(training);
+	}
+	
+	@Override
+	@Transactional
+	public void assignTrainings(Emp_Trng empTrng) {
+		// TODO Auto-generated method stub
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		System.out.println("Saving training : " +empTrng.getTrainingId()+" for employee: "+empTrng.getEmpId());
+		currentSession.save(empTrng);
+		System.out.println("Saved");
+	}
+	@Override
+	@Transactional
+	public List<String> getEmployees(String levelName, String levelId) {
+		// TODO Auto-generated method stub
+		
+		List<String> employeeList = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		
+		System.out.println("levelname: "+levelName+" LevelId: "+levelId);
+
+		if (levelId.equalsIgnoreCase("tower") || levelId.equalsIgnoreCase("account")) {
+			String query = "select empId from Employee where "+levelId+" = '"+levelName+"'";
+			Query qry = currentSession
+					.createQuery(query);
+			employeeList = qry.list();			
+		}
+		
+		if (levelId.equalsIgnoreCase("sdm/cluster")) {
+			Map aSession = (Map) ActionContext.getContext().get("session");
+			String a = (String) aSession.get("email");
+			
+			Query qry = currentSession
+						.createQuery("select empId from Employee where srDelMgrId = "+
+			"(select srDelMgrId from Employee where emailId = '"+a+"')");
+			employeeList = qry.list();
+
+		}
+		
+		
+		
+		return employeeList;
 	}
 }

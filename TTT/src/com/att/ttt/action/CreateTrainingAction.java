@@ -24,6 +24,7 @@ import com.att.ttt.constants.TTConstants;
 import com.att.ttt.dao.TrainingTrackerDao;
 import com.att.ttt.dao.TrainingsDao;
 import com.att.ttt.dao.impl.InitAddAssignTrainingImpl;
+import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Trainings;
 import com.att.ttt.utility.WebApp;
 import com.opensymphony.xwork2.ActionSupport;
@@ -233,6 +234,10 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 		{
 			applicableForData=trDao.getClustervalues();
 		}
+		else if(assignedType.equals(TTConstants.APPLICATION))
+		{
+			applicableForData=trDao.getApplicationvalues();
+		}
 		
 		return "success"; 
 
@@ -250,6 +255,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	  TrainingTrackerDao
 	  trainingOperation=(TrainingTrackerDao)context.getBean("TrainingsDao"); 
 	  Trainings training=(Trainings)context.getBean("Trainings");
+	  Emp_Trng empTrng=(Emp_Trng)context.getBean("Emp_Trng");
 	
 	  training.setTrainingName(NewTrainingName);
 	  training.setTrainingType(trainingType);
@@ -262,6 +268,47 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	  
 	  trainingOperation.addTraining(training);
 	  
+	  if (trainingType.equals("Mandatory")) {
+		  
+		    //empTrng.setEmpId("05487M");
+			empTrng.setTrainingId(training.getTrainingId().toString());
+			empTrng.setStartDate(training.getStartDate());
+			empTrng.setEndDate(training.getEndDate());
+			empTrng.setStatus(TTConstants.PENDING);
+			//empTrng.setEtId("2");
+			
+			List<String> employeeList = trainingOperation.getEmployees(training.getLevelName(), training.getLevelId());
+	    	for (int i=0; i<employeeList.size(); i++){
+	    	empTrng.setEmpId(employeeList.get(i));
+	    	trainingOperation.assignTrainings(empTrng);    	
+	    	}
+		  
+	  }
+		    /*if(assignedType.equals(TTConstants.APPLICATION)) {
+			  
+		    	System.out.println("passing to assignTrainings");
+		    	trainingOperation.assignTrainings(empTrng);
+			  
+		    } 
+		    else if(assignedType.equals(TTConstants.CLUSTER)) {
+				  
+		    	trainingOperation.assignTrainings(empTrng);
+				  
+			} 
+		    else if(assignedType.equals(TTConstants.TOWER)) {
+				  
+		    	List<String> employeeList = trainingOperation.getEmployees(training.getLevelName(), training.getLevelId());
+		    	for (int i=0; i<employeeList.size(); i++){
+		    	empTrng.setEmpId(employeeList.get(i));
+		    	trainingOperation.assignTrainings(empTrng);
+		    	}
+				  
+		    } 
+		    else if(assignedType.equals(TTConstants.ACCOUNT)) {
+				  
+		    	trainingOperation.assignTrainings(empTrng);
+				  
+		    }*/	 
 	/*  System.out.println("selectedValue:"+assignedKey);
 	  
 	  System.out.println("taringin added :"+training.getTrainingId());

@@ -25,8 +25,9 @@ public class Employee {
 	@Id
 	private String empId;
 	private String attuid;
+	private String account;
 	private String tower;
-	private String lname;
+	private String lname;	
 	private String fname;
 	private String jobTitle;
 	private String emailId;
@@ -37,8 +38,15 @@ public class Employee {
 	private String city;
 	private String delMgr;
 	private String delMgrId;
-	private String srdelMgr;
-	private String srdelMgrId;
+	private String srDelMgr;
+	private String srDelMgrId;
+	
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
 	public String getEmpId() {
 		return empId;
 	}
@@ -111,18 +119,19 @@ public class Employee {
 	public void setDelMgrId(String delMgrId) {
 		this.delMgrId = delMgrId;
 	}
-	public String getSrdelMgr() {
-		return srdelMgr;
+	public String getSrDelMgr() {
+		return srDelMgr;
 	}
-	public void setSrdelMgr(String srdelMgr) {
-		this.srdelMgr = srdelMgr;
+	public void setSrDelMgr(String srDelMgr) {
+		this.srDelMgr = srDelMgr;
 	}
-	public String getSrdelMgrId() {
-		return srdelMgrId;
+	public String getSrDelMgrId() {
+		return srDelMgrId;
 	}
-	public void setSrdelMgrId(String srdelMgrId) {
-		this.srdelMgrId = srdelMgrId;
+	public void setSrDelMgrId(String srDelMgrId) {
+		this.srDelMgrId = srDelMgrId;
 	}
+
 
 	
 	
