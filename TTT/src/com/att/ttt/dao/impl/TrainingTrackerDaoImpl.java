@@ -36,12 +36,13 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 
 	@Override
 	@Transactional
-	public ArrayList<Employee> getUserPresenceList(String emailId) {
+	public List<Employee> getUserPresenceList(String emailId) {
 		Session currentSession=this.getSessionFactory().getCurrentSession();
-		String query = "from Employee e where e.emailId = '"+emailId+"'";
+		String query = "from Employee e where e.emailId = '"+emailId.trim()+"'";
 		Query qry=currentSession.createQuery(query);
 		List<Employee> userPresentList =   qry.list();
-		return (ArrayList<Employee>) userPresentList;
+		System.out.println("employee " + userPresentList.get(0).getEmpId());
+		return userPresentList;
 	}
 	
 	@Override
@@ -51,7 +52,10 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		String query = "select userRole from UserRoles u where u.email = '"+emailId+"'";
 		Query qry = currentSession.createQuery(query);
 		List<String> userRolesList = qry.list();
-		return userRolesList.get(0);
+		if (!userRolesList.isEmpty())
+			return userRolesList.get(0);
+		else
+			return "";
 	}
 	
 	@Override

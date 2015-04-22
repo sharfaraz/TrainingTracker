@@ -51,5 +51,10 @@
       <put-attribute name="body"   value="/jsp/uploadSuccess.jsp"/>      
   </definition>
   
+  <definition name="viewTrainings" extends="baseLayout">
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/viewTrainings.jsp"/>      
+  </definition>
+  
   
 </tiles-definitions>

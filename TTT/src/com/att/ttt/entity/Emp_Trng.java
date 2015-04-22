@@ -20,7 +20,8 @@ public class Emp_Trng {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int etId;
 	private String empId;
-	private String trainingId;
+	private Integer trainingId;
+	private String trainingName;
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
@@ -41,11 +42,17 @@ public class Emp_Trng {
 	public void setEmpId(String empId) {
 		this.empId = empId;
 	}
-	public String getTrainingId() {
+	public Integer getTrainingId() {
 		return trainingId;
 	}
-	public void setTrainingId(String trainingId) {
+	public void setTrainingId(Integer trainingId) {
 		this.trainingId = trainingId;
+	}
+	public String getTrainingName() {
+		return trainingName;
+	}
+	public void setTrainingName(String trainingName) {
+		this.trainingName = trainingName;
 	}
 	public Date getStartDate() {
 		return startDate;

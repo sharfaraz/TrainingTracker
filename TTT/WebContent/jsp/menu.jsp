@@ -28,7 +28,7 @@ response.setDateHeader ("Expires", -1);
 	<ul id="nav">
 		<li><a>Employee</a>
 			<ul> 
-      			 <li><a href="organization" >View/Update Training</a></li>
+      			 <li><a href="viewTrainings" >View/Update Training</a></li>
       			 <li><a href="organization" >Request Training</a></li> 
      		</ul> 
    		</li>

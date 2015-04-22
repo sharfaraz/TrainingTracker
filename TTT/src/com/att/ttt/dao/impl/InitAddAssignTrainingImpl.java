@@ -19,7 +19,7 @@ public class InitAddAssignTrainingImpl {
 	ServletContext ctx=ServletActionContext.getServletContext();
 	WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ctx);
     
-    TrainingTrackerDao trDao=(TrainingTrackerDao)context.getBean("TrainingTrackerDaoImpl");
+    TrainingTrackerDao trDao=(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
 	
 	
 	public List<String> getAllAccounts(){
