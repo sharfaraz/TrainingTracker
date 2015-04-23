@@ -1,6 +1,7 @@
 package com.att.ttt.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,9 +14,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.att.ttt.constants.TTConstants;
 import com.att.ttt.dao.TrainingTrackerDao;
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
+import com.att.ttt.entity.TrainingReportBean;
 import com.att.ttt.entity.Trainings;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -36,13 +39,12 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 
 	@Override
 	@Transactional
-	public List<Employee> getUserPresenceList(String emailId) {
+	public ArrayList<Employee> getUserPresenceList(String emailId) {
 		Session currentSession=this.getSessionFactory().getCurrentSession();
-		String query = "from Employee e where e.emailId = '"+emailId.trim()+"'";
+		String query = "from Employee e where e.emailId = '"+emailId+"'";
 		Query qry=currentSession.createQuery(query);
 		List<Employee> userPresentList =   qry.list();
-		System.out.println("employee " + userPresentList.get(0).getEmpId());
-		return userPresentList;
+		return (ArrayList<Employee>) userPresentList;
 	}
 	
 	@Override
@@ -52,10 +54,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		String query = "select userRole from UserRoles u where u.email = '"+emailId+"'";
 		Query qry = currentSession.createQuery(query);
 		List<String> userRolesList = qry.list();
-		if (!userRolesList.isEmpty())
-			return userRolesList.get(0);
-		else
-			return "";
+		return userRolesList.get(0);
 	}
 	
 	@Override
@@ -127,6 +126,36 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	
 	@Override
 	@Transactional
+	public List<String> getSdmForReportDisplay(String tower) {
+		List<String> sdmList = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("Select distinct e.srdelMgr from Employee e where tower='"+tower+"'");
+		sdmList = qry.list();
+		return sdmList;
+	}
+	@Override
+	@Transactional
+	public List<String> getDmForReportDisplay(String sdm) {
+		List<String> dmList = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("Select distinct e.delMgr from Employee e where tower='"+sdm+"'");
+		dmList = qry.list();
+		return dmList;
+	}
+	@Override
+	@Transactional
+	public List<String> getAppForReportDisplay(String tower) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	 
+	
+	
+	@Override
+	@Transactional
 	public void assignTrainings(Emp_Trng empTrng) {
 		// TODO Auto-generated method stub
 		Session currentSession = this.getSessionFactory().getCurrentSession();
@@ -166,4 +195,129 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		
 		return employeeList;
 	}
+	
+		@Override
+	@Transactional
+	public List<TrainingReportBean> gererateTrainingReport(
+			Date trainingStartDate, Date trainingEndDate,
+			String trainingType, String trainingStatus, String reportLevel,
+			String reportLevelValue) {
+		
+		List<TrainingReportBean> reportBeanList=new ArrayList<TrainingReportBean>();
+		try{
+			
+			Session currentSession = this.getSessionFactory().getCurrentSession();
+			
+			if (reportLevel.equals(TTConstants.TOWER)){
+			List<Employee> empList = new ArrayList<Employee>();
+			Query qry = currentSession
+					.createQuery("Select e.empId, e.fname, e.lname, e.delMgr, e.srdelMgr from Employee e where tower='"+reportLevel+"'");
+			empList = qry.list();
+			
+			for (Employee employee : empList) {
+				Query qry1=null;
+					 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=?");
+					 
+					 Employee emp = (Employee) qry.list().get(0);
+					 
+					 qry1.setString(0, emp.getEmpId());
+					 qry1.setDate(1, trainingStartDate);
+					 qry1.setDate(2, trainingEndDate);
+					 qry1.setString(3, trainingStatus);
+					 qry1.setString(4, trainingType);
+					 
+					if(qry1.list().size()!= 0){
+						
+						Emp_Trng emptrng = (Emp_Trng) qry1.list().get(0);
+						TrainingReportBean trRepBean = new TrainingReportBean();
+						trRepBean.setEmpId(emptrng.getEmpId());
+						trRepBean.setEmpName(emp.getFname().concat(emp.getLname()) );
+						trRepBean.setDmName(emp.getDelMgr());
+						trRepBean.setSdmName(emp.getSrDelMgr());
+						trRepBean.setTrainingName(emptrng.getTrainingName());
+						trRepBean.setStartDate(emptrng.getStartDate());
+						trRepBean.setEndDate(emptrng.getEndDate());
+						trRepBean.setTrainingStatus(emptrng.getStatus());
+						
+						reportBeanList.add(trRepBean);
+					}
+			}
+			
+			}
+			else if (reportLevel.equals(TTConstants.CLUSTER)){
+				List<Employee> empList = new ArrayList<Employee>();
+				Query qry = currentSession
+						.createQuery("Select e.empId, e.fname, e.lname, e.delMgr, e.srdelMgr from Employee e where srdelMgr='"+reportLevel+"'");
+				empList = qry.list();
+				for (Employee employee : empList) {
+					Query qry1=null;
+						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=?");
+						 Employee emp = (Employee) qry.list().get(0);
+						 
+						 qry1.setString(0, emp.getEmpId());
+						 qry1.setDate(1, trainingStartDate);
+						 qry1.setDate(2, trainingEndDate);
+						 qry1.setString(3, trainingStatus);
+						 qry1.setString(4, trainingType);
+						 
+							if(qry1.list().size()!= 0){
+								
+								Emp_Trng emptrng = (Emp_Trng) qry1.list().get(0);
+								TrainingReportBean trRepBean = new TrainingReportBean();
+								trRepBean.setEmpId(emptrng.getEmpId());
+								trRepBean.setEmpName(emp.getFname().concat(emp.getLname()) );
+								trRepBean.setDmName(emp.getDelMgr());
+								trRepBean.setSdmName(emp.getSrDelMgr());
+								trRepBean.setTrainingName(emptrng.getTrainingName());
+								trRepBean.setStartDate(emptrng.getStartDate());
+								trRepBean.setEndDate(emptrng.getEndDate());
+								trRepBean.setTrainingStatus(emptrng.getStatus());
+								
+								reportBeanList.add(trRepBean);
+							}
+				}
+				}
+			else if (reportLevel.equals(TTConstants.dmLevel)){
+				List<Employee> empList = new ArrayList<Employee>();
+				Query qry = currentSession
+						.createQuery("Select e.empId, e.fname, e.lname, e.delMgr, e.srdelMgr from Employee e where delMgr='"+reportLevel+"'");
+				empList = qry.list();
+				for (Employee employee : empList) {
+					Query qry1=null;
+						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=?");
+						 
+						 Employee emp = (Employee) qry.list().get(0);
+						 
+						 qry1.setString(0, emp.getEmpId());
+						 qry1.setDate(1, trainingStartDate);
+						 qry1.setDate(2, trainingEndDate);
+						 qry1.setString(3, trainingStatus);
+						 qry1.setString(4, trainingType);
+						 
+							if(qry1.list().size()!= 0){
+								
+								Emp_Trng emptrng = (Emp_Trng) qry1.list().get(0);
+								TrainingReportBean trRepBean = new TrainingReportBean();
+								trRepBean.setEmpId(emptrng.getEmpId());
+								trRepBean.setEmpName(emp.getFname().concat(emp.getLname()) );
+								trRepBean.setDmName(emp.getDelMgr());
+								trRepBean.setSdmName(emp.getSrDelMgr());
+								trRepBean.setTrainingName(emptrng.getTrainingName());
+								trRepBean.setStartDate(emptrng.getStartDate());
+								trRepBean.setEndDate(emptrng.getEndDate());
+								trRepBean.setTrainingStatus(emptrng.getStatus());
+								
+								reportBeanList.add(trRepBean);
+							}
+				}
+				}
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return reportBeanList;
+	}
 }
+

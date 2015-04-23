@@ -34,6 +34,11 @@
       <put-attribute name="body"   value="/jsp/CreateTraining.jsp"/>   
   </definition>
   
+   <definition name="fetchReport" extends="baseLayout">
+  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/GenerateReports.jsp"/>   
+  </definition>
+  
   
   <definition name="myArchiveTrainingsList" extends="baseLayout">
   	 <put-attribute name="title"  value="Training and Tracking Tool"/>

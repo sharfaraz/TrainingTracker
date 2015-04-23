@@ -291,42 +291,7 @@ function getBrowserHeight() {
 }
 
 
-function setLayerPosition() {
-    var shadow = document.getElementById("shadow");
-    var question = document.getElementById("wait_side");
 
-
-    var bws = getBrowserHeight();
-    shadow.style.width = bws.width + "px";
-    shadow.style.height = bws.height + "px";
-
-
-    question.style.left = parseInt((bws.width - 350) / 2);
-    question.style.top = parseInt((bws.height - 200) / 2);
-
-
-    shadow = null;
-    question = null;
-}
-
-
-function showLayer() {
-    setLayerPosition();
-
-
-    var shadow = document.getElementById("shadow");
-    var waitDiv = document.getElementById("wait_side");
-
-
-    shadow.style.display = "block";
-    waitDiv.style.display = "block";
-
-    waitDiv.style.left = "650px";
-    waitDiv.style.top = "300px";
-    
-    shadow = null;
-    question = null;
-}
 
 function getSdmForReport()
 {
@@ -341,7 +306,7 @@ function getSdmForReport()
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");   
 	}   
 
-	xmlhttp.open("GET","/NewTrainingTrackerTool/populateSDM.action?tower="+v,true);   
+	xmlhttp.open("GET","/TTT/populateSDM.action?tower="+v,true);   
 	xmlhttp.send();  
 	xmlhttp.onreadystatechange=function()
 	{
@@ -351,7 +316,7 @@ function getSdmForReport()
 			document.getElementById("SdmValue").innerHTML=xmlhttp.responseText;
 
 		}
-	}
+	};
 }
 
 function getDmForReport()
@@ -368,7 +333,7 @@ function getDmForReport()
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");   
 	}   
 
-	xmlhttp.open("GET","/NewTrainingTrackerTool/populateDm.action?clusterId="+v,true);   
+	xmlhttp.open("GET","/TTT/populateDm.action?clusterId="+v,true);   
 	xmlhttp.send();  
 	xmlhttp.onreadystatechange=function()
 	{
@@ -378,7 +343,7 @@ function getDmForReport()
 			document.getElementById("DmValue").innerHTML=xmlhttp.responseText;
 
 		}
-	}
+	};
 }
 function getAppForReport()
 {
@@ -394,7 +359,7 @@ function getAppForReport()
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");   
 	}   
 
-	xmlhttp.open("GET","/NewTrainingTrackerTool/populateApp.action?MGR_ID="+v,true);   
+	xmlhttp.open("GET","/TTT/populateApp.action?MGR_ID="+v,true);   
 	xmlhttp.send();  
 	xmlhttp.onreadystatechange=function()
 	{
@@ -404,22 +369,5 @@ function getAppForReport()
 			document.getElementById("AppValue").innerHTML=xmlhttp.responseText;
 
 		}
-	}
+	};
 }
-
-function hideLayer() {
-    var shadow = document.getElementById("shadow");
-    var waitDiv = document.getElementById("wait_side");
-
-
-    shadow.style.display = "none";
-    waitDiv.style.display = "none";
-
-
-    shadow = null;
-    question = null;
-}
-
-window.onresize = setLayerPosition;
-
-//Added by Shivam : Displaying wait bar code -- End

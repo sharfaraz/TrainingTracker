@@ -255,7 +255,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	  TrainingTrackerDao
 	  trainingOperation=(TrainingTrackerDao)context.getBean("TrainingTrackerDao"); 
 	  Trainings training=(Trainings)context.getBean("Trainings");
-	  Emp_Trng empTrng=(Emp_Trng)context.getBean("Emp_Trng");
+	  Emp_Trng empTrng = (Emp_Trng) context.getBean("Emp_Trng");
 	
 	  training.setTrainingName(NewTrainingName);
 	  training.setTrainingType(trainingType);
@@ -269,12 +269,14 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	  trainingOperation.addTraining(training);
 	  
 	  if (trainingType.equals("Mandatory")) {
-		  
+
 		    //empTrng.setEmpId("05487M");
-			empTrng.setTrainingId(training.getTrainingId().toString());
+			empTrng.setTrainingId(training.getTrainingId());
 			empTrng.setStartDate(training.getStartDate());
 			empTrng.setEndDate(training.getEndDate());
 			empTrng.setStatus(TTConstants.PENDING);
+			empTrng.setTrainingName(training.getTrainingName());
+			empTrng.setTrainingType(training.getTrainingType());
 			//empTrng.setEtId("2");
 			
 			List<String> employeeList = trainingOperation.getEmployees(training.getLevelName(), training.getLevelId());
@@ -284,67 +286,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	    	}
 		  
 	  }
-		    /*if(assignedType.equals(TTConstants.APPLICATION)) {
-			  
-		    	System.out.println("passing to assignTrainings");
-		    	trainingOperation.assignTrainings(empTrng);
-			  
-		    } 
-		    else if(assignedType.equals(TTConstants.CLUSTER)) {
-				  
-		    	trainingOperation.assignTrainings(empTrng);
-				  
-			} 
-		    else if(assignedType.equals(TTConstants.TOWER)) {
-				  
-		    	List<String> employeeList = trainingOperation.getEmployees(training.getLevelName(), training.getLevelId());
-		    	for (int i=0; i<employeeList.size(); i++){
-		    	empTrng.setEmpId(employeeList.get(i));
-		    	trainingOperation.assignTrainings(empTrng);
-		    	}
-				  
-		    } 
-		    else if(assignedType.equals(TTConstants.ACCOUNT)) {
-				  
-		    	trainingOperation.assignTrainings(empTrng);
-				  
-		    }*/	 
-	/*  System.out.println("selectedValue:"+assignedKey);
-	  
-	  System.out.println("taringin added :"+training.getTrainingId());
-	  
-	  System.out.println("assignedType:"+assignedType);
-	  
-	  List<Training> trainingList=new ArrayList<Training>();
-	  trainingList.add(training);
-	  
-	  
-	  if(assignedType.equals(TTConstants.ROLE)) {
-	  
-	  trainingOperation.assignTrainingsToRole(trainingList, assignedKey);
-	  
-	  } else if(assignedType.equals(TTConstants.APPLICATION)) {
-	  
-	  trainingOperation.assignTrainingsToApplication(trainingList,
-	  assignedKey);
-	  
-	  } else if(assignedType.equals(TTConstants.EMPLOYEE)) {
-	  
-	  trainingOperation.assignTrainingsToEmployee(trainingList, assignedKey);
-	  
-	  } else if(assignedType.equals(TTConstants.CLUSTER)) {
-	  
-	  trainingOperation.assignTrainingsToCluster(trainingList, assignedKey);
-	  
-	  } else if(assignedType.equals(TTConstants.TOWER)) {
-	  
-	  trainingOperation.assignTrainingsToTower(trainingList, assignedKey);
-	  
-	  } else if(assignedType.equals(TTConstants.ACCOUNT)) {
-	  
-	  trainingOperation.assignTrainingsToAccount(trainingList, assignedKey);
-	  
-	  }*/
+
 	  
 	  return "success"; 
 	  

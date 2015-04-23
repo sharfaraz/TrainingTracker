@@ -65,6 +65,32 @@
 			<result name="success" type="tiles">welcome</result>
 		</action>
 		
+		<action name="fetchReport" class="com.att.ttt.action.FetchReportsAction">
+			<result name="populate" type="tiles">fetchReport</result>
+		</action>
+
+		<action name="FetchReportInExcel" class="com.att.ttt.action.FetchReportsAction"
+			method="fetchReportInExcel">
+			<result type="stream" name="success">
+				<param name="contentType">"application/vnd.ms-excel"</param>
+				<param name="contentDisposition">attachment;filename="TrainingReport.xls"</param>
+				<param name="inputName">excelStream</param>
+				<param name="bufferSize">1024</param> 
+			</result>
+			<!-- <result name="success"></result> -->
+		</action>
+		<action name="populateSDM" method="getSdmListForReport"
+			class="com.att.ttt.action.FetchReportsAction">
+			<result name="success">/jsp/SdmForReportGen.jsp</result>
+		</action>
+		<action name="populateDm" class="com.att.ttt.action.FetchReportsAction" method="getDmListForReport">
+			<result name="success">/jsp/DmForReportGen.jsp</result>
+		</action>
+		<action name="populateApp" method="getAppListForReport"
+			class="com.att.ttt.action.FetchReportsAction">
+			<result name="success">/jsp/AppForReportGen.jsp</result>
+		</action>
+		
 		<action name="SaveTrainingAction" class="com.att.ttt.action.SaveTrainingAction" >
         	<interceptor-ref name="defaultStack"></interceptor-ref>
         	<result name="success" type="tiles">uploadSuccess</result>

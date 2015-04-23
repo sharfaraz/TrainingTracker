@@ -27,6 +27,7 @@ public class Emp_Trng {
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	private String status;
+	private String trainingType;
 	
 	
 
@@ -71,6 +72,12 @@ public class Emp_Trng {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getTrainingType() {
+		return trainingType;
+	}
+	public void setTrainingType(String trainingType) {
+		this.trainingType = trainingType;
 	}
 	
 	
