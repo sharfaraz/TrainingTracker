@@ -1,35 +1,33 @@
 package com.att.ttt.action;
 
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.servlet.ServletContext;
 
-import org.apache.catalina.core.ApplicationContext;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.att.ttt.constants.TTConstants;
 import com.att.ttt.dao.TrainingTrackerDao;
-import com.att.ttt.dao.TrainingsDao;
-import com.att.ttt.dao.impl.InitAddAssignTrainingImpl;
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Trainings;
-import com.att.ttt.utility.WebApp;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CreateTrainingAction extends ActionSupport implements SessionAware {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String NewTrainingName;
 	private SessionMap<String, Object> sessionMap;
 
@@ -334,5 +332,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 		return convertDate;
 
 	}
+	
 
+	
 }

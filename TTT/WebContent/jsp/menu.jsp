@@ -37,8 +37,8 @@ response.setDateHeader ("Expires", -1);
 		<a>Super User</a>
 		<ul> 
       			 <li><a href="UploadFileAction">Employee Upload</a></li> 
-      			 <li><a href="organization" >Trainings Upload</a></li> 
-      			 <li><a href="createNewTraining" >Create Training</a></li> 
+      			 <li><a href="UploadFileAction">Trainings Upload</a></li>
+      			 <li><a href="createNewTraining" >Create New Training</a></li> 
       			 <li><a href="organization" >Assign Training</a></li> 
      		</ul>
 		</li>
@@ -49,8 +49,8 @@ response.setDateHeader ("Expires", -1);
 		<a>Super User</a>
 		<ul> 
       			 <li><a href="UploadFileAction">Employee Upload</a></li> 
-      			 <li><a href="organization" >Trainings Upload</a></li> 
-      			 <li><a href="organization" >Create Training</a></li> 
+      			 <li><a href="UploadFileAction" >Trainings Upload</a></li> 
+      			 <li><a href="createNewTraining" >Create New Training</a></li> 
       			 <li><a href="organization" >Assign Training</a></li> 
      		</ul>
 		</li>

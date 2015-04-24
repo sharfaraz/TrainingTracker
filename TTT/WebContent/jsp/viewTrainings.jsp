@@ -8,7 +8,7 @@
 <title>Trainings List</title>
 </head>
 <body>
-<form method="POST" action="viewTrainings" enctype="multipart/form-data">
+<form method="GET" action="viewTrainings" enctype="multipart/form-data">
 	<h3>Trainings List</h3>
 	
 	<br>

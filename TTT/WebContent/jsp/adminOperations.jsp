@@ -6,41 +6,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+.upload{
+    border:5px;
+    padding:10px 50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    background-color:#0174DF;
+    color:white;
+    font-size:10px;
+}
+</style>
 </head>
-
 <body>
-
-<h2> Employee details upload</h2>
-<form method="POST" action="employeeUpload" enctype="multipart/form-data">
-	<h3>Upload Employees</h3>
+<br>
+	<form method="POST" action="employeeUpload" enctype="multipart/form-data">
+	<table >
 	
-	<br>
-	<input type="file" name="uploadFile"/>
-	<br /><br />
-	<input type="submit" value="Upload"/>
-	<input type="reset" value="Reset"/> 
+	<tr><td ><h3 align="center"> Employee details upload</h3></td> 
+	</tr>
+	<tr><td><input style="margin: 3%"  type="file" name="uploadFile" class="upload"/></td></tr>
+	<tr><td><input style="margin: 3%" type="submit" value="Upload" class="buttonStyle"/>
+	<input type="reset" value="Reset" class="buttonStyle"/> </td>
+	</tr></table>
 </form>
 
-<h2> Training details upload</h2>
-
-<s:form action="SaveTrainingAction" >  
-	<s:textfield key="trainingName" label="Training Name "/>
-	<s:textfield key="delMgr" label="Delivery Manager "/>
-	<s:textfield key="startDate" label="Training Start Date"/>
-	<s:textfield key="endDate" label="Training End date "/>
-	<s:textfield key="numOfDays" label=" Duration(in days)"/>
-	<s:textfield key="levelId" label="Level Id"/>
-	<s:textfield key="levelName" label="Level Name"/>
-	<s:submit/>
-</s:form>
-
-<form method="POST" action="TrainingsUpload" enctype="multipart/form-data">
-	<h3>Upload Training Details List</h3>	<br>
-	
-	<input type="file" name="uploadFile"/>
-	<br /><br />
-	<input type="submit" value="Upload"/>
-	<input type="reset" value="Reset"/> 
+<form method="POST" action="trainingsUpload" enctype="multipart/form-data"> 
+	<table >
+	<tr><td><h3 align="center"> Training details upload</h3></td></tr>
+	<tr><td ><input style="margin: 3%" type="file" name="uploadFile" class="upload"/></td></tr>
+	<tr><td><input style="margin: 3%" type="submit" value="Upload" class="buttonStyle"/>
+	<input type="reset" value="Reset" class="buttonStyle"/> </td></tr>
+	</table>
 </form>
 
 

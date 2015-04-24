@@ -108,13 +108,13 @@
 		</action>
 		
 		<action name="UploadFileAction" class="com.att.ttt.action.PopulateUploadFileAction">
-		<result name="success" type="tiles">uploadEmployees</result>
+		<result name="success" type="tiles">adminOperations</result>
        </action>
 		
 		<action name="employeeUpload" class="com.att.ttt.action.EmployeeAction">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">uploadSuccess</result>
-			<result name="failure">uploadFailure</result>
+			<result name="failure" type="tiles">uploadFailure</result>
 		</action>
 		
 		<action name="viewTrainings" class="com.att.ttt.action.TrainingTrackerAction">
@@ -122,7 +122,7 @@
 			<result name="success" type="tiles">viewTrainings</result>
 		</action>
 		
-		<action name="TrainingsUpload" class="com.att.ttt.action.TrainingsUpload">
+		<action name="trainingsUpload" class="com.att.ttt.action.TrainingsUpload">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">uploadSuccess</result>
 			<result name="failure" type="tiles">uploadFailure</result>

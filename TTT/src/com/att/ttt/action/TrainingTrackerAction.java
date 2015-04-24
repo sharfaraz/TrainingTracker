@@ -39,9 +39,9 @@ public class TrainingTrackerAction extends ActionSupport {
 	public String execute() {
 		String res;
 		Map<String, Object> session = ActionContext.getContext().getSession();
-		String empId = (String)session.get("emp");
-		System.out.println("empId :" + empId);
-		trainings = manager.viewTrainings(empId);
+		String emailId = (String)session.get("email");
+		System.out.println("emailId :" + emailId);
+		trainings = manager.viewTrainings(emailId);
 		System.out.println("trainings :" + trainings.size());
 		res = "success";
 		return res;

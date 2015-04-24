@@ -48,12 +48,17 @@
   
   <definition name="adminOperations" extends="baseLayout">
   	 <put-attribute name="title"  value="Training and Tracking Tool"/>
-      <put-attribute name="body"   value="/jsp/createTraining.jsp"/>   
+      <put-attribute name="body"   value="/jsp/adminOperations.jsp"/>   
   </definition>
   
   <definition name="uploadSuccess" extends="baseLayout">
       <put-attribute name="title"  value="Training and Tracking Tool"/>
       <put-attribute name="body"   value="/jsp/uploadSuccess.jsp"/>      
+  </definition>
+  
+   <definition name="uploadFailure" extends="baseLayout">
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/uploadFailure.jsp"/>      
   </definition>
   
   <definition name="viewTrainings" extends="baseLayout">

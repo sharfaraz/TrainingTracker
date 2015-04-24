@@ -59,9 +59,11 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	
 	@Override
 	@Transactional
-	public List<Emp_Trng> myTrainingsList(String empId) {
+	public List<Emp_Trng> myTrainingsList(String emailId) {
 		Session currentSession=this.getSessionFactory().getCurrentSession();
-		String query = "from Emp_Trng et where et.empId = '"+empId+"'";
+		String empId = (String) currentSession.createQuery("select empId from Employee where emailId = '"+emailId+"'").list().get(0);
+		System.out.println("fetched empId: "+empId);
+		String query = "from Emp_Trng where empId = '"+empId+"'";
 		Query qry=currentSession.createQuery(query);
 		List<Emp_Trng> myTrainingsList =   qry.list();
 		return myTrainingsList;
