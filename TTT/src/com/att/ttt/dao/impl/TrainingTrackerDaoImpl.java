@@ -153,7 +153,16 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		return null;
 	}
 	
-	 
+	@Override
+	@Transactional
+	public void updateEmpTrng(Emp_Trng empTrng) {
+		// TODO Auto-generated method stub
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		System.out.println("Updating EmpTrng");
+		System.out.println("values"+empTrng.getEtId()+"|"+empTrng.getEmpId()+"|"+empTrng.getStatus()+"|"+empTrng.getTrainingName()+"|"+empTrng.getTrainingType()
+				+"|"+empTrng.getTrainingId()+"|"+empTrng.getEndDate()+"|"+empTrng.getStartDate());
+		currentSession.update(empTrng);
+	}
 	
 	
 	@Override
@@ -321,5 +330,8 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		
 		return reportBeanList;
 	}
+		
+		
+		
 }
 

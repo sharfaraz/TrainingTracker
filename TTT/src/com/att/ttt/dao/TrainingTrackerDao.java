@@ -14,7 +14,7 @@ public interface TrainingTrackerDao {
 
 	ArrayList<Employee> getUserPresenceList(String emailId);
 
-	List<Emp_Trng> myTrainingsList(String empId);
+	List<Emp_Trng> myTrainingsList(String emailId);
 
 	List<Employee> getDeliveryManagersList();
 	
@@ -35,6 +35,8 @@ public interface TrainingTrackerDao {
 	public List<String> getEmployees (String levelName, String levelId);  
 	
 	public void assignTrainings(Emp_Trng empTrng);
+	
+	public void updateEmpTrng(Emp_Trng empTrng);
 	
 	List<TrainingReportBean> gererateTrainingReport(Date trainingStartDate,
 			Date trainingEndDate, String trainingType, String trainingStatus,

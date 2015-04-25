@@ -32,6 +32,7 @@ public class TrainingTrackerAction extends ActionSupport {
 	public TrainingTrackerManager getTrainingTrackerManager() {
 		return manager;
 	}
+	
 	@Autowired
 	public void setTrainingTrackerManager(TrainingTrackerManager manager) {
 		this.manager = manager;
