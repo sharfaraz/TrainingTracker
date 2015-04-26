@@ -345,7 +345,7 @@ function getDmForReport()
 		}
 	};
 }
-function getAppForReport()
+/*function getAppForReport()
 {
 
 	var v=document.getElementById('MGR_ID').value;
@@ -371,3 +371,4 @@ function getAppForReport()
 		}
 	};
 }
+*/
