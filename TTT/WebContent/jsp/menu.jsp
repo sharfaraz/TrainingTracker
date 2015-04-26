@@ -57,7 +57,7 @@ response.setDateHeader ("Expires", -1);
 		<li>
 		<a>Manager</a>
 		<ul> 
-      			 <li><a href="fetchreport" >Reports</a></li> 
+      			 <li><a href="fetchReport" >Reports</a></li> 
       			 
      		</ul> 
      	

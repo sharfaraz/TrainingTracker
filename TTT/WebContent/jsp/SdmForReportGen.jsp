@@ -10,7 +10,7 @@
 
 <body>
 <s:set name="theme" value="'simple'"  scope="page" /> 
-<table><tr><td>SDM : </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:select id="clusterId" name="clusterId" headerKey="-1" headerValue="----Select----" list="NewSDMdata" onchange ="getDmForReport()"/></td></tr></table>
+<table><tr><td>SDM : </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:select id="clusterId" name="clusterId" headerKey="-1" headerValue="----Select----" list="NewSDMdata" cssClass="changeFont" onchange ="getDmForReport()"/></td></tr></table>
 
 
  
