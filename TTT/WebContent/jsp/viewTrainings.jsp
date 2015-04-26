@@ -1,3 +1,6 @@
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
+<%@page import="java.util.Map"%>
+<%@page import="org.apache.struts2.dispatcher.SessionMap"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -7,9 +10,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Trainings List</title>
 </head>
+
+<script type="text/javascript">
+function changeDropdown(){
+	var select=document.getElementsByTagName("select");	
+
+</script>
 <body>
-<s:form action="updateTrainings" name="TrainingsView">
-	<h3>Trainings List</h3>
+
+	<div align="center">
+	<font color="green"><s:property value="#session.successMsg" /></font></div>
+	<%
+		Map session2 = (Map) ActionContext.getContext().get("session");
+		session2.put("successMsg", "");
+	 %>
+	 
+<s:form action="updateTrainings" name="TrainingsView" id="trainingsGrid">
+	<h2 align="center">Trainings you've been assigned</h2>
 	
 	<br>
 	<table>
@@ -44,17 +61,19 @@
 			<td><input type="text" class="changeFont" value='<s:property value="endDate" />' readonly="readonly"   
 				name='empTrngs[<s:property value="%{#status.index}"/>].endDate'
 				id="endDate<s:property value="%{#status.index}"/>"/></td>
-			<%-- <td><input type="text" class="changeFont" value='<s:property value="status" />' 
-				name='empTrngs[<s:property value="%{#status.index}"/>].status'
-				id="status<s:property value="%{#status.index}"/>" /></td> --%>
-			<td><select class="changeFont"  
+
+			<td><select class="changeFont" 
 				name='empTrngs[<s:property value="%{#status.index}"/>].status'
 				id="status<s:property value="%{#status.index}"/>" >
-  				<option value='<s:property value="status" />' ><s:property value="status" /></option>
-  				<option value="completed">completed</option>
-  				<option value="pending">Pending</option>
-  				<option value="inprogress">In-progress</option>
-           </select> </td>
+				<s:iterator value="statuses" status="stat">
+				
+  				<option value='<s:property value="statuses[#stat.index]"/>' 
+  				<s:if test="statuses[#stat.index]== status"> selected </s:if>  
+  				> 
+  				<s:property value="statuses[#stat.index]"/>
+  				</option>
+  				</s:iterator>
+  				</select> </td>
 		</tr>
 		</s:iterator>
 	</table>
@@ -63,6 +82,7 @@
 			<input type="reset" value="Cancel" class="buttonStyle"/>
 		</div>
 </s:form>
+
 
 </body>
 </html>
