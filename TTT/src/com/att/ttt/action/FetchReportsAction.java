@@ -60,8 +60,8 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 	private List<String> towerData=new ArrayList<String>();
 	private List<String>   newAppData =new ArrayList<String>();
 	private List<String> repByTower = new ArrayList<String>();
-	private String trainingStartDate;
-	private String trainingEndDate;
+	private String NewTrainingStDate;
+	private String NewTrainingEndDate;
 	private String Clusterdata;
 	private String Statusdata="Completed,Pending";
 	private String TrainingTypeData="Mandatory,Optional";
@@ -75,6 +75,7 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 	private String MGR_ID;
 	private String appId;
 	private String towerName;//for tower
+	
 
 	private String trainingType;
 	private String trainingStatus;
@@ -145,20 +146,22 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 		this.repByTower = repByTower;
 	}
 
-	public String getTrainingStartDate() {
-		return trainingStartDate;
+	
+
+	public String getNewTrainingStDate() {
+		return NewTrainingStDate;
 	}
 
-	public void setTrainingStartDate(String trainingStartDate) {
-		this.trainingStartDate = trainingStartDate;
+	public void setNewTrainingStDate(String newTrainingStDate) {
+		NewTrainingStDate = newTrainingStDate;
 	}
 
-	public String getTrainingEndDate() {
-		return trainingEndDate;
+	public String getNewTrainingEndDate() {
+		return NewTrainingEndDate;
 	}
 
-	public void setTrainingEndDate(String trainingEndDate) {
-		this.trainingEndDate = trainingEndDate;
+	public void setNewTrainingEndDate(String newTrainingEndDate) {
+		NewTrainingEndDate = newTrainingEndDate;
 	}
 
 	public String getClusterdata() {
@@ -285,7 +288,7 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 	WebApplicationContext context = WebApplicationContextUtils
 			.getWebApplicationContext(ctx);
 
-	TrainingTrackerDao trDao=(TrainingTrackerDao)context.getBean("TrainingTrackerDaoImpl");
+	TrainingTrackerDao trDao=(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
 
 	public String execute() {
 
@@ -390,18 +393,17 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 
 				reportBean=reportBeanList.get(i-1);
 
-				label=new Label(0, i, reportBean.getEmpName());
+				label=new Label(0, i, "ABC");
 				excelSheet.addCell(label);
-				System.out.println("Enter into row creation :"+i);
 
 				label=new Label(1, i, reportBean.getEmpId());
 				excelSheet.addCell(label);
 
-				label=new Label(2, i, reportBean.getDmName());
+				label=new Label(2, i, "DEF");
 				excelSheet.addCell(label);
 
 
-				label=new Label(3, i, reportBean.getSdmName());
+				label=new Label(3, i, "GHI");
 				excelSheet.addCell(label);
 
 				label=new Label(4, i, reportBean.getTowerName());
@@ -486,8 +488,8 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 				
 		System.out.println("Going to fetCh report dATA");
 		
-		Date startDate = StringtoDate(trainingStartDate);
-		Date endDate = StringtoDate(trainingEndDate);
+		Date startDate = StringtoDate(NewTrainingStDate);
+		Date endDate = StringtoDate(NewTrainingEndDate);
 		
 		reportBeanList = trDao.gererateTrainingReport(startDate,endDate , trainingType, trainingStatus, reportLevel, reportLevelValue);
 		System.out.println("after fetching dATA");
