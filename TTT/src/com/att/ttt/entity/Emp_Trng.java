@@ -28,6 +28,8 @@ public class Emp_Trng {
 	private Date endDate;
 	private String status;
 	private String trainingType;
+	private String delMgr;
+	private String srDelMgr;
 	
 	
 
@@ -78,6 +80,18 @@ public class Emp_Trng {
 	}
 	public void setTrainingType(String trainingType) {
 		this.trainingType = trainingType;
+	}
+	public String getDelMgr() {
+		return delMgr;
+	}
+	public void setDelMgr(String delMgr) {
+		this.delMgr = delMgr;
+	}
+	public String getSrDelMgr() {
+		return srDelMgr;
+	}
+	public void setSrDelMgr(String srDelMgr) {
+		this.srDelMgr = srDelMgr;
 	}
 	
 	
