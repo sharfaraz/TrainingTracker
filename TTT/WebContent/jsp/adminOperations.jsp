@@ -9,10 +9,10 @@
 <style type="text/css">
 .upload{
     border:5px;
-    padding:10px 50px;
+    padding:10px 25px;
     -moz-border-radius:50px;
     border-radius:50px;
-    background-color:#0174DF;
+    background-color:#0097C5;
     color:white;
     font-size:10px;
 }

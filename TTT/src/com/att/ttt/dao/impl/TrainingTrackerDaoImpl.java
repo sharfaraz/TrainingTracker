@@ -207,7 +207,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		return employeeList;
 	}
 	
-		@Override
+	@Override
 	@Transactional
 	public List<TrainingReportBean> gererateTrainingReport(
 			Date trainingStartDate, Date trainingEndDate,
@@ -220,17 +220,17 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 			Session currentSession = this.getSessionFactory().getCurrentSession();
 			
 			if (reportLevel.equals(TTConstants.TOWER)){
-			List<String> empList = new ArrayList<String>();
+			List<Employee> empList = new ArrayList<Employee>();
 			Query qry = currentSession
-					.createQuery("Select e.empId from Employee e where tower='"+reportLevelValue+"'");
+					.createQuery(" from Employee e where tower='"+reportLevelValue+"'");
 			empList = qry.list();
 			
-			for (String employee : empList) {
+			for (Employee employee : empList) {
 				Query qry1=null;
 					 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=?");
 					 
 					 					 
-					 qry1.setString(0, empList.get(0));
+					 qry1.setString(0, employee.getEmpId());
 					 qry1.setDate(1, trainingStartDate);
 					 qry1.setDate(2, trainingEndDate);
 					 qry1.setString(3, trainingStatus);
@@ -238,18 +238,23 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 					 
 					if(qry1.list().size()!= 0){
 						
-						Emp_Trng emptrng = (Emp_Trng) qry1.list().get(0);
-						TrainingReportBean trRepBean = new TrainingReportBean();
-						trRepBean.setEmpId(emptrng.getEmpId());
-						/*trRepBean.setEmpName(emp.getFname().concat(emp.getLname()) );
-						trRepBean.setDmName(emp.getDelMgr());
-						trRepBean.setSdmName(emp.getSrDelMgr());*/
-						trRepBean.setTrainingName(emptrng.getTrainingName());
-						trRepBean.setStartDate(emptrng.getStartDate());
-						trRepBean.setEndDate(emptrng.getEndDate());
-						trRepBean.setTrainingStatus(emptrng.getStatus());
+						List<Emp_Trng> emptrng = qry1.list();
 						
-						reportBeanList.add(trRepBean);
+						for (Emp_Trng empTrng: emptrng) {
+							TrainingReportBean trRepBean = new TrainingReportBean();
+							trRepBean.setEmpId(employee.getEmpId());
+							trRepBean.setEmpName(employee.getLname()+","+employee.getFname() );
+							trRepBean.setDmName(employee.getDelMgr());
+							trRepBean.setSdmName(employee.getSrDelMgr());
+							trRepBean.setTowerName(employee.getTower());
+							trRepBean.setTrainingType(empTrng.getTrainingType());
+							trRepBean.setTrainingName(empTrng.getTrainingName());
+							trRepBean.setStartDate(empTrng.getStartDate());
+							trRepBean.setEndDate(empTrng.getEndDate());
+							trRepBean.setTrainingStatus(empTrng.getStatus());
+							
+							reportBeanList.add(trRepBean);
+						}
 					}
 			}
 			
@@ -257,49 +262,56 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 			else if (reportLevel.equals(TTConstants.CLUSTER)){
 				List<Employee> empList = new ArrayList<Employee>();
 				Query qry = currentSession
-						.createQuery("Select e.empId, e.fname, e.lname, e.delMgr, e.srDelMgr from Employee e where srDelMgr='"+reportLevelValue+"'");
+						.createQuery("from Employee e where srDelMgr='"+reportLevelValue+"'");
 				empList = qry.list();
 				for (Employee employee : empList) {
 					Query qry1=null;
 						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=?");
-						 Employee emp = (Employee) qry.list().get(0);
 						 
-						 qry1.setString(0, emp.getEmpId());
+						 
+						 qry1.setString(0, employee.getEmpId());
 						 qry1.setDate(1, trainingStartDate);
 						 qry1.setDate(2, trainingEndDate);
 						 qry1.setString(3, trainingStatus);
 						 qry1.setString(4, trainingType);
 						 
+						 Emp_Trng emp = (Emp_Trng) qry1.list().get(0);
+						 
 							if(qry1.list().size()!= 0){
 								
-								Emp_Trng emptrng = (Emp_Trng) qry1.list().get(0);
-								TrainingReportBean trRepBean = new TrainingReportBean();
-								trRepBean.setEmpId(emptrng.getEmpId());
-								trRepBean.setEmpName(emp.getFname().concat(emp.getLname()) );
-								trRepBean.setDmName(emp.getDelMgr());
-								trRepBean.setSdmName(emp.getSrDelMgr());
-								trRepBean.setTrainingName(emptrng.getTrainingName());
-								trRepBean.setStartDate(emptrng.getStartDate());
-								trRepBean.setEndDate(emptrng.getEndDate());
-								trRepBean.setTrainingStatus(emptrng.getStatus());
+								List<Emp_Trng> emptrng = qry1.list();
 								
-								reportBeanList.add(trRepBean);
+								for (Emp_Trng empTrng: emptrng) {
+									TrainingReportBean trRepBean = new TrainingReportBean();
+									trRepBean.setEmpId(employee.getEmpId());
+									trRepBean.setEmpName(employee.getLname()+","+employee.getFname() );
+									trRepBean.setDmName(employee.getDelMgr());
+									trRepBean.setSdmName(employee.getSrDelMgr());
+									trRepBean.setTowerName(employee.getTower());
+									trRepBean.setTrainingType(empTrng.getTrainingType());
+									trRepBean.setTrainingName(empTrng.getTrainingName());
+									trRepBean.setStartDate(empTrng.getStartDate());
+									trRepBean.setEndDate(empTrng.getEndDate());
+									trRepBean.setTrainingStatus(empTrng.getStatus());
+									
+									reportBeanList.add(trRepBean);
+								}
 							}
 				}
 				}
 			else if (reportLevel.equals(TTConstants.dmLevel)){
-				List<String> empList = new ArrayList<String>();
+				List<Employee> empList = new ArrayList<Employee>();
 				Query qry = currentSession
-						.createQuery("Select e.empId from Employee e where delMgr='"+reportLevelValue+"'");
+						.createQuery("from Employee e where delMgr='"+reportLevelValue+"'");
 				empList = qry.list();
 				System.out.println(empList);
-				for (String employee : empList) {
+				for (Employee employee : empList) {
 					Query qry1=null;
 						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=?");
 						 
 						// Employee emp = (Employee) qry.list().get(0);
 						 
-						 qry1.setString(0, empList.get(0));
+						 qry1.setString(0, employee.getEmpId());
 						 qry1.setDate(1, trainingStartDate);
 						 qry1.setDate(2, trainingEndDate);
 						 qry1.setString(3, trainingStatus);
@@ -307,18 +319,24 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 						 
 							if(qry1.list().size()!= 0){
 								
-								Emp_Trng emptrng = (Emp_Trng) qry1.list().get(0);
-								TrainingReportBean trRepBean = new TrainingReportBean();
-								trRepBean.setEmpId(emptrng.getEmpId());
-							//	trRepBean.setEmpName(emp.getFname().concat(emp.getLname()) );
-							//	trRepBean.setDmName(emp.getDelMgr());
-							//	trRepBean.setSdmName(emp.getSrDelMgr());
-								trRepBean.setTrainingName(emptrng.getTrainingName());
-								trRepBean.setStartDate(emptrng.getStartDate());
-								trRepBean.setEndDate(emptrng.getEndDate());
-								trRepBean.setTrainingStatus(emptrng.getStatus());
+								List<Emp_Trng> emptrng = qry1.list();
 								
-								reportBeanList.add(trRepBean);
+								for (Emp_Trng empTrng: emptrng) {
+									TrainingReportBean trRepBean = new TrainingReportBean();
+									trRepBean.setEmpId(employee.getEmpId());
+									trRepBean.setEmpName(employee.getLname()+","+employee.getFname() );
+									trRepBean.setDmName(employee.getDelMgr());
+									trRepBean.setTowerName(employee.getTower());
+									trRepBean.setTrainingType(empTrng.getTrainingType());
+									trRepBean.setSdmName(employee.getSrDelMgr());
+									trRepBean.setTrainingName(empTrng.getTrainingName());
+									trRepBean.setStartDate(empTrng.getStartDate());
+									trRepBean.setEndDate(empTrng.getEndDate());
+									trRepBean.setTrainingStatus(empTrng.getStatus());
+									
+									reportBeanList.add(trRepBean);
+								}
+								
 							}
 				}
 				}

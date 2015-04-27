@@ -393,17 +393,17 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 
 				reportBean=reportBeanList.get(i-1);
 
-				label=new Label(0, i, "ABC");
+				label=new Label(0, i, reportBean.getEmpName());
 				excelSheet.addCell(label);
 
 				label=new Label(1, i, reportBean.getEmpId());
 				excelSheet.addCell(label);
 
-				label=new Label(2, i, "DEF");
+				label=new Label(2, i, reportBean.getDmName());
 				excelSheet.addCell(label);
 
 
-				label=new Label(3, i, "GHI");
+				label=new Label(3, i, reportBean.getSdmName());
 				excelSheet.addCell(label);
 
 				label=new Label(4, i, reportBean.getTowerName());
