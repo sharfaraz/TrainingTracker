@@ -38,6 +38,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	private String NewTrainingStDt;
 	private String NewTrainingEndDt;
 	private String NewExtendedDt;
+	private ArrayList<String> NewTrainingMode = new ArrayList<String>();
 	
 
 	private String TrainingTypeData = "Mandatory,Optional";
@@ -51,8 +52,18 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	private String trainingCateg;
 	private String assignedType;
 	private String assignedKey;
-
+	private String trainingMode;
 	private String message;
+
+	public String getTrainingMode() {
+		return trainingMode;
+	}
+
+	public void setTrainingMode(String trainingMode) {
+		this.trainingMode = trainingMode;
+	}
+
+	
 
 	public String getMessage() {
 		return message;
@@ -210,6 +221,15 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	}
 
 	
+	
+	public ArrayList<String> getNewTrainingMode() {
+		return NewTrainingMode;
+	}
+
+	public void setNewTrainingMode(ArrayList<String> newTrainingMode) {
+		NewTrainingMode = newTrainingMode;
+	}
+
 	public String populateAssignedValue()
 	{
 	
@@ -258,6 +278,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	  training.setTrainingName(NewTrainingName);
 	  training.setTrainingType(trainingType);
 	  training.setCategoryType(trainingCateg);
+	  training.setTrainingMode(trainingMode);
 	  training.setLevelId(assignedType);
 	  training.setLevelName(assignedKey);
 	  training.setStartDate(StringtoDate(NewTrainingStDt));
@@ -304,8 +325,14 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 		setNewCategoryType(NewCategoryType);
 
 		setAssignedTo(AssignedTo);
+		
+		NewTrainingMode.add(TTConstants.ONLINE);
+		NewTrainingMode.add(TTConstants.CLASSROOM);
+		
+		setNewTrainingMode(NewTrainingMode);
 		return "populate";
 	}
+
 
 	private ArrayList<String> populate(String data) {
 		dataList = new ArrayList<String>();

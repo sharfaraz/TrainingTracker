@@ -40,6 +40,9 @@ public class TTConstants {
 	public static String EMP_SYS_RL="EMP_SYS_RL";
 	public static String EMP_NM="EMP_NM";
 	
+	//Modes
 	
+	public static String ONLINE="Online";
+	public static String CLASSROOM="Classroom";
 }
 

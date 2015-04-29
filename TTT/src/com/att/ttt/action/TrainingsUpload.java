@@ -117,6 +117,7 @@ public class TrainingsUpload extends ActionSupport {
             		 training.setTrainingType("Optional");
             	 }
             	 training.setCategoryType(String.valueOf(row.getCell(7)));
+            	 training.setTrainingMode(String.valueOf(row.getCell(8)));
 
             	//System.out.println (String.valueOf(row.getCell(1).getRichStringCellValue()));  
 

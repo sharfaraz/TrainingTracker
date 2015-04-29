@@ -56,6 +56,7 @@ createEditableSelect(document.forms[0].myText);
 	
 	<tr><td >Training Name : </td><td><s:textfield id="NewTrainingName" cssClass="changeFont" /></td> </tr>
 	<tr> <td>Training Type : </td><td ><s:select id="trainingType" headerKey="" headerValue="----Select----" list="NewTrainingType" cssClass="changeFont"  /></td></tr>
+	<tr> <td>Training Mode : </td><td><s:select id="trainingMode" headerKey="" headerValue="----Select----" list="NewTrainingMode" cssClass="changeFont" /></td></tr>
 	<tr><td>Category Type : </td><td ><s:select id="trainingCateg" headerKey="" headerValue="----Select----" list="NewCategoryType" cssClass="changeFont"/></td></tr>
 	<tr><td>Applicable Criteria : </td><td ><s:select id="assignedType" key="assignedType"  headerKey="-1" headerValue="----Select----" onchange="myfunction()"  list="AssignedTo" cssClass="changeFont" /></td>
 	<td><s:div  style="clear:both" id="AssignedValue" ></s:div></td> </tr>

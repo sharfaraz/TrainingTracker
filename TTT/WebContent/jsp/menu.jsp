@@ -36,28 +36,30 @@ response.setDateHeader ("Expires", -1);
 		<li>
 		<a>Super User</a>
 		<ul> 
-      			 <li><a href="UploadFileAction">Employee Upload</a></li> 
-      			 <li><a href="UploadFileAction">Trainings Upload</a></li>
+      			 <li><a href="UploadFileAction">Bulk Upload</a></li> 
+<!--       			 <li><a href="UploadFileAction">Trainings Upload</a></li> -->
       			 <li><a href="createNewTraining" >Create New Training</a></li> 
-      			 <li><a href="organization" >Assign Training</a></li> 
+<!--       			 <li><a href="organization" >Assign Training</a></li>  -->
      		</ul>
 		</li>
 		</s:if>
 		
 		<s:if test="%{#delMgr == \"D\"}">
-		<li>
+<!-- 		<li>
 		<a>Super User</a>
 		<ul> 
-      			 <li><a href="UploadFileAction">Employee Upload</a></li> 
+      			 <li><a href="UploadFileAction">Bulk Upload</a></li> 
       			 <li><a href="UploadFileAction" >Trainings Upload</a></li> 
       			 <li><a href="createNewTraining" >Create New Training</a></li> 
       			 <li><a href="organization" >Assign Training</a></li> 
      		</ul>
-		</li>
+		</li> -->
 		<li>
 		<a>Manager</a>
 		<ul> 
-      			 <li><a href="fetchReport" >Reports</a></li> 
+				<li><a href="UploadFileAction">Bulk Upload</a></li> 
+				<li><a href="createNewTraining" >Create New Training</a></li>
+      			<li><a href="fetchReport" >Reports</a></li> 
       			 
      		</ul> 
      	

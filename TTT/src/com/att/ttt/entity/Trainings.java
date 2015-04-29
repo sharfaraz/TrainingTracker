@@ -27,8 +27,10 @@ public class Trainings {
 	private String trainingName;
 	private String trainingType;
 	private String categoryType;
+	private String trainingMode;
 	private String levelId;
 	private String levelName;
+	
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
@@ -84,6 +86,12 @@ public class Trainings {
 	}
 	public void setCategoryType(String categoryType) {
 		this.categoryType = categoryType;
+	}
+	public String getTrainingMode() {
+		return trainingMode;
+	}
+	public void setTrainingMode(String trainingMode) {
+		this.trainingMode = trainingMode;
 	}
 
 }

@@ -389,6 +389,13 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 			label= new Label(7, 0, "Training Status",cellFormat);
 			excelSheet.addCell(label);
 			
+			label= new Label(8, 0, "Training Start Date",cellFormat);
+			excelSheet.addCell(label);
+			
+			label= new Label(9, 0, "Training End Date",cellFormat);
+			excelSheet.addCell(label);
+			
+			
 			for (int i = 1; i <= reportBeanList.size(); i++) {
 
 				reportBean=reportBeanList.get(i-1);
@@ -417,6 +424,12 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 				excelSheet.addCell(label);
 
 				label=new Label(7, i, reportBean.getTrainingStatus());
+				excelSheet.addCell(label);
+				
+				label=new Label(8,i, reportBean.getStartDate().toString());
+				excelSheet.addCell(label);
+				
+				label=new Label(9,i, reportBean.getEndDate().toString());
 				excelSheet.addCell(label);
 
 			}

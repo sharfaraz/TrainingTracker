@@ -29,14 +29,17 @@ function createTraining()
 	
 	var trainingCategory=document.getElementById('trainingCateg').value;
 	
+	var trainingMode=document.getElementById('trainingMode').value;
+	
 	
 	//alert(trainingName+" "+trainingType+" "+trainingCategory);
 	
-	if(trainingName=="" || trainingType=="" || trainingCategory == "")
+	if(trainingName=="" || trainingType=="" || trainingCategory == "" || trainingMode == "")
 		{
 		alert("Error! Training name, training type and trainging category can not be left blank.");
 		return;
 		}
+	
 	
 
 	var QUERYSTRING="NewTrainingName="+trainingName+
@@ -45,7 +48,8 @@ function createTraining()
 					"&assignedType="+document.getElementById('assignedType').value+
 					"&NewTrainingStDt="+document.getElementById('NewTrainingStDate').value+
 					"&NewTrainingEndDt="+document.getElementById('NewTrainingEndDate').value+
-					"&assignedKey="+document.getElementById('assignedKey').value;
+					"&assignedKey="+document.getElementById('assignedKey').value+
+					"&trainingMode="+trainingMode;
 	//alert("QUERYSTRING"+QUERYSTRING);
 	// document.getElementById("wait_side").style.display="block";
 	if (window.XMLHttpRequest)   
