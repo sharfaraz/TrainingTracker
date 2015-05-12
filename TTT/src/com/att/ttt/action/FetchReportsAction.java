@@ -58,11 +58,14 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 	private List<String> NewSDMdata =new ArrayList<String>();
 	private List<String> newDmData=new ArrayList<String>();
 	private List<String> towerData=new ArrayList<String>();
+	private List<String> trainingNameData = new ArrayList<String>();
+
 	private List<String>   newAppData =new ArrayList<String>();
 	private List<String> repByTower = new ArrayList<String>();
 	private String NewTrainingStDate;
 	private String NewTrainingEndDate;
 	private String Clusterdata;
+	private String trainingName;
 	private String Statusdata="Completed,Pending";
 	private String TrainingTypeData="Mandatory,Optional";
 
@@ -284,6 +287,22 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 		this.trDao = trDao;
 	}
 
+	public List<String> getTrainingNameData() {
+		return trainingNameData;
+	}
+
+	public void setTrainingNameData(List<String> trainingNameData) {
+		this.trainingNameData = trainingNameData;
+	}
+
+	public String getTrainingName() {
+		return trainingName;
+	}
+
+	public void setTrainingName(String trainingName) {
+		this.trainingName = trainingName;
+	}
+	
 	ServletContext ctx = ServletActionContext.getServletContext();
 	WebApplicationContext context = WebApplicationContextUtils
 			.getWebApplicationContext(ctx);
@@ -294,6 +313,8 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 
 		
 		towerData = trDao.getTowervalues();
+		
+		trainingNameData = trDao.getAllTrainingsName();
 		
 		NewTrainingType.add("Mandatory");
 		NewTrainingType.add("Optional");
@@ -459,6 +480,7 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 		System.out.println("sdmName ID :"+clusterId);
 		System.out.println("dm ID :"+MGR_ID);
 		System.out.println("a ID :"+appId);
+		System.out.println("training name selected: "+ trainingName);
 		
 		
 		
@@ -504,7 +526,7 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 		Date startDate = StringtoDate(NewTrainingStDate);
 		Date endDate = StringtoDate(NewTrainingEndDate);
 		
-		reportBeanList = trDao.gererateTrainingReport(startDate,endDate , trainingType, trainingStatus, reportLevel, reportLevelValue);
+		reportBeanList = trDao.gererateTrainingReport(trainingName, startDate,endDate , trainingType, trainingStatus, reportLevel, reportLevelValue);
 		System.out.println("after fetching dATA");
 		
 		generateExcel(reportBeanList);
@@ -550,8 +572,5 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 		return convertDate;
 
 	}
-	
-	
 
-	
 }

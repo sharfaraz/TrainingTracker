@@ -122,10 +122,15 @@
 			<result name="success" type="tiles">viewTrainings</result>
 		</action>
 		
+		<action name="viewTrainingFilters" class="com.att.ttt.action.TrainingsViewAction" method="displayFilters">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="populate" type="tiles">viewTrainingFilters</result>
+		</action>
+		
 		<action name="updateTrainings" class="com.att.ttt.action.TrainingsViewAction" method="updateTrainings">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirectAction">
-					<param name="actionName">viewTrainings</param> </result>
+					<param name="actionName">viewTrainingFilters</param> </result>
 		</action>
 		
 		<action name="trainingsUpload" class="com.att.ttt.action.TrainingsUpload">

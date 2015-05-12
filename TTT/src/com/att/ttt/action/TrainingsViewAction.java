@@ -3,6 +3,7 @@ package com.att.ttt.action;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
@@ -17,6 +18,9 @@ import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+
+
+
 
 
 
@@ -45,8 +49,61 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 	private List<Emp_Trng> empTrngs = new ArrayList<Emp_Trng>();
 	private SessionMap<String,Object> sessionMap;
 	List<String> statuses = new ArrayList< String>();
+	List<String> FilterTrainingType = new ArrayList<String>();
+	List<String> FilterStatus = new ArrayList<String>();
+	private String selTrainingType;
+	private String selTrainingStatus;
+	private Date selTrainingStDate;
+	private Date selTrainingEndDate;
 	
-	
+	public Date getSelTrainingStDate() {
+		return selTrainingStDate;
+	}
+
+	public void setSelTrainingStDate(Date selTrainingStDate) {
+		this.selTrainingStDate = selTrainingStDate;
+	}
+
+	public Date getSelTrainingEndDate() {
+		return selTrainingEndDate;
+	}
+
+	public void setSelTrainingEndDate(Date selTrainingEndDate) {
+		this.selTrainingEndDate = selTrainingEndDate;
+	}
+
+	public String getSelTrainingType() {
+		return selTrainingType;
+	}
+
+	public void setSelTrainingType(String selTrainingType) {
+		this.selTrainingType = selTrainingType;
+	}
+
+	public String getSelTrainingStatus() {
+		return selTrainingStatus;
+	}
+
+	public void setSelTrainingStatus(String selTrainingStatus) {
+		this.selTrainingStatus = selTrainingStatus;
+	}
+
+	public List<String> getFilterTrainingType() {
+		return FilterTrainingType;
+	}
+
+	public void setFilterTrainingType(List<String> filterTrainingType) {
+		FilterTrainingType = filterTrainingType;
+	}
+
+	public List<String> getFilterStatus() {
+		return FilterStatus;
+	}
+
+	public void setFilterStatus(List<String> filterStatus) {
+		FilterStatus = filterStatus;
+	}
+
 	public List<String> getStatuses() {
 		return statuses;
 	}
@@ -59,6 +116,7 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 		return sessionMap;
 	}
 
+	
 /*	public void setSessionMap(SessionMap<String, Object> sessionMap) {
 		this.sessionMap = sessionMap;
 	}*/
@@ -78,25 +136,6 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 		this.empTrngs = empTrngs;
 	}
 
-	public String displayTrainings() {
-		String res;
-		statuses.add(TTConstants.PENDING);
-		statuses.add(TTConstants.IN_PROGRESS);
-		statuses.add(TTConstants.COMPLETED);
-
-		ServletContext ctx=ServletActionContext.getServletContext();
-		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ctx);
-		TrainingTrackerDao dao =(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
-
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		String emailId = (String)session.get("email");
-
-		empTrngs = dao.myTrainingsList(emailId);
-		
-		System.out.println("trainings :" + empTrngs.size());
-		res = "success";
-		return res;
-	}
 	
 	public String updateTrainings() {
 		System.out.println("updateTrainigs Called..");
@@ -114,6 +153,49 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 			
 		}
 		return "success";
+	}
+	
+	public String displayFilters(){
+		
+		ServletContext ctx=ServletActionContext.getServletContext();
+		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ctx);
+		TrainingTrackerDao dao =(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
+
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		String emailId = (String)session.get("email");
+		
+		Date date = new Date();
+		java.sql.Date currentDate = new java.sql.Date(date.getTime());
+		
+		System.out.println("date: "+currentDate);
+		sessionMap.put("currentDate", currentDate);
+		
+		FilterTrainingType.add("Mandatory");
+		FilterTrainingType.add("Optional");
+		
+		FilterStatus.add(TTConstants.PENDING);
+		FilterStatus.add(TTConstants.COMPLETED);
+		FilterStatus.add(TTConstants.IN_PROGRESS);
+
+		statuses.add(TTConstants.PENDING);
+		statuses.add(TTConstants.IN_PROGRESS);
+		statuses.add(TTConstants.COMPLETED);
+		
+		if(selTrainingStatus == null){
+			setSelTrainingStatus(TTConstants.PENDING);
+		}
+		
+		if(selTrainingType == null){
+			setSelTrainingType("-1");
+		}
+
+		empTrngs = dao.myTrainingsList(emailId, selTrainingStDate, selTrainingEndDate, selTrainingType, selTrainingStatus);
+		
+		if (empTrngs.size() == 0) {
+			sessionMap.put("trainingsMsg", "No Trainings to Display!!");
+		}
+		
+		return "populate";
 	}
 
 }

@@ -8,9 +8,13 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Conjunction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,13 +63,44 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	
 	@Override
 	@Transactional
-	public List<Emp_Trng> myTrainingsList(String emailId) {
+	public List<Emp_Trng> myTrainingsList(String emailId, Date startDate, Date endDate, String trainingType, String status) {
 		Session currentSession=this.getSessionFactory().getCurrentSession();
 		String empId = (String) currentSession.createQuery("select empId from Employee where emailId = '"+emailId+"'").list().get(0);
 		System.out.println("fetched empId: "+empId);
-		String query = "from Emp_Trng where empId = '"+empId+"'";
-		Query qry=currentSession.createQuery(query);
-		List<Emp_Trng> myTrainingsList =   qry.list();
+		
+		Criteria searchCriteria = currentSession.createCriteria(Emp_Trng.class);
+		Criterion eId = Restrictions.eq("empId", empId);
+
+		Conjunction where = Restrictions.and(eId);
+				
+		if (!(startDate == null)) {
+			Criterion sDate = Restrictions.gt("startDate", startDate);
+			//where = Restrictions.and(sDate);
+			searchCriteria.add(Restrictions.and(sDate));
+		}
+		
+		if (!(endDate== null)){
+			Criterion eDate = Restrictions.lt("endDate", endDate);
+			//where = Restrictions.and(eDate);
+			searchCriteria.add(Restrictions.and(eDate));
+		}
+		
+		if (!trainingType.equals("-1")){
+			Criterion trnType = Restrictions.eq("trainingType", trainingType);
+			//where = Restrictions.and(trnType);
+			searchCriteria.add(Restrictions.and(trnType));
+		}
+		
+		if(!status.equals("-1")) {
+			Criterion stat = Restrictions.eq("status", status);
+			//where = Restrictions.and(stat);
+			searchCriteria.add(Restrictions.and(stat));
+		}
+/*		String query = "from Emp_Trng where empId = '"+empId+"'";
+		Query qry=currentSession.createQuery(query);*/
+		
+		searchCriteria.add(where);
+		List<Emp_Trng> myTrainingsList = searchCriteria.list();
 		return myTrainingsList;
 	}
 	@Override
@@ -210,7 +245,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	@Override
 	@Transactional
 	public List<TrainingReportBean> gererateTrainingReport(
-			Date trainingStartDate, Date trainingEndDate,
+			String trainingName, Date trainingStartDate, Date trainingEndDate,
 			String trainingType, String trainingStatus, String reportLevel,
 			String reportLevelValue) {
 		
@@ -219,15 +254,21 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 			
 			Session currentSession = this.getSessionFactory().getCurrentSession();
 			
+			if (trainingName == null || trainingName.equals("-1")|| trainingName.equals("")){
+				trainingName = "%";
+				System.out.println("assigning default for trainingname");
+			}
+			
 			if (reportLevel.equals(TTConstants.TOWER)){
 			List<Employee> empList = new ArrayList<Employee>();
 			Query qry = currentSession
 					.createQuery(" from Employee e where tower='"+reportLevelValue+"'");
 			empList = qry.list();
 			
+			
 			for (Employee employee : empList) {
 				Query qry1=null;
-					 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=?");
+					 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=? and trainingName like ? ");
 					 
 					 					 
 					 qry1.setString(0, employee.getEmpId());
@@ -235,6 +276,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 					 qry1.setDate(2, trainingEndDate);
 					 qry1.setString(3, trainingStatus);
 					 qry1.setString(4, trainingType);
+					 qry1.setString(5, trainingName);
 					 
 					if(qry1.list().size()!= 0){
 						
@@ -266,7 +308,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 				empList = qry.list();
 				for (Employee employee : empList) {
 					Query qry1=null;
-						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=?");
+						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=? and trainingName like ? ");
 						 
 						 
 						 qry1.setString(0, employee.getEmpId());
@@ -274,8 +316,9 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 						 qry1.setDate(2, trainingEndDate);
 						 qry1.setString(3, trainingStatus);
 						 qry1.setString(4, trainingType);
+						 qry1.setString(5, trainingName);
 						 
-						 Emp_Trng emp = (Emp_Trng) qry1.list().get(0);
+						 //Emp_Trng emp = (Emp_Trng) qry1.list().get(0);
 						 
 							if(qry1.list().size()!= 0){
 								
@@ -307,7 +350,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 				System.out.println(empList);
 				for (Employee employee : empList) {
 					Query qry1=null;
-						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=?");
+						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=? and trainingName like ? ");
 						 
 						// Employee emp = (Employee) qry.list().get(0);
 						 
@@ -316,6 +359,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 						 qry1.setDate(2, trainingEndDate);
 						 qry1.setString(3, trainingStatus);
 						 qry1.setString(4, trainingType);
+						 qry1.setString(5, trainingName);
 						 
 							if(qry1.list().size()!= 0){
 								
@@ -345,8 +389,21 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		System.out.println("trainingName: "+trainingName);
 		
 		return reportBeanList;
+	}
+	@Override
+	@Transactional
+	public List<String> getAllTrainingsName() {
+		// TODO Auto-generated method stub
+		List<String> trainingsList = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("Select distinct t.trainingName from Trainings t ");
+		trainingsList = qry.list();
+		return trainingsList;
+
 	}
 		
 		

@@ -56,8 +56,9 @@ createEditableSelect(document.forms[0].myText);
 	<td><label id="targetDateLabel">Training Start date : </label></td><td> <s:textfield key="NewTrainingStDate" cssClass="changeFont" id="NewTrainingStDate"  readonly="true" /> </td></tr>
 	<tr>
 	<td><label id="targetDateLabel">Training End date : </label></td><td> <s:textfield key="NewTrainingEndDate" cssClass="changeFont" id="NewTrainingEndDate"  readonly="true" /> </td></tr>
-	<tr> <td>Training Type : </td><td><sx:autocompleter id="trainingType" name="trainingType" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="NewTrainingType"/></td></tr>
+	<tr> <td>Training Type : </td><td><s:select id="trainingType" name="trainingType" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="NewTrainingType"/></td></tr>
 	<tr><td>Status : </td><td><s:select name="statusType" name="trainingStatus" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="NewStatus"/></td></tr>
+	<tr><td>Training Name : </td><td><sx:autocompleter name="trainingName" name="trainingName" cssClass="changeFont" list="trainingNameData"/></td></tr>
 	<tr><td>Tower : </td><td><s:select id="tower" name="towerName" cssClass="changeFont" list="towerData" headerKey="-1" headerValue="----Select----" onchange= "getSdmForReport()"/></td></tr>
 	<tr><td><s:div  style="clear:both" id="SdmValue"></s:div></td>
 	<td><s:div  style="clear:both" id="DmValue"></s:div></td>

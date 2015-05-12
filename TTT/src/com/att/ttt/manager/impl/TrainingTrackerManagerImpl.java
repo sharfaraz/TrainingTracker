@@ -20,8 +20,7 @@ public class TrainingTrackerManagerImpl implements TrainingTrackerManager {
 		this.dao = dao;
 	}
 
-	@Override
-	public List<Emp_Trng> viewTrainings(String empId) {
+/*	public List<Emp_Trng> viewTrainings(String empId) {
 		return dao.myTrainingsList(empId);
-	}
+	}*/
 }

@@ -18,8 +18,8 @@ function changeDropdown(){
 </script>
 <body>
 
-	<div align="center">
-	<font color="green"><s:property value="#session.successMsg" /></font></div>
+	<%-- <div align="center">
+	<font color="green"><s:property value="#session.successMsg" /></font></div> --%>
 	<%
 		Map session2 = (Map) ActionContext.getContext().get("session");
 		session2.put("successMsg", "");

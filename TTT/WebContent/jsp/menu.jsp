@@ -28,7 +28,7 @@ response.setDateHeader ("Expires", -1);
 	<ul id="nav">
 		<li><a>Employee</a>
 			<ul> 
-      			 <li><a href="viewTrainings" >View/Update Training</a></li>
+      			 <li><a href="viewTrainingFilters" >View/Update Training</a></li>
       			 <li><a href="organization" >Request Training</a></li> 
      		</ul> 
    		</li>
@@ -37,7 +37,6 @@ response.setDateHeader ("Expires", -1);
 		<a>Super User</a>
 		<ul> 
       			 <li><a href="UploadFileAction">Bulk Upload</a></li> 
-<!--       			 <li><a href="UploadFileAction">Trainings Upload</a></li> -->
       			 <li><a href="createNewTraining" >Create New Training</a></li> 
 <!--       			 <li><a href="organization" >Assign Training</a></li>  -->
      		</ul>
