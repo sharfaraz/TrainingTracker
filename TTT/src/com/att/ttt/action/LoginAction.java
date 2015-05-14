@@ -1,6 +1,7 @@
 package com.att.ttt.action;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -30,8 +31,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private SessionMap<String, Object> sessionMap;
 	private Employee emp;
 	private String userRole;
+	ArrayList<Employee> userPresenceList = new ArrayList<Employee>();
 
 	
+
+
 	public String getUserRole() {
 		return userRole;
 	}
@@ -116,12 +120,14 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			TrainingTrackerDao trainingTracker = (TrainingTrackerDao) context
 					.getBean("TrainingTrackerDao");
 
-			/*userPresenceList = trainingTracker.getUserPresenceList(emailId);
-			System.out.println(userPresenceList);*/
+			userPresenceList = trainingTracker.getUserPresenceList(emailId);
+			System.out.println(userPresenceList);
+			
 			
 			userRole = trainingTracker.getUserRoles(emailId);
 			System.out.println(userRole);
-
+			
+			if (!(userRole == null)) {
 
 				if (userRole.equals("S")) {
 					sessionMap.put("isSU", userRole );
@@ -129,13 +135,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					res="success";
 				}
 				else if(userRole.equals("D")){
+					sessionMap.put("isSU", "S" );
 					sessionMap.put("isDM", userRole );
 					sessionMap.put("email", emailId);
 					res="success";
 				}
 				else{
+					sessionMap.put("email", emailId);
 					res="success";
-				}
+				}	
+			}
+
+
 			}
 		else {
 			System.err.println("We're not in!");

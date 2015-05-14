@@ -12,15 +12,14 @@ public class Application {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String applnId;
+	private Integer applnId;
 	private String clusterId;
 	private String applnName;
 	
-	
-	public String getApplnId() {
+	public Integer getApplnId() {
 		return applnId;
 	}
-	public void setApp_id(String applnId) {
+	public void setApplnId(Integer applnId) {
 		this.applnId = applnId;
 	}
 	public String getClusterId() {

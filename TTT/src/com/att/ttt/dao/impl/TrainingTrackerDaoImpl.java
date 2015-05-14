@@ -14,6 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Conjunction;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,12 +59,18 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		String query = "select userRole from UserRoles u where u.email = '"+emailId+"'";
 		Query qry = currentSession.createQuery(query);
 		List<String> userRolesList = qry.list();
-		return userRolesList.get(0);
+		if (userRolesList.size() == 0){
+			return "";
+		}
+		else {
+			return userRolesList.get(0);
+		}
+		
 	}
 	
 	@Override
 	@Transactional
-	public List<Emp_Trng> myTrainingsList(String emailId, Date startDate, Date endDate, String trainingType, String status) {
+	public List<Emp_Trng> myTrainingsList(String emailId, Date startDate, Date endDate, String trainingType, String status, String level) {
 		Session currentSession=this.getSessionFactory().getCurrentSession();
 		String empId = (String) currentSession.createQuery("select empId from Employee where emailId = '"+emailId+"'").list().get(0);
 		System.out.println("fetched empId: "+empId);
@@ -96,10 +103,17 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 			//where = Restrictions.and(stat);
 			searchCriteria.add(Restrictions.and(stat));
 		}
-/*		String query = "from Emp_Trng where empId = '"+empId+"'";
+		
+/*		if (!level.equals("-1")){
+			searchCriteria.createAlias("Emp_Trng.Trainings", "Trainings");
+			searchCriteria.add(Restrictions.eq(", value))
+			Criterion lvl = Restrictions.eq("Trainings.levelName", level);
+		}
+		String query = "from Emp_Trng where empId = '"+empId+"'";
 		Query qry=currentSession.createQuery(query);*/
 		
 		searchCriteria.add(where);
+		searchCriteria.addOrder(Order.asc("endDate"));
 		List<Emp_Trng> myTrainingsList = searchCriteria.list();
 		return myTrainingsList;
 	}
@@ -132,6 +146,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		towerList = qry.list();
 		return towerList;
 	}
+	
 	@Override
 	@Transactional
 	public List<String> getClustervalues() {
@@ -142,6 +157,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		clusterList = qry.list();
 		return clusterList;
 	}
+	
 	@Override
 	@Transactional
 	public List<String> getApplicationvalues() {
@@ -151,6 +167,17 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 				.createQuery("Select distinct ap.applnName from Application ap");
 		appList = qry.list();
 		return appList;
+	}
+	
+	@Override
+	@Transactional
+	public List<String> getSdmNames() {
+		List<String> sdmList = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("Select distinct e.srDelMgr from Employee e order by e.srDelMgr");
+		sdmList = qry.list();
+		return sdmList;
 	}
 	
 	@Override
@@ -227,17 +254,21 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		}
 		
 		if (levelId.equalsIgnoreCase("sdm/cluster")) {
-			Map aSession = (Map) ActionContext.getContext().get("session");
-			String a = (String) aSession.get("email");
 			
 			Query qry = currentSession
-						.createQuery("select empId from Employee where srDelMgrId = "+
-			"(select srDelMgrId from Employee where emailId = '"+a+"')");
+						.createQuery("select empId from Employee where srDelMgr = '"+levelName+"'");
 			employeeList = qry.list();
 
 		}
 		
-		
+		if (levelId.equalsIgnoreCase("application")){
+			System.out.println("fetching employees for application :"+levelName);
+			Query qry = currentSession
+					.createQuery("select ea.empId from Emp_Application ea, Application a where  a.applnId = ea.applnId "+
+			                     "and a.applnName= '"+levelName+"'");
+			employeeList = qry.list();
+			System.out.println("employees fetched for application :"+levelName);
+		}
 		
 		return employeeList;
 	}
@@ -278,10 +309,10 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 					 qry1.setString(4, trainingType);
 					 qry1.setString(5, trainingName);
 					 
-					if(qry1.list().size()!= 0){
+					
 						
-						List<Emp_Trng> emptrng = qry1.list();
-						
+					List<Emp_Trng> emptrng = qry1.list();
+					if(emptrng.size()!= 0){
 						for (Emp_Trng empTrng: emptrng) {
 							TrainingReportBean trRepBean = new TrainingReportBean();
 							trRepBean.setEmpId(employee.getEmpId());
@@ -389,7 +420,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		System.out.println("trainingName: "+trainingName);
+		System.out.println("trainingName: "+trainingName+" "+reportBeanList.size());
 		
 		return reportBeanList;
 	}

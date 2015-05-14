@@ -13,5 +13,20 @@ public class LinkAction extends ActionSupport {
 		return "welcome";		
 	}
 	
+	public String contactUs() 
+	{
+		return "contact";
+	}
+	
+	public String trainingsLoad() 
+	{
+		return "training";
+	}
+	
+	public String employeesLoad() 
+	{
+		return "employee";
+	}
+	
 	}
 

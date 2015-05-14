@@ -51,6 +51,9 @@
 		
 		<action name="*Link" method="{1}" class="com.att.ttt.action.LinkAction">
 			<result name="welcome" type="tiles">welcome</result>
+			<result name="contact" type="tiles">contact</result>
+			<result name="training" type="tiles">uploadTraining</result>
+			<result name="employee" type="tiles">uploadEmployees</result>
 		</action>
 		
 		<action name="createNewTraining" class="com.att.ttt.action.CreateTrainingAction">

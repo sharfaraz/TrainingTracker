@@ -29,34 +29,26 @@ response.setDateHeader ("Expires", -1);
 		<li><a>Employee</a>
 			<ul> 
       			 <li><a href="viewTrainingFilters" >View/Update Training</a></li>
-      			 <li><a href="organization" >Request Training</a></li> 
+      			 <li><a href="contactUsLink" >Request Training</a></li> 
      		</ul> 
    		</li>
    		<s:if test="%{#superUser == \"S\"}">
 		<li>
 		<a>Super User</a>
 		<ul> 
-      			 <li><a href="UploadFileAction">Bulk Upload</a></li> 
+      			 <li><a href="trainingsLoadLink">Trainings Upload</a></li> 
+      			 <li><a href="employeesLoadLink">Employee Upload</a></li> 
       			 <li><a href="createNewTraining" >Create New Training</a></li> 
-<!--       			 <li><a href="organization" >Assign Training</a></li>  -->
+<!--       			 <li><a href="organization" >Assign Training</a></li> -->
      		</ul>
 		</li>
 		</s:if>
 		
 		<s:if test="%{#delMgr == \"D\"}">
-<!-- 		<li>
-		<a>Super User</a>
-		<ul> 
-      			 <li><a href="UploadFileAction">Bulk Upload</a></li> 
-      			 <li><a href="UploadFileAction" >Trainings Upload</a></li> 
-      			 <li><a href="createNewTraining" >Create New Training</a></li> 
-      			 <li><a href="organization" >Assign Training</a></li> 
-     		</ul>
-		</li> -->
 		<li>
 		<a>Manager</a>
 		<ul> 
-				<li><a href="UploadFileAction">Bulk Upload</a></li> 
+				<li><a href="trainingsLoadLink">Trainings Upload</a></li>
 				<li><a href="createNewTraining" >Create New Training</a></li>
       			<li><a href="fetchReport" >Reports</a></li> 
       			 
@@ -64,7 +56,7 @@ response.setDateHeader ("Expires", -1);
      	
 		</li>
 		</s:if>
-		<li><a href="ContactUs">Contact Us</a></li>
+		<li><a href="contactUsLink">Contact Us</a></li>
 
 	</ul>
 </body>

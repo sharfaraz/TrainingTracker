@@ -51,10 +51,12 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 	List<String> statuses = new ArrayList< String>();
 	List<String> FilterTrainingType = new ArrayList<String>();
 	List<String> FilterStatus = new ArrayList<String>();
+	List<String> FilterLevel = new ArrayList<String>();
 	private String selTrainingType;
 	private String selTrainingStatus;
 	private Date selTrainingStDate;
 	private Date selTrainingEndDate;
+	private String selLevel;
 	
 	public Date getSelTrainingStDate() {
 		return selTrainingStDate;
@@ -137,6 +139,22 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 	}
 
 	
+	public List<String> getFilterLevel() {
+		return FilterLevel;
+	}
+
+	public void setFilterLevel(List<String> filterLevel) {
+		FilterLevel = filterLevel;
+	}
+
+	public String getSelLevel() {
+		return selLevel;
+	}
+
+	public void setSelLevel(String selLevel) {
+		this.selLevel = selLevel;
+	}
+
 	public String updateTrainings() {
 		System.out.println("updateTrainigs Called..");
 		ServletContext ctx=ServletActionContext.getServletContext();
@@ -175,7 +193,12 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 		
 		FilterStatus.add(TTConstants.PENDING);
 		FilterStatus.add(TTConstants.COMPLETED);
-		FilterStatus.add(TTConstants.IN_PROGRESS);
+		//FilterStatus.add(TTConstants.IN_PROGRESS);
+		
+		FilterLevel.add(TTConstants.ACCOUNT);
+		FilterLevel.add(TTConstants.APPLICATION);
+		FilterLevel.add(TTConstants.CLUSTER);
+		FilterLevel.add(TTConstants.TOWER);
 
 		statuses.add(TTConstants.PENDING);
 		statuses.add(TTConstants.IN_PROGRESS);
@@ -189,7 +212,7 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 			setSelTrainingType("-1");
 		}
 
-		empTrngs = dao.myTrainingsList(emailId, selTrainingStDate, selTrainingEndDate, selTrainingType, selTrainingStatus);
+		empTrngs = dao.myTrainingsList(emailId, selTrainingStDate, selTrainingEndDate, selTrainingType, selTrainingStatus, selLevel);
 		
 		if (empTrngs.size() == 0) {
 			sessionMap.put("trainingsMsg", "No Trainings to Display!!");

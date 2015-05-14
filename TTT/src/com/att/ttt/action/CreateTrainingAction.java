@@ -250,7 +250,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 		}
 		else if(assignedType.equals(TTConstants.CLUSTER))
 		{
-			applicableForData=trDao.getClustervalues();
+			applicableForData=trDao.getSdmNames();
 		}
 		else if(assignedType.equals(TTConstants.APPLICATION))
 		{

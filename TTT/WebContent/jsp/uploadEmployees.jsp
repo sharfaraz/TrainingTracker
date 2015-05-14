@@ -5,18 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Training Tracker - Employee Upload</title>
+<style type="text/css">
+.upload{
+    border:5px;
+    padding:10px 25px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    background-color:#0097C5;
+    color:white;
+    font-size:10px;
+}
+</style>
 </head>
 <body>
-<h3 align="center">Upload Employees</h3>
 
-<form method="POST" action="employeeUpload" enctype="multipart/form-data">
+	<form method="POST" action="employeeUpload" enctype="multipart/form-data">
+	<table >
 	
-	
-	<br>
-	<input style="margin-left: 42%" type="file" name="uploadFile" class="changeFont"/>
-	<br /><br />
-	<input style="margin-left: 42%"  type="submit" value="Upload" class="buttonStyle"/>
-	<input type="reset" value="Reset" class="buttonStyle"/> 
+	<tr><td ><h3 align="center"> Employee details upload</h3></td> 
+	</tr>
+	<tr><td><input style="margin: 3%"  type="file" name="uploadFile" class="upload"/></td></tr>
+	<tr><td><input style="margin: 3%" type="submit" value="Upload" class="buttonStyle"/>
+	<input type="reset" value="Reset" class="buttonStyle"/> </td>
+	</tr></table>
 </form>
 
 </body>

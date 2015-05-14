@@ -43,6 +43,8 @@ public interface TrainingTrackerDao {
 			String reportLevel, String reportLevelValue);
 
 	List<Emp_Trng> myTrainingsList(String emailId, Date startDate,
-			Date endDate, String trainingType, String status);
+			Date endDate, String trainingType, String status, String level);
+
+	List<String> getSdmNames();
 
 }

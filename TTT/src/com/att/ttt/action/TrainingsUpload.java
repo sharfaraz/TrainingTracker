@@ -101,7 +101,7 @@ public class TrainingsUpload extends ActionSupport {
             	 training.setStartDate(row.getCell(1).getDateCellValue());
             	 training.setEndDate(row.getCell(2).getDateCellValue());
              	// training.setNumOfDays(String.valueOf(row.getCell(3)));
-            	 training.setLevelId(String.valueOf(row.getCell(4)));
+            	 training.setLevelId(String.valueOf(row.getCell(3)));
             	 if (!levels.contains(training.getLevelId())) {
             		 System.out.println("Level: "+training.getLevelId()+" not allowed. Should be one of the following");
             		 for (int a=0; a<levels.size(); a++){
@@ -109,15 +109,15 @@ public class TrainingsUpload extends ActionSupport {
             		 }
             		 return "failure";
             	 }
-            	 training.setLevelName(String.valueOf(row.getCell(5)));
-            	 isMandatory = String.valueOf(row.getCell(6));
+            	 training.setLevelName(String.valueOf(row.getCell(4)));
+            	 isMandatory = String.valueOf(row.getCell(5));
             	 if (isMandatory.equalsIgnoreCase("Y")) {
             		 training.setTrainingType("Mandatory");
             	 } else {
             		 training.setTrainingType("Optional");
             	 }
-            	 training.setCategoryType(String.valueOf(row.getCell(7)));
-            	 training.setTrainingMode(String.valueOf(row.getCell(8)));
+            	 training.setCategoryType(String.valueOf(row.getCell(6)));
+            	 training.setTrainingMode(String.valueOf(row.getCell(7)));
 
             	//System.out.println (String.valueOf(row.getCell(1).getRichStringCellValue()));  
 
