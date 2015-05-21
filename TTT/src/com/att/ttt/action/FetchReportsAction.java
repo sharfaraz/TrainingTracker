@@ -416,6 +416,8 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 			label= new Label(9, 0, "Training End Date",cellFormat);
 			excelSheet.addCell(label);
 			
+			System.out.println("Printed headers");
+			
 			
 			for (int i = 1; i <= reportBeanList.size(); i++) {
 
@@ -454,11 +456,15 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 				excelSheet.addCell(label);
 
 			}
+			
+			System.out.println("after for loop");
 
 			workbook.write();
 			workbook.close();
 
 			excelStream=new FileInputStream(file);
+			
+			System.out.println("after excel download");
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -480,7 +486,10 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 		System.out.println("sdmName ID :"+clusterId);
 		System.out.println("dm ID :"+MGR_ID);
 		System.out.println("a ID :"+appId);
+		System.out.println("st date :"+NewTrainingStDate);
+		System.out.println("End date :"+NewTrainingEndDate );
 		System.out.println("training name selected: "+ trainingName);
+		System.out.println("training status :"+trainingStatus);
 		
 		
 		
@@ -526,8 +535,9 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 		Date startDate = StringtoDate(NewTrainingStDate);
 		Date endDate = StringtoDate(NewTrainingEndDate);
 		
+		System.out.println("args passed:"+trainingName+" "+startDate+" "+endDate+" "+trainingType+" "+trainingStatus+" "+reportLevel+" "+reportLevelValue);
 		reportBeanList = trDao.gererateTrainingReport(trainingName, startDate,endDate , trainingType, trainingStatus, reportLevel, reportLevelValue);
-		System.out.println("after fetching dATA");
+		System.out.println("after fetching dATA. size: "+reportBeanList.size());
 		
 		generateExcel(reportBeanList);
 

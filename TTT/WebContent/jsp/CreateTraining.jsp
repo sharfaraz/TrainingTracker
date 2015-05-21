@@ -61,12 +61,6 @@ createEditableSelect(document.forms[0].myText);
 	<tr><td>Applicable Criteria : </td><td ><s:select id="assignedType" key="assignedType"  headerKey="-1" headerValue="----Select----" onchange="myfunction()"  list="AssignedTo" cssClass="changeFont" /></td>
 	<td><s:div  style="clear:both" id="AssignedValue" ></s:div></td> </tr>
 	
-	<%-- <tr><td>Training Start Date<font color="red">*</font> : </td>
-	<td><div><s:textfield name='NewTrainingStDt' id='NewTrainingStDt' readonly='true'/></div>
-	<div id='calendar1'></div></td></tr>
-	<tr><td>Training End Date<font color="red">*</font> : </td>
-	<td><div><s:textfield name='NewTrainingEndDt' id='NewTrainingEndDt' readonly='true' onClick='javascript:stringToDate_field(this,"calendar2");'/></div>
-	<div id='calendar2'></div></td></tr> --%>
 	<tr>
 	<td><label id="targetDateLabel">Training Start date : </label></td><td> <s:textfield key="NewTrainingStDate" cssClass="changeFont" id="NewTrainingStDate"  readonly="true" /> </td>
 	<tr>

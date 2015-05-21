@@ -359,7 +359,4 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 		return convertDate;
 
 	}
-	
-
-	
 }

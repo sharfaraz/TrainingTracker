@@ -7,8 +7,7 @@
 	response.setHeader("Pragma", "no-cache");
 	response.setDateHeader("Expires", -1);
 %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
 <sx:head/>
@@ -42,39 +41,47 @@
 createEditableSelect(document.forms[0].myText);
  </script>
  
+ <script>
+ 
+ </script>
 </head>
+
 <body onload="loadTable();">
 
 <s:set name="theme" value="'simple'"  scope="page" /> 
 <h3>
 	<center>Generate Report  </center>
 </h3>
-<s:form action="FetchReportInExcel">
+<div style="color:blue; ;" id="messageDiv"></div>
+<s:form id="myForm" action="FetchReportInExcel">
+<s:set name="theme" value="'simple'"  scope="page" /> 
 <table>
 
+	
+	<tr><td>Training Name : </td><td>
+	<s:select id="trainingName" name="trainingName" cssClass="changeFont" list="trainingNameData"/>
+	</td></tr>
+	<tr><td><label id="targetDateLabel">Training Start date : </label></td><td> <s:textfield key="NewTrainingStDate" cssClass="changeFont" id="NewTrainingStDate"  readonly="true" /> </td></tr>
 	<tr>
-	<td><label id="targetDateLabel">Training Start date : </label></td><td> <s:textfield key="NewTrainingStDate" cssClass="changeFont" id="NewTrainingStDate"  readonly="true" /> </td></tr>
-	<tr>
-	<td><label id="targetDateLabel">Training End date : </label></td><td> <s:textfield key="NewTrainingEndDate" cssClass="changeFont" id="NewTrainingEndDate"  readonly="true" /> </td></tr>
+	<td><label id="targetDateLabel">Training End date : </label></td><td> <s:textfield key="NewTrainingEndDate" cssClass="changeFont" id="NewTrainingEndDate"  readonly="true"  /> </td></tr>
 	<tr> <td>Training Type : </td><td><s:select id="trainingType" name="trainingType" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="NewTrainingType"/></td></tr>
-	<tr><td>Status : </td><td><s:select name="statusType" name="trainingStatus" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="NewStatus"/></td></tr>
-	<tr><td>Training Name : </td><td><sx:autocompleter name="trainingName" name="trainingName" cssClass="changeFont" list="trainingNameData"/></td></tr>
-	<tr><td>Tower : </td><td><s:select id="tower" name="towerName" cssClass="changeFont" list="towerData" headerKey="-1" headerValue="----Select----" onchange= "getSdmForReport()"/></td></tr>
-	<tr><td><s:div  style="clear:both" id="SdmValue"></s:div></td>
+	<tr><td>Status : </td><td><s:select name="statusType" id="statusType" name="trainingStatus" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="NewStatus"/></td></tr>
+	<tr><td>Tower : </td><td><s:select id="tower" name="towerName" cssClass="changeFont" list="towerData" headerKey="-1" headerValue="----Select----" onchange= "getSdmForReport()"  /></td></tr>
+	<tr><td><s:div style="clear:both" id="SdmValue" ></s:div></td>
 	<td><s:div  style="clear:both" id="DmValue"></s:div></td>
 	<!-- <td><s:div  style="clear:both" id="AppValue"></s:div></td></tr>  -->
-	
+	</tr>
 	</table>
-	<%--<tr><td>DM : </td><td><s:select name="DM" headerKey="-1" headerValue="----Select----"	list="NewDMdata" /></td></tr>
-	<tr><td>Application : </td><td><s:select name="Application"  headerKey="-1" headerValue="----Select----" list="NewApplicationData" /></td></tr> --%>
-	<%-- <s:textfield name="Cluster" label="Cluster" /> --%>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	
-	<input type="submit" value="Generate Report" class="buttonStyle" style="margin-left: 42.5%;"/>
-	<input type="button"  value="Cancel" name="Cancel" onclick="toCancel()" class="buttonStyle"/>
-<!-- 	<input type="button" value="Generate Report" class="buttonStyle" style="margin-left: 30%;"/>  -->
+	<input type="submit" value="Generate Report" name="reports" onclick="return validateReports();" class="buttonStyle" />
+	<input type="button" value="Cancel" name="Cancel" onclick="toCancel()" class="buttonStyle"/>
+<!-- 	onclick="fetchReports();" <input type="button" value="Generate Report" class="buttonStyle" style="margin-left: 30%;"/>  -->
 	
 
 </s:form>
+
 
 
 

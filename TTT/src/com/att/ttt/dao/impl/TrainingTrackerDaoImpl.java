@@ -435,9 +435,10 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		trainingsList = qry.list();
 		return trainingsList;
 
-	}
-		
-		
+	}	
 		
 }
+
+
+
 
