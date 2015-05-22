@@ -2,6 +2,7 @@ package com.att.ttt.dao.impl;
 
 import java.util.Collection;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		currentSession.saveOrUpdate(employee);
 //		sessionFactory.openSession().saveOrUpdate(employee);
+	}
+	@Override
+	@Transactional
+	public Boolean cleanEmpTable() {
+		// TODO Auto-generated method stub
+		try {
+			Session currentSession = this.getSessionFactory().getCurrentSession();
+			Query qry = currentSession
+					.createQuery(" delete from Employee");
+			qry.executeUpdate();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 	
 }

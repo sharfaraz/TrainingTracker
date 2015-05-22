@@ -9,4 +9,5 @@ public interface EmployeeDao {
 	int loadEmployees(Collection<Employee> empCollection);
 	void saveEmployee (Employee employee);
 	void updateEmployee(Employee employee);
+	Boolean cleanEmpTable();
 }

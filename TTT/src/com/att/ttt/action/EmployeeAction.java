@@ -53,7 +53,14 @@ public class EmployeeAction extends ActionSupport {
 		String res;
 		System.out.println("File received: "+ uploadFile);
 		System.out.println("File name: "+ uploadFileFileName);
-		manager.uploadEmployees(uploadFile);
+		if (manager.cleanEmployees()) {
+			manager.uploadEmployees(uploadFile);
+		}
+		else {
+			System.out.println("error in deleting");
+			return "failure";
+		}
+		
 		res = "success";
 		return res;
 	}

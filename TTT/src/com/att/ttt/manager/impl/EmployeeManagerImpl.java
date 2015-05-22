@@ -24,6 +24,13 @@ public class EmployeeManagerImpl implements EmployeeManager {
 		this.dao = dao;
 	}
 	
+	
+	@Override
+	public Boolean cleanEmployees() {
+		Boolean res = dao.cleanEmpTable();
+		return res;
+	}
+	
 	@Override
 	public void uploadEmployees(File file) {
 		// TODO Auto-generated method stub
