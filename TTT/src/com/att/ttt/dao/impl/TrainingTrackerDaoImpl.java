@@ -21,8 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.att.ttt.constants.TTConstants;
 import com.att.ttt.dao.TrainingTrackerDao;
+import com.att.ttt.entity.Application;
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
+import com.att.ttt.entity.Manager_App;
 import com.att.ttt.entity.TrainingReportBean;
 import com.att.ttt.entity.Trainings;
 import com.opensymphony.xwork2.ActionContext;
@@ -435,6 +437,22 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		trainingsList = qry.list();
 		return trainingsList;
 
+	}
+	@Transactional
+	@Override
+	public Boolean saveApplication(Application appln) {
+		// TODO Auto-generated method stub
+		Session currentSession=this.getSessionFactory().getCurrentSession();
+		currentSession.save(appln);
+		return true;
+	}
+	@Transactional
+	@Override
+	public Boolean saveManagerApp(Manager_App manApp) {
+		// TODO Auto-generated method stub
+		Session currentSession=this.getSessionFactory().getCurrentSession();
+		currentSession.save(manApp);
+		return true;
 	}	
 		
 }

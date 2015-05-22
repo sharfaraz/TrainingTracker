@@ -73,6 +73,8 @@
 <bean id="EmployeeDao" class="com.att.ttt.dao.impl.EmployeeDaoImpl" scope="prototype" />
 <bean id="Trainings" class="com.att.ttt.entity.Trainings" scope="prototype" />
 <bean id="Emp_Trng" class="com.att.ttt.entity.Emp_Trng" scope="prototype" />
+<bean id="Manager_App" class="com.att.ttt.entity.Manager_App" scope="prototype" />
+<bean id="Application" class="com.att.ttt.entity.Application" scope="prototype" />
 
 <bean id="TrainingTrackerManager" class="com.att.ttt.manager.impl.TrainingTrackerManagerImpl" scope="prototype" />
 <bean id="EmployeeManager" class="com.att.ttt.manager.impl.EmployeeManagerImpl" scope="prototype" />

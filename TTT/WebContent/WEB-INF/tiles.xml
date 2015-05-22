@@ -29,6 +29,11 @@
       <put-attribute name="body"   value="/jsp/uploadTrainingList.jsp"/>      
   </definition>
   
+  <definition name="uploadApplication" extends="baseLayout">
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/applicationUpload.jsp"/>      
+  </definition>
+  
   <definition name="myTrainingsList" extends="baseLayout">
   	 <put-attribute name="title"  value="Training and Tracking Tool"/>
       <put-attribute name="body"   value="/jsp/myTrainingsList.jsp"/>   

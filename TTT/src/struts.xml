@@ -54,6 +54,7 @@
 			<result name="contact" type="tiles">contact</result>
 			<result name="training" type="tiles">uploadTraining</result>
 			<result name="employee" type="tiles">uploadEmployees</result>
+			<result name="appManager" type="tiles">uploadApplication</result>
 		</action>
 		
 		<action name="createNewTraining" class="com.att.ttt.action.CreateTrainingAction">
@@ -137,6 +138,12 @@
 		</action>
 		
 		<action name="trainingsUpload" class="com.att.ttt.action.TrainingsUpload">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="tiles">uploadSuccess</result>
+			<result name="failure" type="tiles">uploadFailure</result>
+		</action>
+		
+		<action name="applicationUpload" class="com.att.ttt.action.ManagerApplicationMapAction">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">uploadSuccess</result>
 			<result name="failure" type="tiles">uploadFailure</result>

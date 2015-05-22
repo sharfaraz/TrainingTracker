@@ -30,6 +30,7 @@
 			<mapping class="com.att.ttt.entity.Levels"/>
 			<mapping class="com.att.ttt.entity.Tower"/>
 			<mapping class="com.att.ttt.entity.Emp_Application"/>
+			<mapping class="com.att.ttt.entity.Manager_App"/>
 			
 			
 	</session-factory>

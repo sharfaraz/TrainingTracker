@@ -39,6 +39,7 @@ response.setDateHeader ("Expires", -1);
       			 <li><a href="trainingsLoadLink">Trainings Upload</a></li> 
       			 <li><a href="employeesLoadLink">Employee Upload</a></li> 
       			 <li><a href="createNewTraining" >Create New Training</a></li> 
+      			 <li><a href="applicationLoadLink" >Upload Applications</a></li> 
 <!--       			 <li><a href="organization" >Assign Training</a></li> -->
      		</ul>
 		</li>

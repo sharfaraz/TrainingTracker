@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.att.ttt.entity.Application;
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
+import com.att.ttt.entity.Manager_App;
 import com.att.ttt.entity.TrainingReportBean;
 import com.att.ttt.entity.Trainings;
 
@@ -46,5 +48,9 @@ public interface TrainingTrackerDao {
 			Date endDate, String trainingType, String status, String level);
 
 	List<String> getSdmNames();
+	
+	public Boolean saveApplication(Application appln);
+	
+	public Boolean saveManagerApp(Manager_App manApp);
 
 }

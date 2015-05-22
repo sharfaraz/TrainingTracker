@@ -28,5 +28,9 @@ public class LinkAction extends ActionSupport {
 		return "employee";
 	}
 	
+	public String applicationLoad()
+	{
+		return "appManager";
+	}
 	}
 
