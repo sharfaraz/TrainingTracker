@@ -3,6 +3,7 @@ package com.att.ttt.action;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -18,8 +19,10 @@ import com.att.ttt.constants.TTConstants;
 import com.att.ttt.dao.TrainingTrackerDao;
 import com.att.ttt.entity.Application;
 import com.att.ttt.entity.Emp_Trng;
+import com.att.ttt.entity.Employee;
 import com.att.ttt.entity.Manager_App;
 import com.att.ttt.entity.Trainings;
+import com.opensymphony.xwork2.ActionContext;
 
 
 
@@ -28,7 +31,16 @@ public class ManagerApplicationMapAction {
 	private File uploadFile;
 	private String uploadFileContentType;
 	private String uploadFileFileName;	
+	List<String> apps = new ArrayList<String>();
 	
+	public List<String> getApps() {
+		return apps;
+	}
+
+	public void setApps(List<String> apps) {
+		this.apps = apps;
+	}
+
 	public File getUploadFile() {
 		return uploadFile;
 	}
@@ -104,6 +116,22 @@ public class ManagerApplicationMapAction {
 		System.out.println("File name: "+ uploadFileFileName);	
 		res = mapManagerApp(uploadFile);
 		return res;
+	}
+	
+	public String applicationsManaged() {
+		
+		ServletContext ctx=ServletActionContext.getServletContext();
+		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ctx);
+		TrainingTrackerDao dao =(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
+		
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		String emailId = (String)session.get("email");
+		
+		List<Employee> emp = dao.getUserPresenceList(emailId);
+		
+		apps = dao.getAppsManaged(emp.get(0));
+		
+		return "success";
 	}
 
 }

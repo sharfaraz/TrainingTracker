@@ -1,6 +1,7 @@
 package com.att.ttt.manager.impl;
 
 import java.io.File;
+import java.util.List;
 
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -67,9 +68,10 @@ public class EmployeeManagerImpl implements EmployeeManager {
             	 employee.setEndDate(row.getCell(23).getDateCellValue());
             	 employee.setCity(String.valueOf(row.getCell(36).getRichStringCellValue()));
             	 employee.setTower(String.valueOf(row.getCell(2).getRichStringCellValue()));
+            	 employee.setApplication(String.valueOf(row.getCell(47).getRichStringCellValue()));
             	 employee.setAccount("ATT");
-//            	dao.saveEmployee(employee);
-            	dao.updateEmployee(employee);
+            	 dao.saveEmployee(employee);
+            	//dao.updateEmployee(employee);
             }
             pkg.close();
             System.out.println ("Uploaded Successfully");
@@ -78,6 +80,12 @@ public class EmployeeManagerImpl implements EmployeeManager {
             e.printStackTrace(); 
         }
 		
+	}
+	@Override
+	public List<String> getExistingEmpIds() {
+		// TODO Auto-generated method stub
+		List<String> empIds = dao.getEmployeeIds();
+		return empIds;
 	}
 
 }

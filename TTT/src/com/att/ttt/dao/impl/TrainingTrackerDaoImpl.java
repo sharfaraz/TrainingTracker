@@ -84,41 +84,30 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 				
 		if (!(startDate == null)) {
 			Criterion sDate = Restrictions.gt("startDate", startDate);
-			//where = Restrictions.and(sDate);
 			searchCriteria.add(Restrictions.and(sDate));
 		}
 		
 		if (!(endDate== null)){
 			Criterion eDate = Restrictions.lt("endDate", endDate);
-			//where = Restrictions.and(eDate);
 			searchCriteria.add(Restrictions.and(eDate));
 		}
 		
 		if (!trainingType.equals("-1")){
 			Criterion trnType = Restrictions.eq("trainingType", trainingType);
-			//where = Restrictions.and(trnType);
 			searchCriteria.add(Restrictions.and(trnType));
 		}
 		
 		if(!status.equals("-1")) {
 			Criterion stat = Restrictions.eq("status", status);
-			//where = Restrictions.and(stat);
 			searchCriteria.add(Restrictions.and(stat));
 		}
-		
-/*		if (!level.equals("-1")){
-			searchCriteria.createAlias("Emp_Trng.Trainings", "Trainings");
-			searchCriteria.add(Restrictions.eq(", value))
-			Criterion lvl = Restrictions.eq("Trainings.levelName", level);
-		}
-		String query = "from Emp_Trng where empId = '"+empId+"'";
-		Query qry=currentSession.createQuery(query);*/
 		
 		searchCriteria.add(where);
 		searchCriteria.addOrder(Order.asc("endDate"));
 		List<Emp_Trng> myTrainingsList = searchCriteria.list();
 		return myTrainingsList;
 	}
+	
 	@Override
 	@Transactional
 	public List<Employee> getDeliveryManagersList() {
@@ -438,6 +427,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		return trainingsList;
 
 	}
+	
 	@Transactional
 	@Override
 	public Boolean saveApplication(Application appln) {
@@ -446,6 +436,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		currentSession.save(appln);
 		return true;
 	}
+	
 	@Transactional
 	@Override
 	public Boolean saveManagerApp(Manager_App manApp) {
@@ -453,6 +444,68 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		Session currentSession=this.getSessionFactory().getCurrentSession();
 		currentSession.save(manApp);
 		return true;
+	}
+	
+	@Transactional
+	@Override
+	public Employee getEmployee(String empId) {
+		// TODO Auto-generated method stub
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("from Employee where empId = '"+empId+"'");
+		Employee emp= (Employee) qry.list().get(0);
+		System.out.println("got employee info for "+empId);
+		return emp;
+	}
+	
+	@Transactional
+	@Override
+	public List<Trainings> getTrainings(Employee emp) {
+		// TODO Auto-generated method stub
+		System.out.println("fetching Trainings for "+emp.getEmpId());
+		List<Trainings> trngList = new ArrayList<Trainings>();
+		List<Trainings> trngListTemp = new ArrayList<Trainings>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		
+		Query qry = currentSession
+				.createQuery("from Trainings where levelId = '"+TTConstants.ACCOUNT+"' and levelName = '"
+								+emp.getAccount()+"' and trainingType = 'Mandatory'");
+		trngListTemp = qry.list();
+		trngList.addAll(trngListTemp);
+		trngListTemp.clear();
+
+		qry = currentSession
+				.createQuery("from Trainings where levelId = '"
+							+TTConstants.CLUSTER+"' and levelName = '"+emp.getSrDelMgr()+"' and trainingType = 'Mandatory'");
+		trngListTemp = qry.list();
+		trngList.addAll(trngListTemp);
+		trngListTemp.clear();
+		
+		qry = currentSession
+				.createQuery("from Trainings where levelId = '"+TTConstants.TOWER+"' and levelName = '"
+								+emp.getTower()+"' and trainingType = 'Mandatory'");
+		trngListTemp = qry.list();
+		trngList.addAll(trngListTemp);
+		trngListTemp.clear();
+		
+		System.out.println("fetched trainings: " +trngList.size());
+		
+		return trngList;
+	}
+	
+	@Transactional
+	@Override
+	public List<String> getAppsManaged(Employee emp) {
+		// TODO Auto-generated method stub
+		List<String> apps = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		
+		Query qry = currentSession
+				.createQuery(" select a.applnName from Application a, Manager_App b where a.applnId = b.applnId and b.managerId = '"
+								+emp.getFname()+" "+emp.getLname()+"'");
+		apps = qry.list();
+		System.out.println("apps size:"+apps.size());
+		return apps;
 	}	
 		
 }

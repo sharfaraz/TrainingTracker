@@ -12,8 +12,8 @@ public class Manager_App {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int maId;
-	private String ManagerId;
-	private int ApplnId;
+	private String managerId;
+	private int applnId;
 	public int getMaId() {
 		return maId;
 	}
@@ -21,16 +21,16 @@ public class Manager_App {
 		this.maId = maId;
 	}
 	public String getManagerId() {
-		return ManagerId;
+		return managerId;
 	}
 	public void setManagerId(String managerId) {
-		ManagerId = managerId;
+		this.managerId = managerId;
 	}
 	public int getApplnId() {
-		return ApplnId;
+		return applnId;
 	}
 	public void setApplnId(int applnId) {
-		ApplnId = applnId;
+		this.applnId = applnId;
 	}
 
 }

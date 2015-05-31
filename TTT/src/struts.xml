@@ -50,6 +50,7 @@
 		</action>
 		
 		<action name="*Link" method="{1}" class="com.att.ttt.action.LinkAction">
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="welcome" type="tiles">welcome</result>
 			<result name="contact" type="tiles">contact</result>
 			<result name="training" type="tiles">uploadTraining</result>
@@ -58,6 +59,7 @@
 		</action>
 		
 		<action name="createNewTraining" class="com.att.ttt.action.CreateTrainingAction">
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="populate" type="tiles">CreateTraining</result>
 		</action>
 		<action name="populateCriteria" method="populateAssignedValue"
@@ -102,11 +104,13 @@
 		</action>
 		
 		<action name="myArchiveTrainingsList" class="com.att.ttt.action.UserTraingsAction" method="myArchiveTrainingsList">
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">myArchiveTrainingsList</result>
 			<result name="failure">welcomeExistingUser</result>
 		</action>
 		
 		<action name="uploadTrainingListAction" class="com.att.ttt.action.UserTraingsAction" method="uploadTrainingList">
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">uploadTrainingList</result>
 			<result name="failure">welcomeExistingUser</result>
 		</action>
@@ -147,6 +151,12 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">uploadSuccess</result>
 			<result name="failure" type="tiles">uploadFailure</result>
+		</action>
+		
+		<action name="applicationsManaged" class="com.att.ttt.action.ManagerApplicationMapAction" method="applicationsManaged">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="tiles">myApps</result>
+			<result name="failure" type="tiles">error</result>
 		</action>
 		
 	</package>

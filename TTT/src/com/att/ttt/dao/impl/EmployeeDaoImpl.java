@@ -1,6 +1,7 @@
 package com.att.ttt.dao.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -60,6 +61,22 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		
 		return true;
+	}
+	@Override
+	@Transactional
+	public List<String> getEmployeeIds( ) {
+		// TODO Auto-generated method stub
+		List<String> empId = null;
+		try {
+			Session currentSession = this.getSessionFactory().getCurrentSession();
+			Query qry = currentSession
+					.createQuery(" select empId from Employee order by empId");
+			empId = qry.list();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return empId;
 	}
 	
 }
