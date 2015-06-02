@@ -507,6 +507,25 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		System.out.println("apps size:"+apps.size());
 		return apps;
 	}	
+	
+	@Transactional
+	@Override
+	public Boolean isDm(String emailId) {
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		
+		Query qry = currentSession
+				.createQuery(" select 'dm' from Employee a, Employee b where a.delMgrId = b.empId and b.emailId = '"+emailId+"'");
+		
+		List<String> dm = new ArrayList<String>();
+		dm = qry.list();
+		
+		if(dm.size() != 0){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 		
 }
 

@@ -18,15 +18,16 @@
 		<interceptors>
 			<interceptor name="authentication" class="com.att.ttt.utility.AuthenticationInterceptor"></interceptor>
 			<interceptor-stack name="authStack">
-				<interceptor-ref name="authentication"></interceptor-ref>
-				<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="authentication"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
 		
 		<default-interceptor-ref name="authStack"></default-interceptor-ref>
 		
-		 <global-results>
+		<global-results>
 			<result name="login" type="redirect">/initLogin.action</result>
+			<result name="failure" type="tiles">error</result>
 		</global-results> 
 		
 		
@@ -46,6 +47,7 @@
         <action name="ValidateLogin" class="com.att.ttt.action.LoginAction" >
         	<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">welcome</result>
+			<result name="unknown" type="tiles">welcomeNonExistingUser</result>
 			<result name="failure">/jsp/Login.jsp</result>
 		</action>
 		
@@ -62,10 +64,12 @@
 		    <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="populate" type="tiles">CreateTraining</result>
 		</action>
+		
 		<action name="populateCriteria" method="populateAssignedValue"
 			class="com.att.ttt.action.CreateTrainingAction">
 			<result name="success">/jsp/AssignList.jsp</result>
 		</action>
+		
 		<action name="commitTraining" method="createTraining"
 			class="com.att.ttt.action.CreateTrainingAction">
 			<result name="success" type="tiles">welcome</result>
@@ -75,59 +79,33 @@
 			<result name="populate" type="tiles">fetchReport</result>
 		</action>
 
-		<action name="FetchReportInExcel" class="com.att.ttt.action.FetchReportsAction"
-			method="fetchReportInExcel">
+		<action name="FetchReportInExcel" class="com.att.ttt.action.FetchReportsAction" method="fetchReportInExcel">
 			<result type="stream" name="success">
 				<param name="contentType">"application/vnd.ms-excel"</param>
 				<param name="contentDisposition">attachment;filename="TrainingReport.xls"</param>
 				<param name="inputName">excelStream</param>
 				<param name="bufferSize">1024</param> 
 			</result>
-			<!-- <result name="success"></result> -->
 		</action>
+		
 		<action name="populateSDM" method="getSdmListForReport"
 			class="com.att.ttt.action.FetchReportsAction">
 			<result name="success">/jsp/SdmForReportGen.jsp</result>
 		</action>
+		
 		<action name="populateDm" class="com.att.ttt.action.FetchReportsAction" method="getDmListForReport">
 			<result name="success">/jsp/DmForReportGen.jsp</result>
 		</action>
+		
 		<action name="populateApp" method="getAppListForReport"
 			class="com.att.ttt.action.FetchReportsAction">
 			<result name="success">/jsp/AppForReportGen.jsp</result>
 		</action>
 		
-		<action name="SaveTrainingAction" class="com.att.ttt.action.SaveTrainingAction" >
-        	<interceptor-ref name="defaultStack"></interceptor-ref>
-        	<result name="success" type="tiles">uploadSuccess</result>
-			<result name="failure" type="tiles">uploadFailure</result>
-		</action>
-		
-		<action name="myArchiveTrainingsList" class="com.att.ttt.action.UserTraingsAction" method="myArchiveTrainingsList">
-		    <interceptor-ref name="defaultStack"></interceptor-ref>
-			<result name="success" type="tiles">myArchiveTrainingsList</result>
-			<result name="failure">welcomeExistingUser</result>
-		</action>
-		
-		<action name="uploadTrainingListAction" class="com.att.ttt.action.UserTraingsAction" method="uploadTrainingList">
-		    <interceptor-ref name="defaultStack"></interceptor-ref>
-			<result name="success" type="tiles">uploadTrainingList</result>
-			<result name="failure">welcomeExistingUser</result>
-		</action>
-		
-		<action name="UploadFileAction" class="com.att.ttt.action.PopulateUploadFileAction">
-		<result name="success" type="tiles">adminOperations</result>
-       </action>
-		
 		<action name="employeeUpload" class="com.att.ttt.action.EmployeeAction">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">uploadSuccess</result>
 			<result name="failure" type="tiles">uploadFailure</result>
-		</action>
-		
-		<action name="viewTrainings" class="com.att.ttt.action.TrainingsViewAction" method="displayTrainings">
-			<interceptor-ref name="defaultStack"></interceptor-ref>
-			<result name="success" type="tiles">viewTrainings</result>
 		</action>
 		
 		<action name="viewTrainingFilters" class="com.att.ttt.action.TrainingsViewAction" method="displayFilters">
@@ -138,7 +116,7 @@
 		<action name="updateTrainings" class="com.att.ttt.action.TrainingsViewAction" method="updateTrainings">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirectAction">
-					<param name="actionName">viewTrainingFilters</param> </result>
+			<param name="actionName">viewTrainingFilters</param> </result>
 		</action>
 		
 		<action name="trainingsUpload" class="com.att.ttt.action.TrainingsUpload">

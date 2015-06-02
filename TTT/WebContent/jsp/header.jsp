@@ -27,7 +27,7 @@ table {border: none;}
      <TD width="25%"><IMG src="images/att1.png"/></A></TD>
      <td width="50%" align="center"><h2>Training and Tracking Tool </td>
     
-        <TD width="25%" align="right"><IMG src="images/ibm1.png"/><div align="right"><a href="logoutAction">Logout</a></div></TD>
+        <TD width="25%" align="right"><IMG src="images/ibm1.png"/><div align="right"></div></TD>
         
     </TR>
   

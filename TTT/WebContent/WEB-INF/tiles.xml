@@ -19,6 +19,11 @@
       <put-attribute name="body"   value="/jsp/welcome.jsp"/>      
   </definition>
   
+  <definition name="welcomeNonExistingUser" extends="baseLayout">
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/welcomeNonExistingUser.jsp"/>      
+  </definition>
+  
    <definition name="uploadEmployees" extends="baseLayout">
       <put-attribute name="title"  value="Training and Tracking Tool"/>
       <put-attribute name="body"   value="/jsp/uploadEmployees.jsp"/>      
@@ -48,18 +53,13 @@
   	 <put-attribute name="title"  value="Training and Tracking Tool"/>
       <put-attribute name="body"   value="/jsp/GenerateReports.jsp"/>   
   </definition>
-  
-  
+
+
   <definition name="myArchiveTrainingsList" extends="baseLayout">
   	 <put-attribute name="title"  value="Training and Tracking Tool"/>
       <put-attribute name="body"   value="/jsp/myArchiveTrainingsList.jsp"/>   
   </definition>
 
-  
-  <definition name="adminOperations" extends="baseLayout">
-  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
-      <put-attribute name="body"   value="/jsp/adminOperations.jsp"/>   
-  </definition>
   
   <definition name="uploadSuccess" extends="baseLayout">
       <put-attribute name="title"  value="Training and Tracking Tool"/>
@@ -71,10 +71,6 @@
       <put-attribute name="body"   value="/jsp/uploadFailure.jsp"/>      
   </definition>
   
-  <definition name="viewTrainings" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
-      <put-attribute name="body"   value="/jsp/viewTrainings.jsp"/>      
-  </definition>
   
    <definition name="viewTrainingFilters" extends="baseLayout">
       <put-attribute name="title"  value="Training and Tracking Tool"/>
@@ -93,6 +89,7 @@
   
   <definition name="error" extends="baseLayout">
       <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/error.jsp"/>
   </definition>
   
   

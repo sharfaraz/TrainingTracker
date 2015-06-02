@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Training and Tracking tool</title>
-    
+<title>Insert title here</title>
 </head>
 <body>
-	 <h3>Your details are not found. Please contact your Manager.</h3>
-	<marquee><h3>Note : This Site is Best viewed in Mozilla Firefox</h3></marquee>
+
+<h3>OOPS!! Something went wrong. Contact admin.</h3>
+
 </body>
 </html>

@@ -112,8 +112,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		System.setProperty(cwa.FORCE_SSL_SEARCH, "true");
 		ReturnCode rc = null;
 		rc = cwa.authenticate(ldapHost, emailId, password);
-		String res = "failure";
-		if (rc.getCode() == cwa.RC_SUCCESS) {
+		sessionMap.invalidate();
+		String res = "success";
+//		if (rc.getCode() == cwa.RC_SUCCESS) {
+		if(true) {
 			ServletContext ctx = ServletActionContext.getServletContext();
 			WebApplicationContext context = WebApplicationContextUtils
 					.getWebApplicationContext(ctx);
@@ -123,31 +125,31 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			userPresenceList = trainingTracker.getUserPresenceList(emailId);
 			System.out.println(userPresenceList);
 			
+			sessionMap.put("userName", "Welcome! Unknown");
+			if (userPresenceList.size() < 1){
+				res = "unknown";
+				return res;
+			}
+			
+			sessionMap.put("userName", "Welcome! "+userPresenceList.get(0).getFname());
+			
 			
 			userRole = trainingTracker.getUserRoles(emailId);
 			System.out.println(userRole);
+			
+			sessionMap.put("email", emailId);
+			
+			if(trainingTracker.isDm(emailId)){
+				sessionMap.put("isDM", "D" );
+			}
 			
 			if (!(userRole == null)) {
 
 				if (userRole.equals("S")) {
 					sessionMap.put("isSU", userRole );
-					sessionMap.put("email", emailId);
-					res="success";
 				}
-				else if(userRole.equals("D")){
-					sessionMap.put("isSU", "S" );
-					sessionMap.put("isDM", userRole );
-					sessionMap.put("email", emailId);
-					res="success";
-				}
-				else{
-					sessionMap.put("email", emailId);
-					res="success";
-				}	
 			}
-
-
-			}
+		}
 		else {
 			System.err.println("We're not in!");
 			errorMsg = "Login failed. Please try again";

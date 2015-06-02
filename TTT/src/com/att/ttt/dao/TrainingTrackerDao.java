@@ -40,5 +40,6 @@ public interface TrainingTrackerDao {
 	public Employee getEmployee (String empId);
 	public List<Trainings> getTrainings(Employee emp);
 	public List<String> getAppsManaged(Employee emp);
+	public Boolean isDm(String emailId);
 
 }

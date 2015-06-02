@@ -13,12 +13,12 @@
 </head>
 <body>
 
-<table id="appsTable">
+<table id="appsTable" width="400px" align="center">
 		<tr>
-			<th><b>Application Name</b></th>
+			<th><b>Applications</b></th>
 		</tr>
 		<s:iterator value="apps" status="status">
-		<tr><td><s:property value="apps[#status.index]" /></td></tr>
+		<tr><td align="left"> <input type="checkbox" checked="checked" width=""><s:property value="apps[#status.index]" /></td></tr>
 		</s:iterator>
 </table>
 </body>

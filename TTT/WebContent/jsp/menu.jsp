@@ -25,6 +25,12 @@ response.setDateHeader ("Expires", -1);
 	
 	<s:set name="superUser" value="#session.isSU"></s:set>
 	<s:set name="delMgr" value="#session.isDM"></s:set>
+	<s:set name="userName" value="#session.userName"></s:set>
+	
+<TABLE width="100%" border="0" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+
+	<TR >
+	<TD width="80%">
 	<ul id="nav">
 		<li><a>Employee</a>
 			<ul> 
@@ -60,6 +66,23 @@ response.setDateHeader ("Expires", -1);
 		</s:if>
 		<li><a href="contactUsLink">Contact Us</a></li>
 
+
 	</ul>
+	</TD>
+	<TD width="20%" align="center">
+	
+	<ul id="nav">
+		<li>
+			<a><s:property value="#session.userName" /></a>
+			<ul>
+				<li><a href="logoutAction">Logout</a></li>
+			</ul>
+		</li>
+	</ul>
+	
+	</TD>
+	</TR>
+	</TABLE>
+		
 </body>
 </html>

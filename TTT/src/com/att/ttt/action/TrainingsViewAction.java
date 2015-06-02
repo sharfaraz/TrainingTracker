@@ -33,6 +33,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
 
+
 import com.att.ttt.constants.TTConstants;
 import com.att.ttt.dao.TrainingTrackerDao;
 import com.att.ttt.entity.Emp_Trng;
@@ -179,43 +180,49 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ctx);
 		TrainingTrackerDao dao =(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
 
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		String emailId = (String)session.get("email");
-		
-		Date date = new Date();
-		java.sql.Date currentDate = new java.sql.Date(date.getTime());
-		
-		System.out.println("date: "+currentDate);
-		sessionMap.put("currentDate", currentDate);
-		
-		FilterTrainingType.add("Mandatory");
-		FilterTrainingType.add("Optional");
-		
-		FilterStatus.add(TTConstants.PENDING);
-		FilterStatus.add(TTConstants.COMPLETED);
-		//FilterStatus.add(TTConstants.IN_PROGRESS);
-		
-		FilterLevel.add(TTConstants.ACCOUNT);
-		FilterLevel.add(TTConstants.APPLICATION);
-		FilterLevel.add(TTConstants.CLUSTER);
-		FilterLevel.add(TTConstants.TOWER);
+		try {
+			Map<String, Object> session = ActionContext.getContext().getSession();
+			String emailId = (String)session.get("email");
+			
+			Date date = new Date();
+			java.sql.Date currentDate = new java.sql.Date(date.getTime());
+			
+			System.out.println("date: "+currentDate);
+			sessionMap.put("currentDate", currentDate);
+			
+			FilterTrainingType.add("Mandatory");
+			FilterTrainingType.add("Optional");
+			
+			FilterStatus.add(TTConstants.PENDING);
+			FilterStatus.add(TTConstants.COMPLETED);
+			//FilterStatus.add(TTConstants.IN_PROGRESS);
+			
+			FilterLevel.add(TTConstants.ACCOUNT);
+			FilterLevel.add(TTConstants.APPLICATION);
+			FilterLevel.add(TTConstants.CLUSTER);
+			FilterLevel.add(TTConstants.TOWER);
 
-		statuses.add(TTConstants.PENDING);
-		statuses.add(TTConstants.IN_PROGRESS);
-		statuses.add(TTConstants.COMPLETED);
-		
-		if(selTrainingStatus == null){
-			setSelTrainingStatus(TTConstants.PENDING);
-		}
-		
-		if(selTrainingType == null){
-			setSelTrainingType("-1");
-		}
+			statuses.add(TTConstants.PENDING);
+			statuses.add(TTConstants.IN_PROGRESS);
+			statuses.add(TTConstants.COMPLETED);
+			
+			if(selTrainingStatus == null){
+				setSelTrainingStatus(TTConstants.PENDING);
+			}
+			
+			if(selTrainingType == null){
+				setSelTrainingType("-1");
+			}
 
-		empTrngs = dao.myTrainingsList(emailId, selTrainingStDate, selTrainingEndDate, selTrainingType, selTrainingStatus, selLevel);
-		
-		if (empTrngs.size() == 0) {
-			sessionMap.put("trainingsMsg", "No Trainings to Display!!");
+			empTrngs = dao.myTrainingsList(emailId, selTrainingStDate, selTrainingEndDate, selTrainingType, selTrainingStatus, selLevel);
+			
+			if (empTrngs.size() == 0) {
+				sessionMap.put("trainingsMsg", "No Trainings to Display!!");
+			}
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			return "failure";
 		}
 		
 		return "populate";
