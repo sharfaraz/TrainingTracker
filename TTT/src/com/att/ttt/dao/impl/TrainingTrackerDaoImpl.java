@@ -526,6 +526,20 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 			return false;
 		}
 	}
+	
+	@Transactional
+	@Override
+	public List<String> getEmployeesManaged(Employee emp) {
+		// TODO Auto-generated method stub
+		List<String> emps = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		
+		Query qry = currentSession
+				.createQuery(" from Employee where delMgrId = '"+emp.getEmpId()+"'");
+		emps = qry.list();
+		System.out.println("apps size:"+emps.size());
+		return emps;
+	}	
 		
 }
 

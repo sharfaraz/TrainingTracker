@@ -137,6 +137,12 @@
 			<result name="failure" type="tiles">error</result>
 		</action>
 		
+		<action name="employeesManaged" class="com.att.ttt.action.ManagerEmployeeMapAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="tiles">myEmployees</result>
+			<result name="failure" type="tiles">error</result>
+		</action>
+		
 	</package>
 
 </struts>

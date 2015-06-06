@@ -59,6 +59,7 @@ response.setDateHeader ("Expires", -1);
 				<li><a href="createNewTraining" >Create New Training</a></li>
       			<li><a href="fetchReport" >Reports</a></li>
       			<li><a href="applicationsManaged" >My applications</a></li>
+      			<li><a href="employeesManaged" >Employees I manage</a></li>
       			 
      		</ul> 
      	

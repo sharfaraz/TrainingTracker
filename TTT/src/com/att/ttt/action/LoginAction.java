@@ -133,7 +133,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			
 			sessionMap.put("userName", "Welcome! "+userPresenceList.get(0).getFname());
 			
-			
 			userRole = trainingTracker.getUserRoles(emailId);
 			System.out.println(userRole);
 			
