@@ -14,9 +14,11 @@
 <body>
 
 <table id="appsTable" width="400px" align="center">
+	<thead>
 		<tr>
 			<th><b>Applications</b></th>
 		</tr>
+	</thead>
 		<s:iterator value="apps" status="status">
 		<tr><td align="left"> <input type="checkbox" checked="checked" width=""><s:property value="apps[#status.index]" /></td></tr>
 		</s:iterator>

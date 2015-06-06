@@ -13,12 +13,25 @@
 </head>
 <body>
 
-<table id="employeesTable" width="400px" align="center">
+<table id="employeesTable" width="60%" align="center">
+	<thead>
 		<tr>
-			<th><b>Employees</b></th>
+			<th width="30%" align="left"><b>Employee Name</b></th>
+			<th width="20%" align="left"><b>Employee ID</b></th>
+			<th width="30%" align="left"><b>Role</b></th>
+			<th width="10%" align="left"><b>ATTUID</b></th>
 		</tr>
+	</thead>
 		<s:iterator value="emps" status="status">
-		<tr><td align="left"> <input type="checkbox" checked="checked" width=""><s:property value="fname" /></td></tr>
+			<tr>
+				<td align="left"> 
+					<s:property value="fname" /> <s:property value="lname" />
+				</td>
+				<td align="left"><s:property value="empId" /> </td>
+				<td align="left"><s:property value="jobTitle" /> </td>
+				<td align="left"><s:property value="attuid" /> </td>
+			</tr>
+			<tr></tr>
 		</s:iterator>
 </table>
 </body>
