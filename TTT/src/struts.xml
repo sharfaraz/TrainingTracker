@@ -143,6 +143,18 @@
 			<result name="failure" type="tiles">error</result>
 		</action>
 		
+		<action name="assignTrainings" class="com.att.ttt.action.AssignTrainingsAction" method="initAssignTrainings">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="tiles">assignTrainings</result>
+			<result name="failure" type="tiles">error</result>
+		</action>
+		
+		<action name="saveAssignedTrainings" class="com.att.ttt.action.AssignTrainingsAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="tiles">success</result>
+			<result name="failure" type="tiles">error</result>
+		</action>
+		
 	</package>
 
 </struts>

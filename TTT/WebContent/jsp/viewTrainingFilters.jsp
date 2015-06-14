@@ -81,15 +81,15 @@ createEditableSelect(document.forms[0].myText);
 	<h2 align="center">Trainings assigned to You</h2>
 	
 	<br>
-	<table id="trainingsTable">
-		<tr>
+	<table id="trainingsTable" width="80%">
+		<thead><tr>
 		 
-			<th><b>Training Name</b></th>
-			<th><b>Training Type</b></th>
-			<th><b>Start Date</b></th>
-			<th><b>End Date</b></th>
-			<th><b>Status</b></th>
-		</tr>
+			<th width="35%"><b>Training Name</b></th>
+			<th width="15%"><b>Training Type</b></th>
+			<th width="5%"><b>Start Date</b></th>
+			<th width="5%"><b>End Date</b></th>
+			<th width="5%"><b>Status</b></th>
+		</tr></thead>
 
 		
 		<s:iterator value="empTrngs" status="status">
@@ -107,7 +107,7 @@ createEditableSelect(document.forms[0].myText);
 	        	 id="empId<s:property value="%{#status.index}"/>" />
 	        	 
 	        
-			<tr id="cell1"><td><input type="text" class="changeFont" value='<s:property value="trainingName" />' readonly="readonly"  
+			<tr id="cell1"><td width="35%"><input type="text" class="changeFont" value='<s:property value="trainingName" />' readonly="readonly"  
 				name='empTrngs[<s:property value="%{#status.index}"/>].trainingName'
 				id="trainingName<s:property value="%{#status.index}"/>" /></td> 
 			<td><input type="text" class="changeFont" value='<s:property value="trainingType" />' readonly="readonly"   

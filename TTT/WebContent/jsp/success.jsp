@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Opportunity Tracking and Governance Tool</title>
+<title>Training and Tracking Tool</title>
 </head>
 <body>
 success!!!

@@ -31,24 +31,52 @@ function createTraining()
 	
 	var trainingMode=document.getElementById('trainingMode').value;
 	
+	var assignedType=document.getElementById('assignedType').value;
 	
-	//alert(trainingName+" "+trainingType+" "+trainingCategory);
 	
 	if(trainingName=="" || trainingType=="" || trainingCategory == "" || trainingMode == "")
 		{
-		alert("Error! Training name, training type and trainging category can not be left blank.");
+		alert("Error! Training name, training type, trainging category and mode can not be left blank.");
 		return;
 		}
+	
+	if (assignedType=="-1"){
+		alert("please select Applicable Criteria");
+	}
+	else {
+		var assignedKey=document.getElementById('assignedKey').value;
+		if (assignedKey=="-1") {
+			alert("Please select Applicable value");
+			return;
+		}
+	}
+	
+	var startDate=document.getElementById('NewTrainingStDate').value;
+	var endDate=document.getElementById('NewTrainingEndDate').value;
+
+	if (startDate==""){
+		alert("Select training startDate");
+		return;
+	}
+	
+	if(endDate==""){
+		alert("select training endDate");
+		return;
+	}
+	
+	
+	
+	//alert(trainingName+" "+trainingType+" "+trainingCategory);
 	
 	
 
 	var QUERYSTRING="NewTrainingName="+trainingName+
 					"&trainingType="+trainingType+"" +
 					"&trainingCateg="+trainingCategory+
-					"&assignedType="+document.getElementById('assignedType').value+
-					"&NewTrainingStDt="+document.getElementById('NewTrainingStDate').value+
-					"&NewTrainingEndDt="+document.getElementById('NewTrainingEndDate').value+
-					"&assignedKey="+document.getElementById('assignedKey').value+
+					"&assignedType="+assignedType+
+					"&NewTrainingStDt="+startDate+
+					"&NewTrainingEndDt="+endDate+
+					"&assignedKey="+assignedKey+
 					"&trainingMode="+trainingMode;
 	//alert("QUERYSTRING"+QUERYSTRING);
 	// document.getElementById("wait_side").style.display="block";

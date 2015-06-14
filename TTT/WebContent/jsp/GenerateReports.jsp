@@ -56,10 +56,8 @@ createEditableSelect(document.forms[0].myText);
 <s:form id="myForm" action="FetchReportInExcel">
 <s:set name="theme" value="'simple'"  scope="page" /> 
 <table>
-
-	
 	<tr><td>Training Name : </td><td>
-	<s:select id="trainingName" name="trainingName" cssClass="changeFont" list="trainingNameData"/>
+	<sx:autocompleter id="trainingName" list="trainingNameData" name="trainingName" cssClass="changeFont" />
 	</td></tr>
 	<tr><td><label id="targetDateLabel">Training Start date : </label></td><td> <s:textfield key="NewTrainingStDate" cssClass="changeFont" id="NewTrainingStDate"  readonly="true" /> </td></tr>
 	<tr>

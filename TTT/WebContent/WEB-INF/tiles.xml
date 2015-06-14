@@ -97,5 +97,15 @@
       <put-attribute name="body"   value="/jsp/error.jsp"/>
   </definition>
   
+  <definition name="success" extends="baseLayout">
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/success.jsp"/>
+  </definition>
+  
+  <definition name="assignTrainings" extends="baseLayout">
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/assignTrainings.jsp"/>      
+  </definition>
+  
   
 </tiles-definitions>

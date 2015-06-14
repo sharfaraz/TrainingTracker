@@ -203,7 +203,7 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 			FilterLevel.add(TTConstants.TOWER);
 
 			statuses.add(TTConstants.PENDING);
-			statuses.add(TTConstants.IN_PROGRESS);
+			//statuses.add(TTConstants.IN_PROGRESS);
 			statuses.add(TTConstants.COMPLETED);
 			
 			if(selTrainingStatus == null){

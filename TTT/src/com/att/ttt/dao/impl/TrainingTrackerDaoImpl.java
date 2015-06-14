@@ -123,7 +123,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		List<String> accountList = new ArrayList<String>();
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		Query qry = currentSession
-				.createQuery("Select distinct a.accountName from Account a");
+				.createQuery("Select distinct a.account from Employee a");
 		accountList = qry.list();
 		return accountList;
 	}
@@ -133,7 +133,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		List<String> towerList = new ArrayList<String>();
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		Query qry = currentSession
-				.createQuery("Select distinct t.towerName from Tower t");
+				.createQuery("Select distinct t.tower from Employee t order by t.tower");
 		towerList = qry.list();
 		return towerList;
 	}
@@ -144,7 +144,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		List<String> clusterList = new ArrayList<String>();
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		Query qry = currentSession
-				.createQuery("Select distinct c.clusterName from Cluster c");
+				.createQuery("Select distinct c.srDelMgr from Employee c order by c.srDelMgr");
 		clusterList = qry.list();
 		return clusterList;
 	}
@@ -155,7 +155,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		List<String> appList = new ArrayList<String>();
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		Query qry = currentSession
-				.createQuery("Select distinct ap.applnName from Application ap");
+				.createQuery("Select distinct ap.applnName from Application ap order by ap.applnName");
 		appList = qry.list();
 		return appList;
 	}
