@@ -24,7 +24,7 @@
 	<s:select label="Cluster" name="cluster" list="{'ICS', 'RUSS', 'PLUSS', 'SAART'}"/> 
 	<s:select label="Application" name="app" list="{'INSP', 'IPRS', 'PLUSS', 'SAART'}"/>
 		<s:inputtransferselect
-     label="Available Trainings"
+     label="Available Trainings" allowUpDown="true"
      name="trainingsList"
      list="{'INSP', 'IPRS', 'ITAMAC', 'PTS', 'RUSS', 'PLUSS'}"/></td></tr>
 	 <tr><td><input type="submit" class="buttonStyle"/></td></tr>
