@@ -9,7 +9,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="${pageContext.request.contextPath}/css/SummaryView.css"	rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/buttons.css"	rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="javascript/trainings.js"></script>
 <title>My Apps</title>
 </head>
 <body>
@@ -21,18 +22,15 @@
 			<th width="20%" align="left"><b>Employee ID</b></th>
 			<th width="30%" align="left"><b>Role</b></th>
 			<th width="10%" align="left"><b>ATTUID</b></th>
-			<th width="10%" align="left"></th>
 		</tr>
 	</thead>
 		<s:iterator value="emps" status="status">
 			<tr>
-				<td align="left"> 
-					<s:property value="fname" /> <s:property value="lname" />
-				</td>
+				<td align="left"> <s:property value="fname" /> <s:property value="lname" /></td>
 				<td align="left"><s:property value="empId" /> </td>
 				<td align="left"><s:property value="jobTitle" /> </td>
 				<td align="left"><s:property value="attuid" /> </td>
-				<td align="center"><input type="button" class="buttonStyle2" value="Manage App Assignment" onclick="manageAppAssignment();"></td>
+				
 			</tr>
 			<tr></tr>
 		</s:iterator>

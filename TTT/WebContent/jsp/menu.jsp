@@ -61,7 +61,7 @@ response.setDateHeader ("Expires", -1);
       			<li><a href="applicationsManaged" >My applications</a></li>
       			<li><a href="employeesManaged" >Employees I manage</a></li>
       			<li><a href="assignTrainings" >Assign Trainings</a></li>
-      			 
+      			<li><a href="assignApplications" >Assign Applications</a></li>		 
      		</ul> 
      	
 		</li>

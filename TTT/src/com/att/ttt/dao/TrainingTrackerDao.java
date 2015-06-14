@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.att.ttt.entity.Application;
+import com.att.ttt.entity.Emp_Application;
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
 import com.att.ttt.entity.Manager_App;
@@ -41,6 +42,12 @@ public interface TrainingTrackerDao {
 	public List<Trainings> getTrainings(Employee emp);
 	public List<String> getAppsManaged(Employee emp);
 	public Boolean isDm(String emailId);
-	public List<String> getEmployeesManaged(Employee emp);
+	public List<Employee> getEmployeesManaged(Employee emp);
+	public List<Emp_Trng> myTrainingsList(String empId);
+	public Trainings getTrainingFromTrainingName(String trainingName);
+	public List<String> getAllApplicationNames();
+	public List<String> myAppsList( String empId);
+	public Application getAppFromAppName(String appName);
+	public void assignApplication(Emp_Application empApp);
 
 }

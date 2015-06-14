@@ -12,6 +12,8 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.att.ttt.constants.TTConstants;
 import com.att.ttt.dao.TrainingTrackerDao;
+import com.att.ttt.entity.Application;
+import com.att.ttt.entity.Emp_Application;
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
 import com.att.ttt.entity.Trainings;
@@ -19,24 +21,46 @@ import com.opensymphony.xwork2.ActionContext;
 
 
 
-public class AssignTrainingsAction {
+public class AssignApplicationsAction {
 	private List<Employee> emp =  new ArrayList<Employee>();
 	private List<String> employees = new ArrayList<String>();
-	private List<Emp_Trng> et = new ArrayList<Emp_Trng>();
-	private List<String> assignedTrainings =  new ArrayList<String>();
-	private List<String> availableTrainings =  new ArrayList<String>();
-	private List<String> selTrainings =  new ArrayList<String>();
+	private List<String> myApps = new ArrayList<String>();
+	private List<String> assignedApplications =  new ArrayList<String>();
+	private List<String> availableApplications =  new ArrayList<String>();
+	private List<String> selApplications =  new ArrayList<String>();
 	private String selEmpName;
 	private List<String> employee = new ArrayList<String>();
-	
-	
 
-	public List<String> getSelTrainings() {
-		return selTrainings;
+	public List<String> getMyApps() {
+		return myApps;
 	}
 
-	public void setSelTrainings(List<String> selTrainings) {
-		this.selTrainings = selTrainings;
+	public void setMyApps(List<String> myApps) {
+		this.myApps = myApps;
+	}
+
+	public List<String> getAssignedApplications() {
+		return assignedApplications;
+	}
+
+	public void setAssignedApplications(List<String> assignedApplications) {
+		this.assignedApplications = assignedApplications;
+	}
+
+	public List<String> getAvailableApplications() {
+		return availableApplications;
+	}
+
+	public void setAvailableApplications(List<String> availableApplications) {
+		this.availableApplications = availableApplications;
+	}
+
+	public List<String> getSelApplications() {
+		return selApplications;
+	}
+
+	public void setSelApplications(List<String> selApplications) {
+		this.selApplications = selApplications;
 	}
 
 	public List<String> getEmployee() {
@@ -45,22 +69,6 @@ public class AssignTrainingsAction {
 
 	public void setEmployee(List<String> employee) {
 		this.employee = employee;
-	}
-
-	public List<String> getAssignedTrainings() {
-		return assignedTrainings;
-	}
-
-	public void setAssignedTrainings(List<String> assignedTrainings) {
-		this.assignedTrainings = assignedTrainings;
-	}
-
-	public List<String> getAvailableTrainings() {
-		return availableTrainings;
-	}
-
-	public void setAvailableTrainings(List<String> availableTrainings) {
-		this.availableTrainings = availableTrainings;
 	}
 
 	public String getSelEmpName() {
@@ -76,13 +84,6 @@ public class AssignTrainingsAction {
 			.getWebApplicationContext(ctx);
 	TrainingTrackerDao dao =(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
 
-	public List<Emp_Trng> getEt() {
-		return et;
-	}
-
-	public void setEt(List<Emp_Trng> et) {
-		this.et = et;
-	}
 
 	public List<String> getEmployees() {
 		return employees;
@@ -104,32 +105,28 @@ public class AssignTrainingsAction {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		String emailId = (String)session.get("email");
 		List<Employee> emp1 = dao.getUserPresenceList(emailId);
-		List<String> trainingsToBeAssigned =  new ArrayList<String>();
+		List<String> applicationsToBeAssigned =  new ArrayList<String>();
 		emp = dao.getEmployeesManaged(emp1.get(0));
 		
 		
 		System.out.println("employee "+employee);
-		System.out.println("trainings "+selTrainings);
+		System.out.println("applications "+selApplications);
 		for  (Employee e : emp) {
 			if (employee.contains((e.getFname()+" "+e.getLname()))){
 				System.out.println("Gonna assign trainings for "+e.getFname());
-				et = dao.myTrainingsList(e.getEmpId());
-				trainingsToBeAssigned = selTrainings;
-				for (Emp_Trng etx : et) {
-					trainingsToBeAssigned.remove(etx.getTrainingName());
+				myApps = dao.myAppsList(e.getEmpId());
+				applicationsToBeAssigned = selApplications;
+				for (String app : myApps) {
+					applicationsToBeAssigned.remove(app);
 				}
-				System.out.println("trainngs to be assigned "+trainingsToBeAssigned);
-				for (int i=0;i<trainingsToBeAssigned.size(); i++){
-					Trainings tr = dao.getTrainingFromTrainingName(trainingsToBeAssigned.get(i));
-					Emp_Trng empTrng = new Emp_Trng();
-					empTrng.setTrainingId(tr.getTrainingId());
-					empTrng.setStartDate(tr.getStartDate());
-					empTrng.setEndDate(tr.getEndDate());
-					empTrng.setStatus(TTConstants.PENDING);
-					empTrng.setTrainingName(tr.getTrainingName());
-					empTrng.setTrainingType(tr.getTrainingType());
-					empTrng.setEmpId(e.getEmpId());
-					dao.assignTrainings(empTrng);
+				System.out.println("applications to be assigned "+applicationsToBeAssigned);
+				for (int i=0;i<applicationsToBeAssigned.size(); i++){
+					Application a = dao.getAppFromAppName(applicationsToBeAssigned.get(i));
+					Emp_Application empApp = new Emp_Application();
+					empApp.setApplnId(a.getApplnId());
+					empApp.setEmpId(e.getEmpId());
+
+					dao.assignApplication(empApp);
 				}
 				
 			}
@@ -137,7 +134,7 @@ public class AssignTrainingsAction {
 		return"success";
 	}
 	
-	public String initAssignTrainings() {
+	public String initAssignApplications() {
 		
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		String emailId = (String)session.get("email");
@@ -150,7 +147,7 @@ public class AssignTrainingsAction {
 			employees.add(e.getFname()+" "+e.getLname());
 		}
 		
-		availableTrainings=dao.getAllTrainingsName();
+		availableApplications=dao.getAppsManaged(emp1.get(0));
 		 
 		return "success";
 	}

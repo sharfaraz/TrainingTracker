@@ -11,17 +11,17 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/datepicker.css">
 <link rel="stylesheet" type="text/css" href="css/baselayout.css" >
-<script type="text/javascript" src="javascript/trainings.js"></script>
+
 
 </head>
 <body>
 
-<s:form method="POST" action="saveAssignedTrainings">
+<s:form method="POST" action="saveAssignedApplications">
 <table><thead>
-	<tr><th><h3>Select the employees and Trainings to be associated</h3></th></tr></thead>
+	<tr><th><h3>Select the employee and Application</h3></th></tr></thead>
 	<tr>
 	<td width="20%"><s:checkboxlist label="Employee Id" name="employee" list="employees" /></td></tr>
-	<tr><td><s:checkboxlist label="Trainings" name="selTrainings" list="availableTrainings" /></td></tr>
+	<tr><td><s:checkboxlist label="Applications" name="selApplications" list="availableApplications" /></td></tr>
 	<tr><td><s:submit value="submit"></s:submit></td></tr> 
 </table>
 </s:form>

@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.att.ttt.constants.TTConstants;
 import com.att.ttt.dao.TrainingTrackerDao;
 import com.att.ttt.entity.Application;
+import com.att.ttt.entity.Emp_Application;
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
 import com.att.ttt.entity.Manager_App;
@@ -529,9 +530,9 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	
 	@Transactional
 	@Override
-	public List<String> getEmployeesManaged(Employee emp) {
+	public List<Employee> getEmployeesManaged(Employee emp) {
 		// TODO Auto-generated method stub
-		List<String> emps = new ArrayList<String>();
+		List<Employee> emps = new ArrayList<Employee>();
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		
 		Query qry = currentSession
@@ -540,7 +541,88 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		System.out.println("apps size:"+emps.size());
 		return emps;
 	}	
+	
+	@Override
+	@Transactional
+	public List<Emp_Trng> myTrainingsList(String empId) {
+		List<Emp_Trng> emptrng =  new ArrayList<Emp_Trng>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
 		
+		Query qry = currentSession
+				.createQuery(" from Emp_Trng where empId = '"+empId+"'");
+		emptrng = qry.list();
+		return emptrng;
+	}
+	
+	@Override
+	@Transactional
+	public Trainings getTrainingFromTrainingName(String trainingName) {
+		Trainings trng =  new Trainings();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		
+		Query qry = currentSession
+				.createQuery(" from Trainings where trainingName = '"+trainingName+"'");
+		try {
+			trng = (Trainings) qry.list().get(0);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return trng;
+	}
+	
+	@Override
+	@Transactional
+	public List<String> getAllApplicationNames() {
+		// TODO Auto-generated method stub
+		List<String> appNames = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("Select distinct a.applnName from Application a ");
+		appNames = qry.list();
+		return appNames;
+	}
+	
+	@Override
+	@Transactional
+	public List<String> myAppsList(String empId) {
+		// TODO Auto-generated method stub
+		List<String> appNames = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		Query qry = currentSession
+				.createQuery("Select distinct a.applnName from Application a, Emp_Application ea"+
+		                     " where a.applnId = ea.applnId and ea.empId = '"+empId+"'");
+		appNames = qry.list();
+		return appNames;
+	}
+	@Override
+	@Transactional
+	public Application getAppFromAppName(String appName) {
+		// TODO Auto-generated method stub
+		Application app =  new Application();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		
+		Query qry = currentSession
+				.createQuery(" from Application where applnName = '"+appName+"'");
+		try {
+			app = (Application) qry.list().get(0);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return app;
+	}
+	@Override
+	@Transactional
+	public void assignApplication(Emp_Application empApp) {
+		// TODO Auto-generated method stub
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		System.out.println("Saving Application : " +empApp.getApplnId()+" for employee: "+empApp.getEmpId());
+		currentSession.save(empApp);
+		System.out.println("Saved");
+		
+	}
+	
 }
 
 
