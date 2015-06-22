@@ -622,8 +622,58 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		System.out.println("Saved");
 		
 	}
+	@Override
+	@Transactional
+	public List<TrainingReportBean> generateTrainingReportUnderMe(String emailid) {
+		
+		List<TrainingReportBean> reportBeanList=new ArrayList<TrainingReportBean>();
+		try{
+			
+			Session currentSession = this.getSessionFactory().getCurrentSession();
+			
+			List<Employee> empList = new ArrayList<Employee>();
+			Query qry = currentSession
+					.createQuery(" from Employee e where delmgrid='"+emailid+"'");
+			empList = qry.list();
+			
+			
+			for (Employee employee : empList) {
+				Query qry1=null;
+					 qry1=currentSession.createQuery("from Emp_Trng where empId = ?");
+					 
+					 					 
+					 qry1.setString(0, employee.getEmpId());
+					 
+					
+						
+					List<Emp_Trng> emptrng = qry1.list();
+					if(emptrng.size()!= 0){
+						for (Emp_Trng empTrng: emptrng) {
+							TrainingReportBean trRepBean = new TrainingReportBean();
+							trRepBean.setEmpId(employee.getEmpId());
+							trRepBean.setEmpName(employee.getLname()+","+employee.getFname() );
+							trRepBean.setDmName(employee.getDelMgr());
+							trRepBean.setSdmName(employee.getSrDelMgr());
+							trRepBean.setTowerName(employee.getTower());
+							trRepBean.setTrainingType(empTrng.getTrainingType());
+							trRepBean.setTrainingName(empTrng.getTrainingName());
+							trRepBean.setStartDate(empTrng.getStartDate());
+							trRepBean.setEndDate(empTrng.getEndDate());
+							trRepBean.setTrainingStatus(empTrng.getStatus());
+							
+							reportBeanList.add(trRepBean);
+						}
+					}
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return reportBeanList;
+	}
 	
 }
+	
 
 
 
