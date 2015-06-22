@@ -107,7 +107,7 @@ createEditableSelect(document.forms[0].myText);
 	        	 id="empId<s:property value="%{#status.index}"/>" />
 	        	 
 	        
-			<tr id="cell1"><td width="35%"><input type="text" class="changeFont" value='<s:property value="trainingName" />' readonly="readonly"  
+			<tr id="cell1"><td width="35%"><input type="text" changeFont" value='<s:property value="trainingName" />' readonly="readonly"  
 				name='empTrngs[<s:property value="%{#status.index}"/>].trainingName'
 				id="trainingName<s:property value="%{#status.index}"/>" /></td> 
 			<td><input type="text" class="changeFont" value='<s:property value="trainingType" />' readonly="readonly"   
