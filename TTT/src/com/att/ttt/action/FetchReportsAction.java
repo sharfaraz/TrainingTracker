@@ -22,10 +22,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.att.ttt.entity.Employee;
 import com.att.ttt.entity.TrainingReportBean;
 import com.att.ttt.utility.WebApp;
 import com.att.ttt.constants.TTConstants;
 import com.att.ttt.dao.TrainingTrackerDao;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import java.util.Date;
@@ -78,7 +80,27 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 	private String MGR_ID;
 	private String appId;
 	private String towerName;//for tower
+	private String SdmValue;
+	private String DmValue;
 	
+
+
+
+	public String getSdmValue() {
+		return SdmValue;
+	}
+
+	public void setSdmValue(String sdmValue) {
+		SdmValue = sdmValue;
+	}
+
+	public String getDmValue() {
+		return DmValue;
+	}
+
+	public void setDmValue(String dmValue) {
+		DmValue = dmValue;
+	}
 
 	private String trainingType;
 	private String trainingStatus;
@@ -477,9 +499,25 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 
 	public String fetchReportInExcel()
 	{
+		ServletContext ctx=ServletActionContext.getServletContext();
+		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ctx);
+		TrainingTrackerDao dao =(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
+		
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		String emailId = (String)session.get("email");
+		
+		List<Employee> emp = dao.getUserPresenceList(emailId);
+		
 		String reportLevel = "";
 		String reportLevelValue="";
 		
+		if (trainingStatus.equals("-1")) {
+			trainingStatus="%";
+		}
+		
+		if (trainingType.equals("-1")) {
+			trainingType="%";
+		}
 		
 		System.out.println("Enter into fetchReportInExcel");
 		System.out.println("tower ID :"+towerName);
@@ -490,11 +528,17 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 		System.out.println("End date :"+NewTrainingEndDate );
 		System.out.println("training name selected: "+ trainingName);
 		System.out.println("training status :"+trainingStatus);
+		System.out.println("SdmName: "+SdmValue);
+		System.out.println("DmName :"+DmValue);
 		
 		
 		
 		List<TrainingReportBean> reportBeanList=new ArrayList<TrainingReportBean>();
-		if (towerName != null && (clusterId.equals("-1") || clusterId == null) ){
+		
+		if (towerName=="-1" && SdmValue =="-1" && DmValue=="-1") {
+			System.out.println("my employees");
+		}
+		if ((towerName != null && !towerName.equals("-1") ) && ( clusterId == null || clusterId.equals("-1") ) ){
 		
 			//System.out.println("tower ID :"+towerName);
 			reportLevel=TTConstants.TOWER;
@@ -502,14 +546,14 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 			//System.out.println("reportLevel :"+reportLevel);
 			//System.out.println("reportLevelValue"+reportLevelValue);
 		}
-		else if (towerName != null && clusterId!= null && (MGR_ID.equals("-1") || MGR_ID== null)){
+		else if ((towerName != null && !towerName.equals("-1") )&& clusterId!= null && (MGR_ID.equals("-1") || MGR_ID== null)){
 			//System.out.println("sdm ID :"+clusterId);
 			reportLevel=TTConstants.CLUSTER;
 			reportLevelValue = clusterId;
 			/*System.out.println("reportLevel :"+reportLevel);
 			System.out.println("reportLevelValue"+reportLevelValue);*/
 		}
-		else if (towerName != null && clusterId!= null && MGR_ID != null && (appId== null || appId.equals("-1"))){
+		else if ((towerName != null && !towerName.equals("-1")) && clusterId!= null && MGR_ID != null && (appId== null || appId.equals("-1"))){
 			//System.out.println("dm ID :"+MGR_ID);
 			reportLevel=TTConstants.dmLevel;
 			reportLevelValue = MGR_ID;
@@ -523,6 +567,11 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 			//System.out.println("reportLevel :"+reportLevel);
 			//System.out.println("reportLevelValue"+reportLevelValue);
 		}*/
+		else {
+			reportLevel=TTConstants.dmLevel;
+			System.out.println(emp.get(0).getLname()+", "+emp.get(0).getFname());
+			reportLevelValue=emp.get(0).getLname()+", "+emp.get(0).getFname();
+		}
 		
 		
 		

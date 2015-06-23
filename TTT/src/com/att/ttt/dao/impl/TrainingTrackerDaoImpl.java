@@ -291,7 +291,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 			
 			for (Employee employee : empList) {
 				Query qry1=null;
-					 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=? and trainingName like ? ");
+					 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status like ? and trainingType like ? and trainingName like ? ");
 					 
 					 					 
 					 qry1.setString(0, employee.getEmpId());
@@ -331,7 +331,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 				empList = qry.list();
 				for (Employee employee : empList) {
 					Query qry1=null;
-						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=? and trainingName like ? ");
+						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status like ? and trainingType like ? and trainingName like ? ");
 						 
 						 
 						 qry1.setString(0, employee.getEmpId());
@@ -373,7 +373,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 				System.out.println(empList);
 				for (Employee employee : empList) {
 					Query qry1=null;
-						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status=? and trainingType=? and trainingName like ? ");
+						 qry1=currentSession.createQuery("from Emp_Trng where empId = ? and startDate >= ? AND endDate <= ? and status like ? and trainingType like ? and trainingName like ? ");
 						 
 						// Employee emp = (Employee) qry.list().get(0);
 						 

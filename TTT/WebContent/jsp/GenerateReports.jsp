@@ -33,7 +33,7 @@
 <script type="text/javascript" src="javascript/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="javascript/jquery-ui.js"></script>
 <script type="text/javascript" src="javascript/TableManipulation.js"></script>
- <script language="javascript">   
+ <script>   
  $(function() {
 	 $( "#datepicker" ).datepicker();
 	 });  
@@ -63,14 +63,15 @@ createEditableSelect(document.forms[0].myText);
 			<td>
 				<table>
 	<tr><td>Training Name : </td><td>
-	<sx:autocompleter id="trainingName" list="trainingNameData" name="trainingName" cssClass="changeFont" />
+	<s:select id="trainingName" list="trainingNameData" name="trainingName" headerKey="-1" headerValue="----Select----" cssClass="changeFont" />
 	</td></tr>
 	<tr><td><label id="targetDateLabel">Training Start date : </label></td><td> <s:textfield key="NewTrainingStDate" cssClass="changeFont" id="NewTrainingStDate"  readonly="true" /> </td></tr>
 	<tr>
 	<td><label id="targetDateLabel">Training End date : </label></td><td> <s:textfield key="NewTrainingEndDate" cssClass="changeFont" id="NewTrainingEndDate"  readonly="true"  /> </td></tr>
 	<tr> <td>Training Type : </td><td><s:select id="trainingType" name="trainingType" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="NewTrainingType"/></td></tr>
 	<tr><td>Status : </td><td><s:select name="statusType" id="statusType" name="trainingStatus" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="NewStatus"/></td></tr>
-	<tr><td>Tower : </td><td><s:select id="tower" name="towerName" cssClass="changeFont" list="towerData" headerKey="-1" headerValue="----Select----" onchange= "getSdmForReport()"  /></td></tr>
+	<tr><td>Tower : </td><td><s:select id="tower" name="towerName" cssClass="changeFont" list="towerData" headerKey="-1" headerValue="----Select----" onchange= "getSdmForReport()"  /> [OR] 
+	<input type="submit" value="My Employees" name="reports" onclick="return myEmployeesReport()" class="buttonStyle"/></td></tr>
 	<tr><td><s:div style="clear:both" id="SdmValue" ></s:div></td>
 	<td><s:div  style="clear:both" id="DmValue"></s:div></td>
 	<!-- <td><s:div  style="clear:both" id="AppValue"></s:div></td></tr>  -->
@@ -78,22 +79,15 @@ createEditableSelect(document.forms[0].myText);
 
 </table>
 
-			</td>
-			
-			<td>
-			or
-			</td>
-			<td>
-				<table>
-				<tr><td style="text-align: right;" colspan="2">
-					<a href="fetchReportUnderMe" id="Test">Pull Reports of <br> Resources under me</a>
-				</td></tr>
-				</table>
-			</td>
-			<td>
-</td></tr>
+</tr>
+	
+	
+<tr><td colspan="2" align="left">
 
-<tr><td colspan="4" align="left">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	
 <input type="submit" value="Generate Report" name="reports" onclick="return validateReports();" class="buttonStyle"/>
 	<input type="button" value="Cancel" name="Cancel" onclick="toCancel()" class="buttonStyle" /></td>
 </tr>
@@ -102,13 +96,8 @@ createEditableSelect(document.forms[0].myText);
 
 
 
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 	
-	
-	
-	
-<!-- 	onclick="fetchReports();" <input type="button" value="Generate Report" class="buttonStyle" style="margin-left: 30%;"/>  -->
 	
 
 </s:form>

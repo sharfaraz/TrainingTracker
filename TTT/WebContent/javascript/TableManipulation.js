@@ -379,7 +379,7 @@ function getDmForReport()
 }
 
 
-function fetchReports()
+function myEmployeesReport()
 {
 	
 	var trainingName=document.getElementById('trainingName').value;
@@ -388,49 +388,18 @@ function fetchReports()
 	
 	var trainingEndDate=document.getElementById('NewTrainingEndDate').value;
 	
-	var tower=document.getElementById('tower').value;
 	
-	if(trainingName=="" || trainingStDate=="" || trainingEndDate == "" || tower == "" || tower =="-1")
-		{
-		alert("Error! trainingName , StartDate, EndDate and Tower need to be selected.");
-		return;
-		}
-	var mgrId = document.getElementById('MGR_ID');
-	var mgrIdValue;
-	if (typeof(mgrId) != 'undefined' && mgrId != null)
+	if(trainingName=="" || trainingStDate=="" || trainingEndDate == "" )
 	{
-	  mgrIdValue = mgrId.value;
+	alert("Error!  StartDate and EndDate are mandatory.");
+	return false;
 	}
-	else {
-	  mgrIdValue = "-1";
-	} 
 	
-
-	var QUERYSTRING="trainingName="+trainingName+
-					"&NewTrainingStDate="+trainingStDate+""+
-					"&NewTrainingEndDate="+trainingEndDate+
-					"&trainingType="+document.getElementById('trainingType').value+
-					"&trainingStatus="+document.getElementById('statusType').value+
-					"&towerName="+document.getElementById('tower').value+
-					"&clusterId="+document.getElementById('clusterId').value+
-					"&MGR_ID="+mgrIdValue;
-				
-	alert(QUERYSTRING);
+	document.getElementById('tower').value="-1";
+	document.getElementById('SdmValue').value="-1";
+	document.getElementById('DmValue').value="-1";
 	
-	if (window.XMLHttpRequest)   
-	  { 
-	  xmlhttp=new XMLHttpRequest();   
-	  }   
-	else  
-	  {  
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");   
-	  }   
-	xmlhttp.open("GET","/TTT/FetchReportInExcel.action?"+QUERYSTRING,true);   
-	xmlhttp.send(); 
-	if (xmlhttp.readyState==4 && xmlhttp.status==200)
-	{
-		return xmlhttp.responseText;
-	}
+	return true;
 }
 
 function validateReports() {
@@ -443,11 +412,15 @@ function validateReports() {
 	
 	var tower=document.getElementById('tower').value;
 	
-	if(trainingName=="" || trainingStDate=="" || trainingEndDate == "" || tower == "" || tower =="-1")
+	if(trainingName=="" || trainingStDate=="" || trainingEndDate == "" )
 		{
-		alert("Error! trainingName , StartDate, EndDate and Tower need to be selected.");
+		alert("Error! StartDate and EndDate are mandatory.");
 		return false;
 		}
+	if (tower == "" || tower =="-1") {
+		alert("Specify the selection criteria or click \"My Employees\" option");
+		return false;
+	}
 }
 /*function getAppForReport()
 {
