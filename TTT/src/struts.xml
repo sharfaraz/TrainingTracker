@@ -88,6 +88,16 @@
 			</result>
 		</action>
 		
+		<action name="fetchReportUnderMe" class="com.att.ttt.action.FetchReportsUnderMeAction">
+			<result type="stream" name="success">
+				<param name="contentType">"application/vnd.ms-excel"</param>
+				<param name="contentDisposition">attachment;filename="TrainingReport.xls"</param>
+				<param name="inputName">excelStream</param>
+				<param name="bufferSize">1024</param> 
+			</result>
+		</action>
+		
+		
 		<action name="populateSDM" method="getSdmListForReport"
 			class="com.att.ttt.action.FetchReportsAction">
 			<result name="success">/jsp/SdmForReportGen.jsp</result>
@@ -165,6 +175,13 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">success</result>
 			<result name="failure" type="tiles">error</result>
+		</action>
+		
+		<action name="sendMail" class="com.att.ttt.action.SendMailAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			 <result name="success" type="redirectAction">
+       				 <param name="actionName">viewTrainingFilters</param>
+			</result>
 		</action>
 		
 	</package>

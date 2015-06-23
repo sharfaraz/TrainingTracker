@@ -22,12 +22,33 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/datepicker.css">
 <link rel="stylesheet" type="text/css" href="css/baselayout.css" >
+<link rel="stylesheet" type="text/css" href="css/SummaryView.css" >
 
 <style type="text/css">
+#trainingsTable table {
+	border: 1px solid;
+	border-collapse: collapse;
+}
 
-  tr.spaceUnder > td
-{
-  padding-bottom: 1em;
+#trainingsTable tr td {
+	padding: 0px 0px 0px 0px;
+	height: 0px;
+}
+
+#trainingsTable input {
+	background-color: #F0F0F0;
+	border: none;
+	width: 100%;
+	padding-bottom: 0px;
+}
+
+.btn {
+	background-color: #4F94CD;
+	azimuth: center;
+	width: 100px;
+	height: 30px;
+	color: white;
+	font-weight: bold;
 }
 </style>
 
@@ -80,15 +101,16 @@ createEditableSelect(document.forms[0].myText);
 <s:form action="updateTrainings" name="TrainingsView" id="trainingsGrid">
 	<h2 align="center">Trainings assigned to You</h2>
 	
-	<br>
-	<table id="trainingsTable" width="80%">
+	
+	<table border="0" id="trainingsTable">
 		<thead><tr>
 		 
-			<th width="35%"><b>Training Name</b></th>
-			<th width="15%"><b>Training Type</b></th>
-			<th width="5%"><b>Start Date</b></th>
-			<th width="5%"><b>End Date</b></th>
-			<th width="5%"><b>Status</b></th>
+			<th><b>Training Name</b></th>
+			<th><b>Training Type</b></th>
+			<th><b>Start Date</b></th>
+			<th><b>End Date</b></th>
+			<th><b>Status</b></th>
+			<th><b>Request For<br>Completion</b></th>
 		</tr></thead>
 
 		
@@ -105,51 +127,78 @@ createEditableSelect(document.forms[0].myText);
  	        <input type="text" class="changeFont" value='<s:property value="empId"/>' hidden="hidden"
 	        	 name='empTrngs[<s:property value="%{#status.index}"/>].empId' 
 	        	 id="empId<s:property value="%{#status.index}"/>" />
-	        	 
-	        
-			<tr id="cell1"><td width="35%"><input type="text" changeFont" value='<s:property value="trainingName" />' readonly="readonly"  
-				name='empTrngs[<s:property value="%{#status.index}"/>].trainingName'
-				id="trainingName<s:property value="%{#status.index}"/>" /></td> 
-			<td><input type="text" class="changeFont" value='<s:property value="trainingType" />' readonly="readonly"   
-				name='empTrngs[<s:property value="%{#status.index}"/>].trainingType'
-				id="trainingType<s:property value="%{#status.index}"/>" /></td>
-			<td><input type="text" class="changeFont" value='<s:property value="startDate" />' readonly="readonly"   
-				name='empTrngs[<s:property value="%{#status.index}"/>].startDate'
-				id="startDate<s:property value="%{#status.index}"/>" /></td>
-			<td><input type="text" class="changeFont" value='<s:property value="endDate" />' readonly="readonly"   
-				name='empTrngs[<s:property value="%{#status.index}"/>].endDate'
-				id="endDate<s:property value="%{#status.index}"/>"/></td>
+	        	
 
-			<td><select class="changeFont" 
-				name='empTrngs[<s:property value="%{#status.index}"/>].status'
-				id="status<s:property value="%{#status.index}"/>" >
-				<s:iterator value="statuses" status="stat">
-				
-  				<option value='<s:property value="statuses[#stat.index]"/>' 
-  				<s:if test="statuses[#stat.index]== status"> selected </s:if>  
-  				> 
-  				<s:property value="statuses[#stat.index]"/>
-  				</option>
-  				</s:iterator>
-  				</select> </td>
-  				
-  		<s:if test='endDate < #session.currentDate && status != "Completed"'>
-		<td ><font color="red">*End date passed. Please complete Immediately.</font></td>
-		</s:if>
-		
-		<s:if test='endDate = #session.currentDate && status != "Completed"'>
-		<td ><font color="red">*Last day for completing training</font></td>
-		</s:if>
-		
-		</tr>
+					<tr id="cell1">
+						<td>
+						<s:if test='endDate < #session.currentDate && status != "Completed"'>
+						<input type="text" class="changeFont" style="color: red"
+							value='<s:property value="trainingName"/> '
+							readonly="readonly"
+							name='empTrngs[<s:property value="%{#status.index}"/>].trainingName'
+							id="trainingName<s:property value="%{#status.index}"/>"  />
+						</s:if>	
+						<s:else>
+						<input type="text" class="changeFont"
+							value='<s:property value="trainingName"/>'
+							readonly="readonly"
+							name='empTrngs[<s:property value="%{#status.index}"/>].trainingName'
+							id="trainingName<s:property value="%{#status.index}"/>"  />
+						</s:else>
+							
+						</td>
+						<td><input style="padding-bottom: 0px" type="text" class="changeFont"
+							value='<s:property value="trainingType" />' readonly="readonly"
+							name='empTrngs[<s:property value="%{#status.index}"/>].trainingType'
+							id="trainingType<s:property value="%{#status.index}"/>" /></td>
+						<td><input type="text" class="changeFont"
+							value='<s:property value="startDate" />' readonly="readonly"
+							name='empTrngs[<s:property value="%{#status.index}"/>].startDate'
+							id="startDate<s:property value="%{#status.index}"/>" /></td>
+						<td><input type="text" class="changeFont"
+							value='<s:property value="endDate" />' readonly="readonly"
+							name='empTrngs[<s:property value="%{#status.index}"/>].endDate'
+							id="endDate<s:property value="%{#status.index}"/>" /></td>
 
-		</s:iterator>
+						<td><select class="changeFont"
+							name='empTrngs[<s:property value="%{#status.index}"/>].status'
+							id="status<s:property value="%{#status.index}"/>">
+								<s:iterator value="statuses" status="stat">
+
+									<option value='<s:property value="statuses[#stat.index]"/>'
+										<s:if test="statuses[#stat.index]== status"> selected </s:if>>
+										<s:property value="statuses[#stat.index]" />
+									</option>
+								</s:iterator>
+						</select></td>
+
+					<td>
+					<%-- <s:if test='status == "Completed"'>
+					<input class="changeFont" type="checkbox" name="trng_ids"  class="case" align="middle" value="trainingId" />
+					</s:if>
+					<s:if test='status == "Pending"'>
+					<input class="changeFont" type="checkbox" name="trng_ids"  class="case" align="middle" value="trainingId" disabled="disabled"/>
+					</s:if> --%>
+					<h5 align="center"><a href="#" id="mailLink">  Send Email   </a> </h5>
+					<script>
+					document.getElementById("mailLink").onclick = function() {
+    				window.location = "mailto:bmahable@in.ibm.com?cc=sharfarazbaari@in.ibm.com";
+					}
+					</script>
+					</td>
+
+					</tr>
+
+				</s:iterator>
 
 	</table>
 	<div align="center">
 			<input type="submit" value="Update" id="myBtn" class="buttonStyle" />&nbsp;&nbsp;&nbsp;
 			<input type="reset" value="Cancel" class="buttonStyle"/>
 		</div>
+		
+	<h5 style="color: red">*  - End date passed. Please complete Immediately.</h5>	
+	<h5 style="color: red">** - Last day for completing training.</h5>
 </s:form>
 
 </s:if>

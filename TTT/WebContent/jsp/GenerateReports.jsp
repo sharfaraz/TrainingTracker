@@ -55,7 +55,13 @@ createEditableSelect(document.forms[0].myText);
 <div style="color:blue; ;" id="messageDiv"></div>
 <s:form id="myForm" action="FetchReportInExcel">
 <s:set name="theme" value="'simple'"  scope="page" /> 
-<table>
+
+
+<table cellspacing="10" cellpadding="0" class="dynamicView" id="light">
+		<tr><td colspan="4" align="left"><b>Filter Rows</b></td></tr>
+		<tr>
+			<td>
+				<table>
 	<tr><td>Training Name : </td><td>
 	<sx:autocompleter id="trainingName" list="trainingNameData" name="trainingName" cssClass="changeFont" />
 	</td></tr>
@@ -69,12 +75,39 @@ createEditableSelect(document.forms[0].myText);
 	<td><s:div  style="clear:both" id="DmValue"></s:div></td>
 	<!-- <td><s:div  style="clear:both" id="AppValue"></s:div></td></tr>  -->
 	</tr>
-	</table>
+
+</table>
+
+			</td>
+			
+			<td>
+			or
+			</td>
+			<td>
+				<table>
+				<tr><td style="text-align: right;" colspan="2">
+					<a href="fetchReportUnderMe" id="Test">Pull Reports of <br> Resources under me</a>
+				</td></tr>
+				</table>
+			</td>
+			<td>
+</td></tr>
+
+<tr><td colspan="4" align="left">
+<input type="submit" value="Generate Report" name="reports" onclick="return validateReports();" class="buttonStyle"/>
+	<input type="button" value="Cancel" name="Cancel" onclick="toCancel()" class="buttonStyle" /></td>
+</tr>
+
+</table>
+
+
+
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	
-	<input type="submit" value="Generate Report" name="reports" onclick="return validateReports();" class="buttonStyle" />
-	<input type="button" value="Cancel" name="Cancel" onclick="toCancel()" class="buttonStyle"/>
+	
+	
+	
 <!-- 	onclick="fetchReports();" <input type="button" value="Generate Report" class="buttonStyle" style="margin-left: 30%;"/>  -->
 	
 

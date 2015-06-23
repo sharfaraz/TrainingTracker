@@ -33,6 +33,9 @@ public interface TrainingTrackerDao {
 	List<TrainingReportBean> gererateTrainingReport(String TrainingName, Date trainingStartDate,
 			Date trainingEndDate, String trainingType, String trainingStatus,
 			String reportLevel, String reportLevelValue);
+	
+	List<TrainingReportBean> generateTrainingReportUnderMe(String emailid);
+	
 	List<Emp_Trng> myTrainingsList(String emailId, Date startDate,
 			Date endDate, String trainingType, String status, String level);
 	List<String> getSdmNames();
