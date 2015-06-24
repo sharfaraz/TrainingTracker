@@ -124,9 +124,17 @@
 		</action>
 		
 		<action name="updateTrainings" class="com.att.ttt.action.TrainingsViewAction" method="updateTrainings">
-			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirectAction">
 			<param name="actionName">viewTrainingFilters</param> </result>
+		</action>
+		
+		<action name="updateTrainingStatus" class="com.att.ttt.action.TrainingsViewAction" method="updateTrainingStatus">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirectAction">
+			<param name="actionName">viewTrainingFilters</param>
+        	<param name="trainingId">${trainingId}</param>
+        	<param name="empId">${empId}</param>
+			</result>
 		</action>
 		
 		<action name="trainingsUpload" class="com.att.ttt.action.TrainingsUpload">

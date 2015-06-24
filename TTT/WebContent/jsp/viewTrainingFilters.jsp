@@ -15,24 +15,30 @@
 <html>
 <head>
 <sx:head/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Select Filters</title>
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-<meta content="utf-8" http-equiv="encoding">
-<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/datepicker.css">
-<link rel="stylesheet" type="text/css" href="css/baselayout.css" >
-<link rel="stylesheet" type="text/css" href="css/SummaryView.css" >
+
+<link rel="stylesheet" type="text/css" href="css/SummaryView.css" > 
 
 <style type="text/css">
+
 #trainingsTable table {
-	border: 1px solid;
-	border-collapse: collapse;
+	 margin: 0px 0px 0px 0px;
+	 display: none;
+	 border-collapse: separate;
+ 	 background: none;
+ 	 -moz-border-radius: 0px;
+ 	 -webkit-border-radius: 0px;
+  		border-radius: 0px;
+ 	-moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  	-webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  	padding: 0px 0px 0px 0px !important;
 }
 
 #trainingsTable tr td {
 	padding: 0px 0px 0px 0px;
-	height: 0px;
+	
 }
 
 #trainingsTable input {
@@ -58,13 +64,31 @@
 <script type="text/javascript" src="javascript/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="javascript/jquery-ui.js"></script>
 <script type="text/javascript" src="javascript/TableManipulation.js"></script>
-<script language="javascript">   
+<script type="text/javascript">   
  $(function() {
 	 $( "#datepicker" ).datepicker();
 	 });  
 
 createEditableSelect(document.forms[0].myText);
- </script>
+
+function updateStatus(){
+	alert("An email will be sent to respective person for Approval. Status will be changed to Completed.");
+	var params = "";
+	$(".case").each(function(){
+		if(this.checked){
+			params += "trainingId="+this.value+"&";
+			
+		}
+	});
+	params = params.substring(0,params.length-1);
+	javascript:location.href='updateTrainings?'+params;
+	
+	window.open = "mailto:bmahable@in.ibm.com?cc=sharfarazbaari@in.ibm.com?subject=subject&body=body";  
+	
+}
+
+</script>
+
  
  <script language="javascript">
  function expired() {
@@ -98,10 +122,10 @@ createEditableSelect(document.forms[0].myText);
 
 
 <s:if test="empTrngs.size() > 0" >
-<s:form action="updateTrainings" name="TrainingsView" id="trainingsGrid">
+<s:form  name="TrainingsView" id="trainingsGrid">
+	<s:set name="theme" value="'simple'" scope="page" />
 	<h2 align="center">Trainings assigned to You</h2>
-	
-	
+
 	<table border="0" id="trainingsTable">
 		<thead><tr>
 		 
@@ -116,9 +140,10 @@ createEditableSelect(document.forms[0].myText);
 		
 		<s:iterator value="empTrngs" status="status">
 		
-		
 
-	        <input type="text" class="changeFont" value='<s:property value="trainingId"/>' hidden="hidden"
+					<tr>
+						<td>
+						    <input type="text" class="changeFont" value='<s:property value="trainingId"/>' hidden="hidden"
 	        	 name='empTrngs[<s:property value="%{#status.index}"/>].trainingId' 
 	        	 id="trainingId<s:property value="%{#status.index}"/>" />
 	        <input type="text" class="changeFont" value='<s:property value="etId"/>' hidden="hidden"
@@ -126,11 +151,8 @@ createEditableSelect(document.forms[0].myText);
 	        	 id="etId<s:property value="%{#status.index}"/>" />
  	        <input type="text" class="changeFont" value='<s:property value="empId"/>' hidden="hidden"
 	        	 name='empTrngs[<s:property value="%{#status.index}"/>].empId' 
-	        	 id="empId<s:property value="%{#status.index}"/>" />
-	        	
-
-					<tr id="cell1">
-						<td>
+	        	 id="empId<s:property value="%{#status.index}"/>" /> 
+	        	 
 						<s:if test='endDate < #session.currentDate && status != "Completed"'>
 						<input type="text" class="changeFont" style="color: red"
 							value='<s:property value="trainingName"/> '
@@ -160,7 +182,12 @@ createEditableSelect(document.forms[0].myText);
 							name='empTrngs[<s:property value="%{#status.index}"/>].endDate'
 							id="endDate<s:property value="%{#status.index}"/>" /></td>
 
-						<td><select class="changeFont"
+						<td>
+						<input type="text" class="changeFont"
+							value='<s:property value="status" />' readonly="readonly"
+							name='empTrngs[<s:property value="%{#status.index}"/>].status'
+							id="status<s:property value="%{#status.index}"/>" /></td>
+						<%-- <select class="changeFont"
 							name='empTrngs[<s:property value="%{#status.index}"/>].status'
 							id="status<s:property value="%{#status.index}"/>">
 								<s:iterator value="statuses" status="stat">
@@ -170,7 +197,7 @@ createEditableSelect(document.forms[0].myText);
 										<s:property value="statuses[#stat.index]" />
 									</option>
 								</s:iterator>
-						</select></td>
+						</select></td> --%>
 
 					<td>
 					<%-- <s:if test='status == "Completed"'>
@@ -179,12 +206,15 @@ createEditableSelect(document.forms[0].myText);
 					<s:if test='status == "Pending"'>
 					<input class="changeFont" type="checkbox" name="trng_ids"  class="case" align="middle" value="trainingId" disabled="disabled"/>
 					</s:if> --%>
-					<h5 align="center"><a href="#" id="mailLink">  Send Email   </a> </h5>
+					<input type="checkbox" name="trainingId"  class="case" value="<s:property value="trainingId" />" />
+					<%-- <h5 align="center"><a href="updateTrainingStatus" id="mailLink">  Send Email   </a> </h5>
 					<script>
 					document.getElementById("mailLink").onclick = function() {
-    				window.location = "mailto:bmahable@in.ibm.com?cc=sharfarazbaari@in.ibm.com";
+						alert("An email will be sent to respective person for Approval. Status will be changed to Completed.");
+					javascript:location.href='updateTrainingStatus?'+<s:property value="trainingId" />&<s:property value="empId" />;	
+    			//	window.location = "mailto:bmahable@in.ibm.com?cc=sharfarazbaari@in.ibm.com?subject=subject&body=body";
 					}
-					</script>
+					</script> --%>
 					</td>
 
 					</tr>
@@ -193,7 +223,7 @@ createEditableSelect(document.forms[0].myText);
 
 	</table>
 	<div align="center">
-			<input type="submit" value="Update" id="myBtn" class="buttonStyle" />&nbsp;&nbsp;&nbsp;
+			<input type="button" value ="Update" title="Update" id="myBtn" class="buttonStyle" onclick="updateStatus();" />&nbsp;&nbsp;&nbsp;
 			<input type="reset" value="Cancel" class="buttonStyle"/>
 		</div>
 		

@@ -210,6 +210,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	@Override
 	@Transactional
 	public void updateEmpTrng(Emp_Trng empTrng) {
+		empTrng.setStatus("Requested for Completion");
 		// TODO Auto-generated method stub
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		System.out.println("Updating EmpTrng");
@@ -670,6 +671,21 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 			e.printStackTrace();
 		}
 		return reportBeanList;
+	}
+	
+	@Transactional
+	@Override
+	public List<Emp_Trng> myTrainingsList(String trainingId, String emailId) {
+		List<Emp_Trng> emptrng1 =  new ArrayList<Emp_Trng>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		String empId = (String) currentSession.createQuery("select empId from Employee where emailId = '"+emailId+"'").list().get(0);
+		System.out.println("fetched empId: "+empId);
+		Query qry = currentSession
+				.createQuery(" from Emp_Trng where empId = ? and trainingId = ?");
+		qry.setString(0, empId);
+		qry.setString(1, trainingId);
+		emptrng1 = qry.list();
+		return emptrng1;
 	}
 	
 }

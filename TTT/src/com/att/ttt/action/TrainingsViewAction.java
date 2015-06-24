@@ -58,7 +58,26 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 	private Date selTrainingStDate;
 	private Date selTrainingEndDate;
 	private String selLevel;
-	
+	private String[] trainingId;
+	private String empId;
+
+
+	public String[] getTrainingId() {
+		return trainingId;
+	}
+
+	public void setTrainingId(String[] trainingId) {
+		this.trainingId = trainingId;
+	}
+
+	public String getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+
 	public Date getSelTrainingStDate() {
 		return selTrainingStDate;
 	}
@@ -162,17 +181,34 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ctx);
 		TrainingTrackerDao dao =(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
 		System.out.println("dao created successfully"+empTrngs.size());
+		Map<String, Object> session1 = ActionContext.getContext().getSession();
+		String emailId = (String)session1.get("email");
+		for(String str : trainingId){
+			System.out.println("STR" + str+empId);
+			List<Emp_Trng> et = dao.myTrainingsList(str, emailId);
+			et.get(0).setStatus("Request For Completion");
+			dao.updateEmpTrng(et.get(0));
+			/*}
 		
 		Iterator<Emp_Trng> et = empTrngs.iterator();
 		while (et.hasNext()) {
 			Emp_Trng empT = et.next();
 			System.out.println("we have values to save now");
 			dao.updateEmpTrng(empT);
-			sessionMap.put("successMsg", "Trainings updated successfully.");
+			sessionMap.put("successMsg", "Trainings updated successfully.");*/
 			
 		}
 		return "success";
 	}
+	/*public String updateTrainingStatus() {
+		//System.out.println(trainingId + empId);
+		ServletContext ctx=ServletActionContext.getServletContext();
+		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ctx);
+		TrainingTrackerDao dao =(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
+		dao.updateStatus(trainingId, empId);
+		
+		return "success";
+	}*/
 	
 	public String displayFilters(){
 		
@@ -195,7 +231,7 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 			
 			FilterStatus.add(TTConstants.PENDING);
 			FilterStatus.add(TTConstants.COMPLETED);
-			//FilterStatus.add(TTConstants.IN_PROGRESS);
+			FilterStatus.add(TTConstants.REQUESTED_FOR_COMPLETION);
 			
 			FilterLevel.add(TTConstants.ACCOUNT);
 			FilterLevel.add(TTConstants.APPLICATION);
@@ -203,7 +239,7 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 			FilterLevel.add(TTConstants.TOWER);
 
 			statuses.add(TTConstants.PENDING);
-			//statuses.add(TTConstants.IN_PROGRESS);
+			statuses.add(TTConstants.REQUESTED_FOR_COMPLETION);
 			statuses.add(TTConstants.COMPLETED);
 			
 			if(selTrainingStatus == null){
@@ -227,5 +263,8 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 		
 		return "populate";
 	}
+
+
+
 
 }

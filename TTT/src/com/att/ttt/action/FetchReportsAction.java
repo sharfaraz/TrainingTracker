@@ -536,7 +536,9 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 		List<TrainingReportBean> reportBeanList=new ArrayList<TrainingReportBean>();
 		
 		if (towerName=="-1" && SdmValue =="-1" && DmValue=="-1") {
-			System.out.println("my employees");
+			reportLevel=TTConstants.dmLevel;
+			System.out.println(emp.get(0).getLname()+", "+emp.get(0).getFname());
+			reportLevelValue=emp.get(0).getLname()+", "+emp.get(0).getFname();
 		}
 		if ((towerName != null && !towerName.equals("-1") ) && ( clusterId == null || clusterId.equals("-1") ) ){
 		

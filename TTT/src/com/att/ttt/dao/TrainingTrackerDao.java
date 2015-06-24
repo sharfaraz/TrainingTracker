@@ -52,5 +52,6 @@ public interface TrainingTrackerDao {
 	public List<String> myAppsList( String empId);
 	public Application getAppFromAppName(String appName);
 	public void assignApplication(Emp_Application empApp);
+	public List<Emp_Trng> myTrainingsList(String trainingId, String emailId);
 
 }
