@@ -35,6 +35,7 @@ public class Trainings {
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
+	private String emailContact;
 	
 	
 	public Integer getTrainingId() {
@@ -92,6 +93,12 @@ public class Trainings {
 	}
 	public void setTrainingMode(String trainingMode) {
 		this.trainingMode = trainingMode;
+	}
+	public String getEmailContact() {
+		return emailContact;
+	}
+	public void setEmailContact(String emailContact) {
+		this.emailContact = emailContact;
 	}
 
 }

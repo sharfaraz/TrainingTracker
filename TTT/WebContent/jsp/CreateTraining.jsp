@@ -54,7 +54,7 @@ createEditableSelect(document.forms[0].myText);
 <s:form id="myform">
 <s:set name="theme" value="'simple'"  scope="page" /> 
 	<table>
-	
+	<tr>
 	<tr><td >Training Name : </td><td><s:textfield id="NewTrainingName" cssClass="changeFont" /></td> </tr>
 	<tr> <td>Training Type : </td><td ><s:select id="trainingType" headerKey="" headerValue="----Select----" list="NewTrainingType" cssClass="changeFont"  /></td></tr>
 	<tr> <td>Training Mode : </td><td><s:select id="trainingMode" headerKey="" headerValue="----Select----" list="NewTrainingMode" cssClass="changeFont" /></td></tr>
@@ -66,12 +66,15 @@ createEditableSelect(document.forms[0].myText);
 	<td><label id="targetDateLabel">Training Start date : </label></td><td> <s:textfield key="NewTrainingStDate" cssClass="changeFont" id="NewTrainingStDate"  readonly="true" /> </td>
 	<tr>
 	<td><label id="targetDateLabel">Training End date : </label></td><td> <s:textfield key="NewTrainingEndDate" cssClass="changeFont" id="NewTrainingEndDate"  readonly="true" /> </td>
+	<tr>
+	<td>Email Contact : </td><td> <s:textfield cssClass="changeFont" id="EmailContact" placeholder="xxxx@in.ibm.com" /> </td>
+	<tr>
 	</table>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	
-	<input type="button" value="Create" onclick="createTraining();" class="buttonStyle2" style="margin-left: 30%;"/>
-	<input type="button"  value="CANCEL" name="Cancel" onclick="toCancel()" class="buttonStyle2"/>
+	<input type="button" value="Create" onclick="createTraining();" class="buttonStyle2" style="margin-left: 35%;"/>
+	<input type="button"  value="Cancel" name="Cancel" onclick="toCancel()" class="buttonStyle2"/>
 	
 
 </s:form>

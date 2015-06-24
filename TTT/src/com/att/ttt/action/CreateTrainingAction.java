@@ -39,6 +39,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	private String NewTrainingEndDt;
 	private String NewExtendedDt;
 	private ArrayList<String> NewTrainingMode = new ArrayList<String>();
+	private String EmailContact;
 	
 
 	//private String TrainingTypeData = "Mandatory,Optional";
@@ -277,19 +278,22 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	  training.setLevelName(assignedKey);
 	  training.setStartDate(StringtoDate(NewTrainingStDt));
 	  training.setEndDate(StringtoDate(NewTrainingEndDt));
-	  
-	  
+	  training.setEmailContact(EmailContact);
+	  System.out.println(training);
 	  trainingOperation.addTraining(training);
+	  
 	  
 	  if (trainingType.equals("Mandatory")) {
 
 		    //empTrng.setEmpId("05487M");
+		
 			empTrng.setTrainingId(training.getTrainingId());
 			empTrng.setStartDate(training.getStartDate());
 			empTrng.setEndDate(training.getEndDate());
 			empTrng.setStatus(TTConstants.PENDING);
 			empTrng.setTrainingName(training.getTrainingName());
 			empTrng.setTrainingType(training.getTrainingType());
+			empTrng.setEmailContact(training.getEmailContact());
 			//empTrng.setEtId("2");
 			
 			List<String> employeeList = trainingOperation.getEmployees(training.getLevelName(), training.getLevelId());
@@ -353,5 +357,13 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 
 		return convertDate;
 
+	}
+
+	public String getEmailContact() {
+		return EmailContact;
+	}
+
+	public void setEmailContact(String emailContact) {
+		EmailContact = emailContact;
 	}
 }

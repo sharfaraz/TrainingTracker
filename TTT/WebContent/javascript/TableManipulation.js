@@ -33,6 +33,8 @@ function createTraining()
 	
 	var assignedType=document.getElementById('assignedType').value;
 	
+	var emailContact=document.getElementById('EmailContact').value;
+	
 	
 	if(trainingName=="" || trainingType=="" || trainingCategory == "" || trainingMode == "")
 		{
@@ -77,7 +79,8 @@ function createTraining()
 					"&NewTrainingStDt="+startDate+
 					"&NewTrainingEndDt="+endDate+
 					"&assignedKey="+assignedKey+
-					"&trainingMode="+trainingMode;
+					"&trainingMode="+trainingMode+
+					"&EmailContact="+emailContact;
 	//alert("QUERYSTRING"+QUERYSTRING);
 	// document.getElementById("wait_side").style.display="block";
 	if (window.XMLHttpRequest)   

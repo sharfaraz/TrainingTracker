@@ -30,6 +30,7 @@ public class Emp_Trng {
 	private String trainingType;
 	private String delMgr;
 	private String srDelMgr;
+	private String emailContact;
 	
 	
 
@@ -92,6 +93,12 @@ public class Emp_Trng {
 	}
 	public void setSrDelMgr(String srDelMgr) {
 		this.srDelMgr = srDelMgr;
+	}
+	public String getEmailContact() {
+		return emailContact;
+	}
+	public void setEmailContact(String emailContact) {
+		this.emailContact = emailContact;
 	}
 	
 	
