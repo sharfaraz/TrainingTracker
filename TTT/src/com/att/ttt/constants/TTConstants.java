@@ -3,6 +3,7 @@ package com.att.ttt.constants;
 public class TTConstants {
 
 	
+	public static String REQUESTED_FOR_COMPLETION = "Requested for Completion";
 	public static String CLUSTER="SDM/CLUSTER";
 	public static String APPLICATION="APPLICATION";
 	public static String TOWER="TOWER";
