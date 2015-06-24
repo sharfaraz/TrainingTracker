@@ -19,6 +19,7 @@ response.setDateHeader ("Expires", -1);
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/datepicker.css">
 <link rel="stylesheet" type="text/css" href="css/baselayout.css" >
+<link rel="stylesheet" type="text/css" href="css/buttons.css" >
 
 <style type="text/css">
 
@@ -69,8 +70,8 @@ createEditableSelect(document.forms[0].myText);
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	
-	<input type="button" value="Create" onclick="createTraining();" class="buttonStyle" style="margin-left: 30%;"/>
-	<input type="button"  value="CANCEL" name="Cancel" onclick="toCancel()" class="buttonStyle"/>
+	<input type="button" value="Create" onclick="createTraining();" class="buttonStyle2" style="margin-left: 30%;"/>
+	<input type="button"  value="CANCEL" name="Cancel" onclick="toCancel()" class="buttonStyle2"/>
 	
 
 </s:form>

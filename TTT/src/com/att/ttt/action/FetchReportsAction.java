@@ -338,11 +338,11 @@ public class FetchReportsAction extends ActionSupport  implements SessionAware{
 		
 		trainingNameData = trDao.getAllTrainingsName();
 		
-		NewTrainingType.add("Mandatory");
-		NewTrainingType.add("Optional");
-		
-		NewStatus.add("Completed");
-		NewStatus.add("Pending");
+		NewTrainingType.add(TTConstants.MANDATORY);
+		NewTrainingType.add(TTConstants.OPTIONAL);
+		NewStatus.add(TTConstants.PENDING);
+		NewStatus.add(TTConstants.COMPLETED);
+		NewStatus.add(TTConstants.REQUESTED_FOR_COMPLETION);
 		
 		System.out.println("tower size inside execute() :"+towerData.size());
 		return "populate";

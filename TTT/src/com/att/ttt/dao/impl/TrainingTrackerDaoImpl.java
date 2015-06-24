@@ -675,7 +675,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	
 	@Transactional
 	@Override
-	public List<Emp_Trng> myTrainingsList(String trainingId, String emailId) {
+	public List<Emp_Trng> myTrainingsList(Integer trainingId, String emailId) {
 		List<Emp_Trng> emptrng1 =  new ArrayList<Emp_Trng>();
 		Session currentSession = this.getSessionFactory().getCurrentSession();
 		String empId = (String) currentSession.createQuery("select empId from Employee where emailId = '"+emailId+"'").list().get(0);
@@ -683,7 +683,7 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		Query qry = currentSession
 				.createQuery(" from Emp_Trng where empId = ? and trainingId = ?");
 		qry.setString(0, empId);
-		qry.setString(1, trainingId);
+		qry.setInteger(1, trainingId);
 		emptrng1 = qry.list();
 		return emptrng1;
 	}

@@ -41,7 +41,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 	private ArrayList<String> NewTrainingMode = new ArrayList<String>();
 	
 
-	private String TrainingTypeData = "Mandatory,Optional";
+	//private String TrainingTypeData = "Mandatory,Optional";
 	private String CategoryTypedata = "L&K,External,Internal,AT&T Academy,Other";
 
 	private ArrayList<String> dataList;
@@ -148,13 +148,7 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 		NewExtendedDt = newExtendedDt;
 	}
 
-	public String getTrainingTypeData() {
-		return TrainingTypeData;
-	}
 
-	public void setTrainingTypeData(String trainingTypeData) {
-		TrainingTypeData = trainingTypeData;
-	}
 
 	public String getCategoryTypedata() {
 		return CategoryTypedata;
@@ -314,22 +308,23 @@ public class CreateTrainingAction extends ActionSupport implements SessionAware 
 
 	public String execute() {
 
-			AssignedTo.add(TTConstants.ACCOUNT);
-			AssignedTo.add(TTConstants.TOWER);
-			AssignedTo.add(TTConstants.CLUSTER);
-			AssignedTo.add(TTConstants.APPLICATION);
+		AssignedTo.add(TTConstants.ACCOUNT);
+		AssignedTo.add(TTConstants.TOWER);
+		AssignedTo.add(TTConstants.CLUSTER);
+		AssignedTo.add(TTConstants.APPLICATION);
+		setAssignedTo(AssignedTo);
 
-		NewTrainingType = populate(TrainingTypeData);
+		NewTrainingType.add(TTConstants.MANDATORY);
+		NewTrainingType.add(TTConstants.OPTIONAL);
 		setNewTrainingType(NewTrainingType);
+		
 		NewCategoryType = populate(CategoryTypedata);
 		setNewCategoryType(NewCategoryType);
 
-		setAssignedTo(AssignedTo);
-		
 		NewTrainingMode.add(TTConstants.ONLINE);
 		NewTrainingMode.add(TTConstants.CLASSROOM);
-		
 		setNewTrainingMode(NewTrainingMode);
+		
 		return "populate";
 	}
 

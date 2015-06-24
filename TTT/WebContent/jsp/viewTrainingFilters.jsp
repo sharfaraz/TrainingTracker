@@ -19,6 +19,7 @@
 <title>Select Filters</title>
 
 <link rel="stylesheet" type="text/css" href="css/SummaryView.css" > 
+<link rel="stylesheet" type="text/css" href="css/buttons.css" >
 
 <style type="text/css">
 
@@ -81,9 +82,10 @@ function updateStatus(){
 		}
 	});
 	params = params.substring(0,params.length-1);
-	javascript:location.href='updateTrainings?'+params;
+	window.location.href = "mailto:bmahable@in.ibm.com?cc=sharfarazbaari@in.ibm.com?subject=subject&body=body";
+	window:location.href='updateTrainings?'+params;
 	
-	window.open = "mailto:bmahable@in.ibm.com?cc=sharfarazbaari@in.ibm.com?subject=subject&body=body";  
+	  
 	
 }
 
@@ -111,7 +113,7 @@ function updateStatus(){
 <td>Training Type : </td><td ><s:select id="trainingType" name="selTrainingType" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="FilterTrainingType"  /></td>
 <td>Status : </td><td><s:select id="statusType" name="selTrainingStatus" cssClass="changeFont"  list="FilterStatus"/></td>
 <%-- <td>Level : </td><td><s:select id="level" name="selLevel" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="FilterLevel" /> </td> --%>
-<td><input type="submit" value="Apply Filter" class="buttonStyle" /></td></tr>
+<td><input type="submit" value="Apply Filter" class="buttonStyle2" /></td></tr>
 </table>
 </s:form>
 
@@ -125,6 +127,7 @@ function updateStatus(){
 <s:form  name="TrainingsView" id="trainingsGrid">
 	<s:set name="theme" value="'simple'" scope="page" />
 	<h2 align="center">Trainings assigned to You</h2>
+
 
 	<table border="0" id="trainingsTable">
 		<thead><tr>
@@ -140,9 +143,10 @@ function updateStatus(){
 		
 		<s:iterator value="empTrngs" status="status">
 		
-
+				
 					<tr>
-						<td>
+					
+						<td width=300>
 						    <input type="text" class="changeFont" value='<s:property value="trainingId"/>' hidden="hidden"
 	        	 name='empTrngs[<s:property value="%{#status.index}"/>].trainingId' 
 	        	 id="trainingId<s:property value="%{#status.index}"/>" />
@@ -223,8 +227,8 @@ function updateStatus(){
 
 	</table>
 	<div align="center">
-			<input type="button" value ="Update" title="Update" id="myBtn" class="buttonStyle" onclick="updateStatus();" />&nbsp;&nbsp;&nbsp;
-			<input type="reset" value="Cancel" class="buttonStyle"/>
+			<input type="button" value ="Update" title="Update" id="myBtn" class="buttonStyle2" onclick="updateStatus();" />&nbsp;&nbsp;&nbsp;
+			<input type="reset" value="Cancel" class="buttonStyle2"/>
 		</div>
 		
 	<h5 style="color: red">*  - End date passed. Please complete Immediately.</h5>	

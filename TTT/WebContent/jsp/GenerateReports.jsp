@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/datepicker.css">
 <link rel="stylesheet" type="text/css" href="css/baselayout.css" >
+<link rel="stylesheet" type="text/css" href="css/buttons.css" >
 
 <style type="text/css">
 
@@ -71,7 +72,7 @@ createEditableSelect(document.forms[0].myText);
 	<tr> <td>Training Type : </td><td><s:select id="trainingType" name="trainingType" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="NewTrainingType"/></td></tr>
 	<tr><td>Status : </td><td><s:select name="statusType" id="statusType" name="trainingStatus" cssClass="changeFont" headerKey="-1" headerValue="----Select----" list="NewStatus"/></td></tr>
 	<tr><td>Tower : </td><td><s:select id="tower" name="towerName" cssClass="changeFont" list="towerData" headerKey="-1" headerValue="----Select----" onchange= "getSdmForReport()"  /> [OR] 
-	<input type="submit" value="My Employees" name="reports" onclick="return myEmployeesReport()" class="buttonStyle"/></td></tr>
+	<input type="submit" value="My Employees" name="reports" onclick="return myEmployeesReport()" class="buttonStyle2"/></td></tr>
 	<tr><td><s:div style="clear:both" id="SdmValue" ></s:div></td>
 	<td><s:div  style="clear:both" id="DmValue"></s:div></td>
 	<!-- <td><s:div  style="clear:both" id="AppValue"></s:div></td></tr>  -->
@@ -88,8 +89,8 @@ createEditableSelect(document.forms[0].myText);
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	
 	
-<input type="submit" value="Generate Report" name="reports" onclick="return validateReports();" class="buttonStyle"/>
-	<input type="button" value="Cancel" name="Cancel" onclick="toCancel()" class="buttonStyle" /></td>
+<input type="submit" value="Generate Report" name="reports" onclick="return validateReports();" class="buttonStyle2"/>
+	<input type="button" value="Cancel" name="Cancel" onclick="toCancel()" class="buttonStyle2" /></td>
 </tr>
 
 </table>

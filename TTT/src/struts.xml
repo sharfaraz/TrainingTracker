@@ -88,15 +88,6 @@
 			</result>
 		</action>
 		
-		<action name="fetchReportUnderMe" class="com.att.ttt.action.FetchReportsUnderMeAction">
-			<result type="stream" name="success">
-				<param name="contentType">"application/vnd.ms-excel"</param>
-				<param name="contentDisposition">attachment;filename="TrainingReport.xls"</param>
-				<param name="inputName">excelStream</param>
-				<param name="bufferSize">1024</param> 
-			</result>
-		</action>
-		
 		
 		<action name="populateSDM" method="getSdmListForReport"
 			class="com.att.ttt.action.FetchReportsAction">

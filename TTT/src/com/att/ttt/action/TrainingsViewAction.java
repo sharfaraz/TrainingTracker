@@ -58,15 +58,17 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 	private Date selTrainingStDate;
 	private Date selTrainingEndDate;
 	private String selLevel;
-	private String[] trainingId;
+	private Integer[] trainingId;
 	private String empId;
 
 
-	public String[] getTrainingId() {
+	
+
+	public Integer[] getTrainingId() {
 		return trainingId;
 	}
 
-	public void setTrainingId(String[] trainingId) {
+	public void setTrainingId(Integer[] trainingId) {
 		this.trainingId = trainingId;
 	}
 
@@ -183,10 +185,10 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 		System.out.println("dao created successfully"+empTrngs.size());
 		Map<String, Object> session1 = ActionContext.getContext().getSession();
 		String emailId = (String)session1.get("email");
-		for(String str : trainingId){
-			System.out.println("STR" + str+empId);
-			List<Emp_Trng> et = dao.myTrainingsList(str, emailId);
-			et.get(0).setStatus("Request For Completion");
+		for(Integer i : trainingId){
+			System.out.println("STR" + i+empId);
+			List<Emp_Trng> et = dao.myTrainingsList(i, emailId);
+			et.get(0).setStatus(TTConstants.REQUESTED_FOR_COMPLETION);
 			dao.updateEmpTrng(et.get(0));
 			/*}
 		

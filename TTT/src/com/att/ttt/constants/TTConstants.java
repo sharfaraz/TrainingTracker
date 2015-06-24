@@ -20,6 +20,10 @@ public class TTConstants {
 	public static String COMPLETED="Completed";
 	public static String IN_PROGRESS="In Progress";
 	
+    public static String MANDATORY="Mandatory";
+    public static String OPTIONAL="Optional";
+   
+	
 	
 	
 	//sys access level
