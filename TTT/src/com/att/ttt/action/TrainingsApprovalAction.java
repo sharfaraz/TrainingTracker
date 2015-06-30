@@ -154,6 +154,8 @@ public class TrainingsApprovalAction extends ActionSupport implements SessionAwa
 			dao.updateTrainingToComplete(trngId);
 		}
 		
+		sessionMap.put("successMsg", "Successfully updated to Complete");
+		
 		return "success";
 	}
 

@@ -39,7 +39,7 @@
 		params += "trainingId=" + trainingId + "&";
 		params = params.substring(0, params.length - 1);
 		window:location.href = 'updateTrainingsComplete?' + params;
-		alert("done");
+		alert("Training Marked as Complete");
 	}
 </script>
 
@@ -118,5 +118,10 @@
 			</table>
 		</s:form>
 	</s:if>
+	<%
+		Map session2 = (Map) ActionContext.getContext().get("session");
+		session2.put("successMsg", "");
+		session2.put("TrainingsApprovalMsg", "");
+	%>
 </body>
 </html>
