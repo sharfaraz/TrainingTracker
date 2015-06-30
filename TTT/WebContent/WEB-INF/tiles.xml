@@ -112,5 +112,10 @@
       <put-attribute name="body"   value="/jsp/assignApplications.jsp"/>      
   </definition>
   
+  <definition name="viewTrainingsToBeApproved" extends="baseLayout">
+      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="body"   value="/jsp/trainingsToBeApproved.jsp"/>      
+  </definition>
+  
   
 </tiles-definitions>

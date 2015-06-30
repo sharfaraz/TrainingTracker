@@ -25,6 +25,7 @@ response.setDateHeader ("Expires", -1);
 	
 	<s:set name="superUser" value="#session.isSU"></s:set>
 	<s:set name="delMgr" value="#session.isDM"></s:set>
+	<s:set name="trngApprover" value="#session.isTA"></s:set>
 	<s:set name="userName" value="#session.userName"></s:set>
 	
 <TABLE width="100%" border="0" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
@@ -64,6 +65,14 @@ response.setDateHeader ("Expires", -1);
       			<li><a href="assignApplications" >Assign Applications</a></li>		 
      		</ul> 
      	
+		</li>
+		</s:if>
+		<s:if test="%{#trngApprover == \"A\"}">
+		<li>
+		<a>Approvals</a>
+		<ul>
+				<li><a href="trainingApprovals">Approve Training Completed</a></li>
+		</ul>
 		</li>
 		</s:if>
 		<li><a href="contactUsLink">Contact Us</a></li>

@@ -21,42 +21,6 @@
 <link rel="stylesheet" type="text/css" href="css/SummaryView.css">
 <link rel="stylesheet" type="text/css" href="css/buttons.css">
 
-<style type="text/css">
-#trainingsTable table {
-	margin: 0px 0px 0px 0px;
-	display: none;
-	border-collapse: separate;
-	background: none;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	border-radius: 0px;
-	-moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-	-webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-	padding: 0px 0px 0px 0px !important;
-}
-
-#trainingsTable tr td {
-	padding: 0px 0px 0px 0px;
-}
-
-#trainingsTable input {
-	background-color: #F0F0F0;
-	border: none;
-	width: 100%;
-	padding-bottom: 0px;
-}
-
-.btn {
-	background-color: #4F94CD;
-	azimuth: center;
-	width: 100px;
-	height: 30px;
-	color: white;
-	font-weight: bold;
-}
-</style>
-
 <script type="text/javascript" src="javascript/jquery-1.2.6.min.js"></script>
 <script type="text/javascript"
 	src="javascript/jquery-ui-personalized-1.5.2.packed.js"></script>
@@ -176,7 +140,7 @@
 						<th><b>Start Date</b></th>
 						<th><b>End Date</b></th>
 						<th><b>Status</b></th>
-						<th><b>Request For<br>Completion</b></th>
+						<th><b>Action</b></th>
 						
 					</tr>
 				</thead>
@@ -235,8 +199,8 @@
 
 						<td>
 						<input type="submit" title="Update"
-							id="btn<s:property value="%{#status.index}"/>" value="Update"
-							class="buttonStyle"
+							id="btn<s:property value="%{#status.index}"/>" value="Request for completion"
+							class="buttonStyle2"
 							onclick="updateStatus('<s:property value="trainingId" />', '<s:property value="emailContact" />');" />
 						</td>
 

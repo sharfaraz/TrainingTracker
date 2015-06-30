@@ -183,6 +183,19 @@
 			</result>
 		</action>
 		
+		<action name="trainingApprovals" class="com.att.ttt.action.TrainingsApprovalAction" method="displayTrainings">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="populate" type="tiles">viewTrainingsToBeApproved</result>
+		</action>
+		
+		<action name="updateTrainingsComplete" class="com.att.ttt.action.TrainingsApprovalAction" method="updateTrainingsCompleted">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirectAction">
+			<param name="actionName">trainingApprovals</param>
+        	<param name="trainingId">${trainingId}</param>
+        	</result>
+		</action>
+		
 	</package>
 
 </struts>

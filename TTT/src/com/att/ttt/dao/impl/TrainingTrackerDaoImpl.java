@@ -688,6 +688,36 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		return emptrng1;
 	}
 	
+	@Transactional
+	@Override
+	public List<Emp_Trng> getTrainingsToBeApproved(String emailId) {
+		List<Emp_Trng> eT = new ArrayList<Emp_Trng>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		eT = currentSession.createQuery("from Emp_Trng where emailContact = '"+emailId+"' and status='"+TTConstants.REQUESTED_FOR_COMPLETION+"'").list();
+		return eT;
+		
+	}
+	@Transactional
+	@Override
+	public List<Employee> getAllEmployees() {
+		// TODO Auto-generated method stub
+		List<String> empNames = new ArrayList<String>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		empNames = currentSession.createQuery("from Employee").list();
+		return null;
+		
+	}
+	
+	
+	@Transactional
+	@Override
+	public Boolean updateTrainingToComplete(Integer trainingId){
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		trainingId = currentSession.createQuery("update Emp_Trng set status = '"+
+					TTConstants.COMPLETED+"' where trainingId = "+trainingId).executeUpdate();
+		
+		return true;
+	}
 }
 	
 

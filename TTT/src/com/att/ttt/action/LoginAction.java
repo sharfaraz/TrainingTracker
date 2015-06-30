@@ -13,6 +13,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.att.ttt.dao.TrainingTrackerDao;
+import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -32,9 +33,30 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private Employee emp;
 	private String userRole;
 	ArrayList<Employee> userPresenceList = new ArrayList<Employee>();
+	private List<Emp_Trng> empTrng = new ArrayList<Emp_Trng>();
 
 	
 
+
+	public ArrayList<Employee> getUserPresenceList() {
+		return userPresenceList;
+	}
+
+	public void setUserPresenceList(ArrayList<Employee> userPresenceList) {
+		this.userPresenceList = userPresenceList;
+	}
+
+	public List<Emp_Trng> getEmpTrng() {
+		return empTrng;
+	}
+
+	public void setEmpTrng(List<Emp_Trng> empTrng) {
+		this.empTrng = empTrng;
+	}
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
 
 	public String getUserRole() {
 		return userRole;
@@ -125,13 +147,20 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			userPresenceList = trainingTracker.getUserPresenceList(emailId);
 			System.out.println(userPresenceList);
 			
+			empTrng = trainingTracker.getTrainingsToBeApproved(emailId);
+			
 			sessionMap.put("userName", "Welcome! Unknown");
 			if (userPresenceList.size() < 1){
 				res = "unknown";
 				return res;
 			}
 			
+			
 			sessionMap.put("userName", "Welcome! "+userPresenceList.get(0).getFname());
+			
+			if (empTrng.size() > 0) {
+				sessionMap.put("isTA", "A");
+			}
 			
 			userRole = trainingTracker.getUserRoles(emailId);
 			System.out.println(userRole);
