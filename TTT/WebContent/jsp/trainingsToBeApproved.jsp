@@ -1,5 +1,5 @@
 <%@page import="com.opensymphony.xwork2.ActionContext"%>
-<%@page import="java.util.Map"%>
+<%@page import="java.util.Map" import="com.att.ttt.entity.Employee"%>
 <%@page import="org.apache.struts2.dispatcher.SessionMap"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sx" uri="/struts-dojo-tags"%>
@@ -45,6 +45,7 @@
 
 </head>
 <body onload="loadTable();">
+
 	<s:set name="theme" value="'simple'" scope="page" />
 	<div>
 		<div align="center">
@@ -69,6 +70,7 @@
 				<thead>
 					<tr>
 						<th><b>Training Name</b></th>
+						<th><b>Employee Name</b></th>
 						<th><b>Employee ID</b></th>
 						<th><b>Start Date</b></th>
 						<th><b>End Date</b></th>
@@ -83,11 +85,17 @@
 							value='<s:property value="trainingName"/> ' readonly="readonly"
 							name='empTrngs[<s:property value="%{#status.index}"/>].trainingName'
 							id="trainingName<s:property value="%{#status.index}"/>" /></td>
-						
+							
+						<s:iterator value="emps" status="stat">
+							<s:if test="empTrngs[#status.index].empId == emps[#stat.index].empId">
+								<td><input type="text" class="changeFont" 
+										value='<s:property value="emps[#stat.index].Fname"/> <s:property value="emps[#stat.index].Lname"/>'></td>
+							</s:if>
+						</s:iterator>
 						
 						
 						<td><input type="text" class="changeFont" 
-							value="<s:property value='empId'/>" readonly="readonly"
+							value="<s:property value="empId"/>" readonly="readonly"
 							name='empTrngs[<s:property value="%{#status.index}"/>].empId'
 							id="empId<s:property value="%{#status.index}"/>" /></td>
 						
@@ -118,6 +126,7 @@
 			</table>
 		</s:form>
 	</s:if>
+	
 	<%
 		Map session2 = (Map) ActionContext.getContext().get("session");
 		session2.put("successMsg", "");

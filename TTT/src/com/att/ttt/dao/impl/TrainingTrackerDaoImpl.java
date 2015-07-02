@@ -28,6 +28,7 @@ import com.att.ttt.entity.Employee;
 import com.att.ttt.entity.Manager_App;
 import com.att.ttt.entity.TrainingReportBean;
 import com.att.ttt.entity.Trainings;
+import com.ibm.sqltoxls.sql.SqlParse;
 import com.opensymphony.xwork2.ActionContext;
 
 
@@ -42,8 +43,6 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
-
 
 	@Override
 	@Transactional
@@ -701,10 +700,10 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 	@Override
 	public List<Employee> getAllEmployees() {
 		// TODO Auto-generated method stub
-		List<String> empNames = new ArrayList<String>();
+		List<Employee> emps = new ArrayList<Employee>();
 		Session currentSession = this.getSessionFactory().getCurrentSession();
-		empNames = currentSession.createQuery("from Employee").list();
-		return null;
+		emps = currentSession.createQuery("from Employee").list();
+		return emps;
 		
 	}
 	
@@ -718,6 +717,15 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		
 		return true;
 	}
+	
+	
+	@Transactional
+	@Override
+	public Session getCurrentSessionUser() {
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		return currentSession;
+	}
+	
 }
 	
 

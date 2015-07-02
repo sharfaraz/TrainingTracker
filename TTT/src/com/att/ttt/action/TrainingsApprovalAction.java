@@ -173,6 +173,21 @@ public class TrainingsApprovalAction extends ActionSupport implements SessionAwa
 			
 			empTrngs = dao.getTrainingsToBeApproved(emailId);
 			emps = dao.getAllEmployees();
+			List<Employee> tempEmps =  new ArrayList<Employee>();
+			//tempEmps = emps;
+			
+			for (int i=0; i<emps.size(); i++) {
+				for (int j = 0; j<empTrngs.size(); j++){
+					if (emps.get(i).getEmpId().equals(empTrngs.get(j).getEmpId())){
+						//emps.remove(emps.indexOf(tempEmps.get(i)));
+						tempEmps.add(emps.get(i));
+					}
+				}
+			}
+			System.out.println("size of tempemps: "+tempEmps.size());
+			//emps.removeAll(tempEmps);
+			emps.retainAll(tempEmps);
+			System.out.println("size of emps: "+emps.size());
 			
 			
 			
@@ -180,6 +195,7 @@ public class TrainingsApprovalAction extends ActionSupport implements SessionAwa
 				sessionMap.put("TrainingsApprovalMsg", "No Trainings to be Approved!!");
 			}
 		}
+		
 		catch (Exception e){
 			e.printStackTrace();
 			return "failure";

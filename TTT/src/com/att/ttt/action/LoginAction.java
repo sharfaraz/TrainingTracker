@@ -15,12 +15,13 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.att.ttt.dao.TrainingTrackerDao;
 import com.att.ttt.entity.Emp_Trng;
 import com.att.ttt.entity.Employee;
+import com.ibm.sqltoxls.sql.SqlParse;
 import com.opensymphony.xwork2.ActionSupport;
 
 import swat.ReturnCode;
 import swat.cwa;
 
-public class LoginAction extends ActionSupport implements SessionAware {
+public class LoginAction extends ActionSupport implements SessionAware  {
 
 	/**
 	 * 
@@ -36,6 +37,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private List<Emp_Trng> empTrng = new ArrayList<Emp_Trng>();
 
 	
+
 
 
 	public ArrayList<Employee> getUserPresenceList() {
@@ -177,6 +179,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					sessionMap.put("isSU", userRole );
 				}
 			}
+			/*SqlParse sp = new SqlParse();
+			sp.setFileName("C:/ttt.xlsx");
+			sp.setSession(trainingTracker.getCurrentSessionUser());
+			sp.generateExcel("select empId from Employee");*/
 		}
 		else {
 			System.err.println("We're not in!");
@@ -184,6 +190,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			addFieldError("username", "Login failed. Try again!!");
 			res = "failure";
 		}
+		
 		return res;
 	}
 
