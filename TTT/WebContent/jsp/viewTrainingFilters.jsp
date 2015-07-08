@@ -21,6 +21,16 @@
 <link rel="stylesheet" type="text/css" href="css/SummaryView.css">
 <link rel="stylesheet" type="text/css" href="css/buttons.css">
 
+<style>
+ 
+.fixed {
+    position: fixed;
+    top:0; left:0;
+    width: 100%;
+     }  
+    
+</style>
+
 <script type="text/javascript" src="javascript/jquery-1.2.6.min.js"></script>
 <script type="text/javascript"
 	src="javascript/jquery-ui-personalized-1.5.2.packed.js"></script>
@@ -86,6 +96,17 @@
 		document.getElementById("cell1").style.backgroundColor = "red";
 	}
 </script>
+
+<script language="javascript">
+$(window).scroll(function(){
+	  var sticky = $('.sticky'),
+	      scroll = $(window).scrollTop();
+
+	  if (scroll >= 100) sticky.addClass('fixed');
+	  else sticky.removeClass('fixed');
+	});
+</script>
+
 <body onload="loadTable();">
 	<s:set name="theme" value="'simple'" scope="page" />
 	<div>
@@ -93,8 +114,9 @@
 			<font color="green"><s:property value="#session.successMsg" /></font>
 		</div>
 	</div>
+	<div >
 	<s:form action="viewTrainingFilters">
-		<table>
+		<table id="sticky">
 			<tr>
 				<td><label id="targetDateLabel">Training Start date : </label></td>
 				<td><s:textfield key="selTrainingStDate" cssClass="changeFont"
@@ -115,6 +137,7 @@
 			</tr>
 		</table>
 	</s:form>
+	</div>
 
 	<div>
 		<div align="center">
@@ -198,10 +221,12 @@
 							id="status<s:property value="%{#status.index}"/>" /></td>
 
 						<td>
+						<s:if test="status=='Pending'">
 						<input type="submit" title="Update"
 							id="btn<s:property value="%{#status.index}"/>" value="Request for completion"
 							class="buttonStyle2"
 							onclick="updateStatus('<s:property value="trainingId" />', '<s:property value="emailContact" />');" />
+						</s:if>
 						</td>
 
 

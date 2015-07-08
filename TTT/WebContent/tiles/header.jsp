@@ -10,7 +10,7 @@ response.setDateHeader ("Expires", -1);
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Training and Tracking Tool</title>
+	<title>Practioner Training Planner</title>
 	
 </head>
 <body>
@@ -25,7 +25,7 @@ table {border: none;}
 
     <TR >
      <TD width="25%"><IMG src="images/att1.png"/></A></TD>
-     <td width="50%" align="center"><h2>Training and Tracking Tool </td>
+     <td width="50%" align="center"><h2>Practioner Training Planner</td>
     
         <TD width="25%" align="right"><IMG src="images/ibm1.png"/><div align="right"><a href="logoutAction">Logout</a></div></TD>
         

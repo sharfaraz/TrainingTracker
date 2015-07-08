@@ -15,105 +15,105 @@
   </definition>
   
   <definition name="welcome" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/welcome.jsp"/>      
   </definition>
   
   <definition name="welcomeNonExistingUser" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/welcomeNonExistingUser.jsp"/>      
   </definition>
   
    <definition name="uploadEmployees" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/uploadEmployees.jsp"/>      
   </definition>
   
   <definition name="uploadTraining" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/uploadTrainingList.jsp"/>      
   </definition>
   
   <definition name="uploadApplication" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/applicationUpload.jsp"/>      
   </definition>
   
   <definition name="myTrainingsList" extends="baseLayout">
-  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
+  	 <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/myTrainingsList.jsp"/>   
   </definition>
   
     <definition name="CreateTraining" extends="baseLayout">
-  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
+  	 <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/CreateTraining.jsp"/>   
   </definition>
   
    <definition name="fetchReport" extends="baseLayout">
-  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
+  	 <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/GenerateReports.jsp"/>   
   </definition>
 
 
   <definition name="myArchiveTrainingsList" extends="baseLayout">
-  	 <put-attribute name="title"  value="Training and Tracking Tool"/>
+  	 <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/myArchiveTrainingsList.jsp"/>   
   </definition>
 
   
   <definition name="uploadSuccess" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/uploadSuccess.jsp"/>      
   </definition>
   
    <definition name="uploadFailure" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/uploadFailure.jsp"/>      
   </definition>
   
   
    <definition name="viewTrainingFilters" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/viewTrainingFilters.jsp"/>      
   </definition>
   
   <definition name="contact" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/contacts.jsp"/>      
   </definition>
   
   <definition name="myApps" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/myApps.jsp"/>      
   </definition>
   
   <definition name="myEmployees" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/myEmployees.jsp"/>      
   </definition>
   
   <definition name="error" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/error.jsp"/>
   </definition>
   
   <definition name="success" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/success.jsp"/>
   </definition>
   
   <definition name="assignTrainings" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/assignTrainings.jsp"/>      
   </definition>
   
   <definition name="assignApplications" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/assignApplications.jsp"/>      
   </definition>
   
   <definition name="viewTrainingsToBeApproved" extends="baseLayout">
-      <put-attribute name="title"  value="Training and Tracking Tool"/>
+      <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/trainingsToBeApproved.jsp"/>      
   </definition>
   
