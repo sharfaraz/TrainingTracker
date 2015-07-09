@@ -114,6 +114,11 @@
 			<result name="populate" type="tiles">viewTrainingFilters</result>
 		</action>
 		
+		<action name="viewTrainingAllFilters" class="com.att.ttt.action.TrainingsViewAction" method="displayAllFilters">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="populate" type="tiles">viewTrainingAllFilters</result>
+		</action>
+		
 		<action name="updateTrainings" class="com.att.ttt.action.TrainingsViewAction" method="updateTrainings">
 			<result name="success" type="redirectAction">
 			<param name="actionName">viewTrainingFilters</param> </result>

@@ -77,6 +77,11 @@
       <put-attribute name="body"   value="/jsp/viewTrainingFilters.jsp"/>      
   </definition>
   
+  <definition name="viewTrainingAllFilters" extends="baseLayout">
+      <put-attribute name="title"  value="Practioner Training Planner"/>
+      <put-attribute name="body"   value="/jsp/viewTrainingAllFilters.jsp"/>      
+  </definition>
+  
   <definition name="contact" extends="baseLayout">
       <put-attribute name="title"  value="Practioner Training Planner"/>
       <put-attribute name="body"   value="/jsp/contacts.jsp"/>      

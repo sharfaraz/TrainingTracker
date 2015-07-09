@@ -34,9 +34,11 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
 
+
 import com.att.ttt.constants.TTConstants;
 import com.att.ttt.dao.TrainingTrackerDao;
 import com.att.ttt.entity.Emp_Trng;
+import com.att.ttt.entity.Trainings;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -48,6 +50,7 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 1L;
 	
 	private List<Emp_Trng> empTrngs = new ArrayList<Emp_Trng>();
+	private List<Trainings> trngs = new ArrayList<Trainings>();
 	private SessionMap<String,Object> sessionMap;
 	List<String> statuses = new ArrayList< String>();
 	List<String> FilterTrainingType = new ArrayList<String>();
@@ -61,9 +64,14 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 	private Integer[] trainingId;
 	private String empId;
 
+	public List<Trainings> getTrngs() {
+		return trngs;
+	}
 
+	public void setTrngs(List<Trainings> trngs) {
+		this.trngs = trngs;
+	}
 	
-
 	public Integer[] getTrainingId() {
 		return trainingId;
 	}
@@ -255,6 +263,61 @@ public class TrainingsViewAction extends ActionSupport implements SessionAware{
 			empTrngs = dao.myTrainingsList(emailId, selTrainingStDate, selTrainingEndDate, selTrainingType, selTrainingStatus, selLevel);
 			
 			if (empTrngs.size() == 0) {
+				sessionMap.put("trainingsMsg", "No Trainings to Display!!");
+			}
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			return "failure";
+		}
+		
+		return "populate";
+	}
+	
+public String displayAllFilters(){
+		
+		ServletContext ctx=ServletActionContext.getServletContext();
+		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(ctx);
+		TrainingTrackerDao dao =(TrainingTrackerDao)context.getBean("TrainingTrackerDao");
+
+		try {
+			Map<String, Object> session = ActionContext.getContext().getSession();
+			String emailId = (String)session.get("email");
+			
+			//Date date = new Date();
+			//java.sql.Date currentDate = new java.sql.Date(date.getTime());
+			
+			//System.out.println("date: "+currentDate);
+			//sessionMap.put("currentDate", currentDate);
+			
+			FilterTrainingType.add("Mandatory");
+			FilterTrainingType.add("Optional");
+			
+			FilterStatus.add(TTConstants.PENDING);
+			FilterStatus.add(TTConstants.COMPLETED);
+			FilterStatus.add(TTConstants.REQUESTED_FOR_COMPLETION);
+			
+			FilterLevel.add(TTConstants.ACCOUNT);
+			FilterLevel.add(TTConstants.APPLICATION);
+			FilterLevel.add(TTConstants.CLUSTER);
+			FilterLevel.add(TTConstants.TOWER);
+
+			statuses.add(TTConstants.PENDING);
+			statuses.add(TTConstants.REQUESTED_FOR_COMPLETION);
+			statuses.add(TTConstants.COMPLETED);
+			
+			if(selTrainingStatus == null){
+				setSelTrainingStatus(TTConstants.PENDING);
+			}
+			
+			if(selTrainingType == null){
+				setSelTrainingType("-1");
+			}
+
+			trngs = dao.getAllTrainings();
+			System.out.println("trainngs: "+trngs.size());
+			
+			if (trngs.size() == 0) {
 				sessionMap.put("trainingsMsg", "No Trainings to Display!!");
 			}
 		}

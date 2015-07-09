@@ -35,8 +35,8 @@ response.setDateHeader ("Expires", -1);
 	<ul id="nav">
 		<li><a>Employee</a>
 			<ul> 
-      			 <li><a href="viewTrainingFilters" >View/Update Training</a></li>
-      			 <li><a href="contactUsLink" >Request Training</a></li> 
+      			 <li><a href="viewTrainingFilters" >View/Update assigned Training</a></li>
+<!--       			 <li><a href="contactUsLink" >Request Training</a></li>  -->
      		</ul> 
    		</li>
    		<s:if test="%{#superUser == \"S\"}">
@@ -47,6 +47,7 @@ response.setDateHeader ("Expires", -1);
       			 <li><a href="employeesLoadLink">Employee Upload</a></li> 
       			 <li><a href="createNewTraining" >Create New Training</a></li> 
       			 <li><a href="applicationLoadLink" >Upload Applications</a></li> 
+<!--    		 <li><a href="viewTrainingAllFilters" >All Trainings</a></li> -->  
 <!--       			 <li><a href="organization" >Assign Training</a></li> -->
      		</ul>
 		</li>

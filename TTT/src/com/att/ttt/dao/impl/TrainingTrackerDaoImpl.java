@@ -726,6 +726,17 @@ public class TrainingTrackerDaoImpl implements TrainingTrackerDao{
 		return currentSession;
 	}
 	
+	@Transactional
+	@Override
+	public List<Trainings> getAllTrainings() {
+		// TODO Auto-generated method stub
+		List<Trainings> trngs = new ArrayList<Trainings>();
+		Session currentSession = this.getSessionFactory().getCurrentSession();
+		trngs = currentSession.createQuery("from Trainings").list();
+		return trngs;
+		
+	}
+	
 }
 	
 

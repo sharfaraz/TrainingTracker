@@ -33,6 +33,7 @@ public interface TrainingTrackerDao {
 	public List<Trainings> getTrainings(Employee emp);
 	public Boolean updateTrainingToComplete(Integer trainingId);
 	public Trainings getTrainingFromTrainingName(String trainingName);
+	public List<Trainings> getAllTrainings();
 	
 	//roles
 	public String getUserRoles (String emailId);
@@ -79,5 +80,6 @@ public interface TrainingTrackerDao {
 
 	//general
 	public Session getCurrentSessionUser();
+	
 
 }
